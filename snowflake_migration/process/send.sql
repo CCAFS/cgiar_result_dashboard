@@ -1,0 +1,1 @@
+put file://output/FACT_TRAINEES.csv @LOCAL_LOAD;

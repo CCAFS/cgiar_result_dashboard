@@ -1,0 +1,5 @@
+pk_id_training_term;version;date_from;date_to;id;"name";"definition"
+0;1;;;;;
+1;1;1900-01-01 00:00:00;2199-12-31 23:59:59;1;"Short term";
+2;1;1900-01-01 00:00:00;2199-12-31 23:59:59;2;"Long term";
+3;1;1900-01-01 00:00:00;2199-12-31 23:59:59;3;"Not defined";
