@@ -1,0 +1,1 @@
+sh /opt/BI/data-integration/kitchen.sh -file="DW_process.kjb" -level=basic >> /opt/BI/logs/marloBI_$(date +%D_%T|tr : -|tr / - ).log
