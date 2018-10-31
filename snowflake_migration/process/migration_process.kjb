@@ -371,7 +371,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>D:\CGIAR\CCAFS-KDS - Documentos\MARLO\2_Technical\2_7_Data\2_7_4_BI\snowflake_migration\process\get_table_names.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\get_table_names.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>

@@ -521,7 +521,7 @@
       <schema_name/>
     </partitioning>
     <connection>DES_DB</connection>
-    <sql>SELECT upper(table_name) table_name FROM information_schema.tables 
+    <sql>SELECT table_name table_name,upper(table_name) sf_table_name  FROM information_schema.tables 
 where (table_name like 'fact_%' or table_name like 'dim_%' or table_name like 'br_%')
 ;</sql>
     <limit>0</limit>

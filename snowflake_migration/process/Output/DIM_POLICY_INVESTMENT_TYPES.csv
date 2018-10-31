@@ -1,6 +1,0 @@
-pk_id_pol_inv_typ;version;date_from;date_to;id;"name";"definition"
-0;1;;;;;
-1;1;1900-01-01 00:00:00;2199-12-31 23:59:59;1;"Policy or Strategy";"A policy or strategy could be a written decision or commitment to a particular course of action by an institution (policy); or a (government, NGO, private sector) high level plan outlining how a particular course of action will be carried out (strategy)."
-2;1;1900-01-01 00:00:00;2199-12-31 23:59:59;2;"Legal instrument";"Legal instruments include laws, defined as a Bill passed into law by highest elected body (Parliament, Congress or equivalent); or regulations, defined as a rule or norm adopted by government and backed up by some threat of consequences, usually negative ones in the form of penalties."
-3;1;1900-01-01 00:00:00;2199-12-31 23:59:59;3;"Budget or Investment";"A budget or investment is an estimate of funds allocated for development."
-4;1;1900-01-01 00:00:00;2199-12-31 23:59:59;4;"Curriculum";"Curriculum refers to the planned means and materials with which students will interact for the purpose of achieving identified educational outcomes. This can be at any level of education and target group, ranging from university degree course to farmer-field school. "

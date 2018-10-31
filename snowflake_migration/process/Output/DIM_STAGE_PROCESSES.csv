@@ -1,4 +1,0 @@
-pk_id_stage_processes;version;date_from;date_to;id;"name";"description"
-0;1;;;;;
-1;1;1900-01-01 00:00:00;2199-12-31 23:59:59;1;"Stage 1 of outcome/impact case study";"Research taken up by next user (decision maker or intermediary)"
-2;1;1900-01-01 00:00:00;2199-12-31 23:59:59;2;"Stage 2 of outcome/impact case study";"Policy/Law etc. Enacted "

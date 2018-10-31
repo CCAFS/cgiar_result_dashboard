@@ -6,3 +6,4 @@ config/cfg_local_2_local.csv
 config/cfg_local_2_BI.csv
 config/S3rootkey.csv
 config/DB_config.csv
+/snowflake_migration/process/Output
