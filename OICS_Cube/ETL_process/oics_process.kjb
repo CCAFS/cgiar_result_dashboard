@@ -312,7 +312,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_crps.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_crps.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -348,7 +348,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_policy_investment_types.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_policy_investment_types.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -384,7 +384,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_smo_org_types.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_smo_org_types.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -420,7 +420,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_geo_scopes.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_geo_scopes.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -456,7 +456,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_phases.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_phases.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -492,7 +492,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_oics_metadata.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_oics_metadata.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -528,7 +528,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\dim_crps.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\dim_crps.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -564,7 +564,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\dim_policy_investment_types.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\dim_policy_investment_types.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -600,7 +600,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\dim_smo_org_types.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\dim_smo_org_types.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -636,7 +636,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\dim_geo_scopes.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\dim_geo_scopes.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -672,7 +672,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\dim_phases.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\dim_phases.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -708,7 +708,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\dim_oics_metadata.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\dim_oics_metadata.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -754,7 +754,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_oics_fact.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_oics_fact.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -790,7 +790,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Facts\pre_oics_fact.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\facts\pre_oics_fact.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -826,7 +826,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Facts\oics_fact.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\facts\oics_fact.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -862,7 +862,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_srf.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_srf.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -898,7 +898,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_srf_oics_br.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_srf_oics_br.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -934,7 +934,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\dim_srf.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\dim_srf.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -970,7 +970,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\pre_srf_oics_br.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\pre_srf_oics_br.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1006,7 +1006,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\br_srf_oics.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\br_srf_oics.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1042,7 +1042,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_stg_maturities.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_stg_maturities.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1078,7 +1078,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\dim_stg_maturities.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\dim_stg_maturities.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1114,7 +1114,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\dim_stage_processes.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\dim_stage_processes.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1150,7 +1150,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\pre_cci_oics_br.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\pre_cci_oics_br.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1186,7 +1186,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\br_cci_oics.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\br_cci_oics.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1222,7 +1222,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\dim_cci.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\dim_cci.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1258,7 +1258,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_cci.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_cci.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1330,7 +1330,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_loc_oics_br.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_loc_oics_br.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1366,7 +1366,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\pre_loc_oics_br.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\pre_loc_oics_br.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1402,7 +1402,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\br_loc_oics.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\br_loc_oics.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1438,7 +1438,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_locations.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_locations.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1474,7 +1474,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\dim_locations.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\dim_locations.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1510,7 +1510,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\dim_flagships.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\dim_flagships.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1546,7 +1546,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_flagships.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_flagships.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1582,7 +1582,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_flagship_oics_br.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_flagship_oics_br.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1618,7 +1618,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\pre_flagship_oics_br.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\pre_flagship_oics_br.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1654,7 +1654,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\br_flagship_oics.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\br_flagship_oics.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1690,7 +1690,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_ext_partners.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_ext_partners.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1726,7 +1726,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\dim_ext_partners.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\dim_ext_partners.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1762,7 +1762,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_extpart_oics_br.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_extpart_oics_br.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1798,7 +1798,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\pre_extpart_oics_br.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\pre_extpart_oics_br.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1834,7 +1834,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\br_extpart_oics.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\br_extpart_oics.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1870,7 +1870,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\dim_srf_targets.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\dim_srf_targets.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1906,7 +1906,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_srf_targets.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_srf_targets.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1942,7 +1942,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimensions\br_srftar_oics.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\br_srftar_oics.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1978,7 +1978,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_srftar_oics_br.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_srftar_oics_br.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -2014,7 +2014,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\pre_srftar_oics_br.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\pre_srftar_oics_br.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -2050,7 +2050,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_stage_processes.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_stage_processes.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -2086,7 +2086,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_sdg.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_sdg.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -2122,7 +2122,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\stg_sdg_oics_br.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\stg_sdg_oics_br.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -2194,7 +2194,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Stage\pre_sdg_oics_br.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\stage\pre_sdg_oics_br.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
