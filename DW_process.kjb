@@ -292,7 +292,7 @@
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\OICS_Cube\ETL process\oics_process.kjb</filename>
+      <filename>${Internal.Entry.Current.Directory}\OICS_Cube\ETL_process\oics_process.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -326,7 +326,7 @@
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Innovation_cube\ETL Process\inno_process.kjb</filename>
+      <filename>${Internal.Entry.Current.Directory}\Innovation_cube\ETL_Process\inno_process.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -446,7 +446,7 @@
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Partnership_cube\ETL Process\partnerships_process.kjb</filename>
+      <filename>${Internal.Entry.Current.Directory}\Partnership_cube\ETL_Process\partnerships_process.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -480,7 +480,7 @@
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\train_part_cube\ETL Process\train_part_cube.kjb</filename>
+      <filename>${Internal.Entry.Current.Directory}\train_part_cube\ETL_Process\train_part_cube.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -514,7 +514,7 @@
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\publications\ETL Process\publication_process.kjb</filename>
+      <filename>${Internal.Entry.Current.Directory}\publications\ETL_Process\publication_process.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -548,7 +548,7 @@
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\Altmetrics\ETL Process\altmetrics_process.kjb</filename>
+      <filename>${Internal.Entry.Current.Directory}\Altmetrics\ETL_Process\altmetrics_process.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -756,7 +756,7 @@
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\policies\ETL Process\policies_process.kjb</filename>
+      <filename>${Internal.Entry.Current.Directory}\policies\ETL_Process\policies_process.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
