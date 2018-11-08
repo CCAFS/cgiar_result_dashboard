@@ -437,18 +437,30 @@
   <notepads>
   </notepads>
   <connection>
-    <name>mis_bi_test</name>
-    <server>marlotest.ciat.cgiar.org</server>
+    <name>DES_DB</name>
+    <server>${DES_HOST}</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>mis_bi_test</database>
+    <database>${DES_DBNAME}</database>
     <port>3306</port>
-    <username>marlodb</username>
-    <password>Encrypted 2be98afc86aa7f2e48129ad62888797df</password>
+    <username>${DES_USR}</username>
+    <password>${DES_PSW}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterEncoding</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterSetResult</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useUnicode</code>
+        <attribute>true</attribute>
+      </attribute>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
         <attribute>N</attribute>
@@ -557,7 +569,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>mis_bi_test</connection>
+    <connection>DES_DB</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
@@ -604,7 +616,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>mis_bi_test</connection>
+    <connection>DES_DB</connection>
     <schema/>
     <table>pre_srf_oics_bridge</table>
     <commit>1000</commit>
@@ -647,7 +659,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>mis_bi_test</connection>
+    <connection>DES_DB</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
@@ -694,7 +706,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>mis_bi_test</connection>
+    <connection>DES_DB</connection>
     <sql>select * from stg_srf_oics_bridge</sql>
     <limit>0</limit>
     <lookup/>
