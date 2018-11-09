@@ -756,7 +756,7 @@
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\policies\ETL_Process\policies_process.kjb</filename>
+      <filename>${Internal.Entry.Current.Directory}\policies\ETL_Process\Policies_process.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
