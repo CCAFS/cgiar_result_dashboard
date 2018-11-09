@@ -343,7 +343,7 @@
       <yloc>32</yloc>
     </entry>
     <entry>
-      <name>send_table_info</name>
+      <name>create_csv</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
@@ -385,17 +385,26 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>656</xloc>
+      <xloc>608</xloc>
       <yloc>32</yloc>
     </entry>
     <entry>
-      <name>create script line</name>
+      <name>create migration script</name>
       <description/>
       <type>WRITE_TO_FILE</type>
       <filename>${Internal.Entry.Current.Directory}\send.sql</filename>
       <createParentFolder>N</createParentFolder>
       <appendFile>N</appendFile>
-      <content>put file://output/${V_SF_TABLE_NAME}.csv @LOCAL_LOAD;</content>
+      <content>REMOVE @LOCAL_LOAD;
+
+put file://output/${V_SF_TABLE_NAME}.csv @LOCAL_LOAD;
+
+delete from ${V_SF_TABLE_NAME};
+
+copy into "DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."${V_SF_TABLE_NAME}" 
+from '@"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."LOCAL_LOAD"/${V_SF_TABLE_NAME}.csv' 
+file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
+</content>
       <encoding>UTF-8</encoding>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -404,7 +413,7 @@
       <yloc>32</yloc>
     </entry>
     <entry>
-      <name>Put command</name>
+      <name>execute migration</name>
       <description/>
       <type>SHELL</type>
       <filename/>
@@ -423,28 +432,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>464</xloc>
-      <yloc>32</yloc>
-    </entry>
-    <entry>
-      <name>snowflake copy</name>
-      <description/>
-      <type>SQL</type>
-      <sql>delete from ${V_SF_TABLE_NAME};
-
-copy into "DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."${V_SF_TABLE_NAME}" 
-from '@"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."LOCAL_LOAD"/${V_SF_TABLE_NAME}.csv' 
-file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
-</sql>
-      <useVariableSubstitution>T</useVariableSubstitution>
-      <sqlfromfile>F</sqlfromfile>
-      <sqlfilename/>
-      <sendOneStatement>F</sendOneStatement>
-      <connection>Snowfake_DW</connection>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>560</xloc>
+      <xloc>496</xloc>
       <yloc>32</yloc>
     </entry>
   </entries>
@@ -460,7 +448,7 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
     </hop>
     <hop>
       <from>set_table_name_var</from>
-      <to>send_table_info</to>
+      <to>create_csv</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -468,8 +456,8 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>send_table_info</from>
-      <to>create script line</to>
+      <from>create_csv</from>
+      <to>create migration script</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -477,8 +465,8 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>create script line</from>
-      <to>Put command</to>
+      <from>create migration script</from>
+      <to>execute migration</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -486,16 +474,7 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Put command</from>
-      <to>snowflake copy</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>snowflake copy</from>
+      <from>execute migration</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>

@@ -412,22 +412,6 @@
       <xloc>496</xloc>
       <yloc>32</yloc>
     </entry>
-    <entry>
-      <name>Clean SF Stage</name>
-      <description/>
-      <type>SQL</type>
-      <sql>REMOVE @LOCAL_LOAD;</sql>
-      <useVariableSubstitution>F</useVariableSubstitution>
-      <sqlfromfile>F</sqlfromfile>
-      <sqlfilename/>
-      <sendOneStatement>F</sendOneStatement>
-      <connection>Snowfake_DW</connection>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>384</xloc>
-      <yloc>32</yloc>
-    </entry>
   </entries>
   <hops>
     <hop>
@@ -450,15 +434,6 @@
     </hop>
     <hop>
       <from>get_table_names</from>
-      <to>Clean SF Stage</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Clean SF Stage</from>
       <to>send_one_table</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
