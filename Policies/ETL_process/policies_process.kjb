@@ -430,7 +430,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\dimension\dim_policies_info.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\dim_policies_info.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -466,7 +466,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\fact\fact_policies.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}\Fact\fact_policies.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
