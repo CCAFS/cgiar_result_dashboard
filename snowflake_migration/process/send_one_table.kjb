@@ -397,7 +397,7 @@
       <appendFile>N</appendFile>
       <content>REMOVE @LOCAL_LOAD;
 
-put file://output/${V_SF_TABLE_NAME}.csv @LOCAL_LOAD;
+put file://Output/${V_SF_TABLE_NAME}.csv @LOCAL_LOAD;
 
 delete from ${V_SF_TABLE_NAME};
 
