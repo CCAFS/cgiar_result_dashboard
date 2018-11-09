@@ -1027,7 +1027,7 @@
       <schema_name/>
     </partitioning>
     <connection>DES_DB</connection>
-    <sql>select * from stg_oics_fact</sql>
+    <sql>select * from stg_oics_fact;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
