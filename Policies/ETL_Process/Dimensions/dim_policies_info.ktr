@@ -536,24 +536,24 @@
         <to>date_to</to>
       </date>
       <field>
-        <name>policy_tittle</name>
-        <lookup>policy_tittle</lookup>
-        <update>Update</update>
+        <name>policy_title</name>
+        <lookup>policy_title</lookup>
+        <update>Insert</update>
       </field>
       <field>
         <name>oics_id</name>
         <lookup>oics_id</lookup>
-        <update>Update</update>
+        <update>Insert</update>
       </field>
       <field>
-        <name>oics_tittle</name>
-        <lookup>oics_tittle</lookup>
-        <update>Update</update>
+        <name>oics_title</name>
+        <lookup>oics_title</lookup>
+        <update>Insert</update>
       </field>
       <field>
         <name>pdf</name>
         <lookup>pdf</lookup>
-        <update>Update</update>
+        <update>Insert</update>
       </field>
       <return>
         <name>pk_id_policy_info</name>

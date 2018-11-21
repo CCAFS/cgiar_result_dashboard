@@ -441,7 +441,7 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${DES_DBNAME}</database>
-    <port>${DES_PORT}</port>
+    <port>3306</port>
     <username>${DES_USR}</username>
     <password>${DES_PSW}</password>
     <servername/>
@@ -474,7 +474,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${DES_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -523,6 +523,7 @@
     <connection>DES_DB</connection>
     <sql>SELECT table_name table_name,upper(table_name) sf_table_name  FROM information_schema.tables 
 where (table_name like 'fact_%' or table_name like 'dim_%' or table_name like 'br_%')
+
 ;</sql>
     <limit>0</limit>
     <lookup/>

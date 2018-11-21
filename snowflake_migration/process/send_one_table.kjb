@@ -427,7 +427,7 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <add_date>N</add_date>
       <add_time>N</add_time>
       <insertScript>Y</insertScript>
-      <script>./snowsql -f send.sql --config ../../config/config_snowflake</script>
+      <script>snowsql -f send.sql --config ../../config/config_snowflake</script>
       <loglevel>Basic</loglevel>
       <parallel>N</parallel>
       <draw>Y</draw>

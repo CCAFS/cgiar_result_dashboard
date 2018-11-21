@@ -591,7 +591,7 @@
         <rename/>
       </field>
       <field>
-        <name>policy_tittle</name>
+        <name>policy_title</name>
         <rename/>
       </field>
       <field>
@@ -599,7 +599,7 @@
         <rename/>
       </field>
       <field>
-        <name>oics_tittle</name>
+        <name>oics_title</name>
         <rename/>
       </field>
       <field>
@@ -675,9 +675,9 @@
     </partitioning>
     <connection>ORI_DB</connection>
     <sql>select pol.id id_policy
-, pol.tittle policy_tittle
+, pol.title policy_title
 , pol.expected_study_id oics_id
-, pesi.title oics_tittle
+, pesi.title oics_title
 , concat('https://marlo.cgiar.org/projects/',gu.acronym,'/studySummary.do?studyID=',pesi.project_expected_study_id,'&amp;cycle=',ph.description,'&amp;year=',ph.year) pdf
 from 
 report_synthesis_policies pol 
