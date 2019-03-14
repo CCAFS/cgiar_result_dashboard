@@ -442,13 +442,25 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${DES_DBNAME}</database>
-    <port>${DES_PORT}</port>
+    <port>3306</port>
     <username>${DES_USR}</username>
     <password>${DES_PSW}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterEncoding</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterSetResult</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useUnicode</code>
+        <attribute>true</attribute>
+      </attribute>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
         <attribute>N</attribute>
@@ -463,7 +475,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${DES_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -577,18 +589,27 @@
     <fields>
       <field>
         <name>id</name>
+        <rename/>
       </field>
       <field>
         <name>global_unit_type_id</name>
+        <rename/>
       </field>
       <field>
         <name>name</name>
+        <rename/>
       </field>
       <field>
         <name>acronym</name>
+        <rename/>
       </field>
       <field>
         <name>is_active</name>
+        <rename/>
+      </field>
+      <field>
+        <name>global_unit_type</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -659,21 +680,23 @@
     </partitioning>
     <connection>ORI_DB</connection>
     <sql>SELECT
-  id
-, global_unit_type_id
-, smo_code
-, name
-, acronym
-, is_active
-, created_by
-, modified_by
-, active_since
-, modification_justification
-, is_marlo
-, login
-FROM global_units
-where global_unit_type_id = 1
-</sql>
+  gu.id
+, gu.global_unit_type_id
+, gu.smo_code
+, gu.name
+, gu.acronym
+, gu.is_active
+, gu.created_by
+, gu.modified_by
+, gu.active_since
+, gu.modification_justification
+, gu.is_marlo
+, gu.login
+, ty.name global_unit_type
+FROM global_units gu
+join global_unit_types ty on gu.global_unit_type_id = ty.id
+where global_unit_type_id in (1,3)
+;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -710,7 +733,7 @@ where global_unit_type_id = 1
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
+    <specify_fields>N</specify_fields>
     <partitioning_enabled>N</partitioning_enabled>
     <partitioning_field/>
     <partitioning_daily>N</partitioning_daily>
@@ -721,26 +744,6 @@ where global_unit_type_id = 1
     <return_keys>N</return_keys>
     <return_field/>
     <fields>
-      <field>
-        <column_name>id</column_name>
-        <stream_name>id</stream_name>
-      </field>
-      <field>
-        <column_name>global_unit_type_id</column_name>
-        <stream_name>global_unit_type_id</stream_name>
-      </field>
-      <field>
-        <column_name>name</column_name>
-        <stream_name>name</stream_name>
-      </field>
-      <field>
-        <column_name>acronym</column_name>
-        <stream_name>acronym</stream_name>
-      </field>
-      <field>
-        <column_name>is_active</column_name>
-        <stream_name>is_active</stream_name>
-      </field>
     </fields>
     <cluster_schema/>
     <remotesteps>
