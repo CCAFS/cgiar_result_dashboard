@@ -442,13 +442,25 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${DES_DBNAME}</database>
-    <port>${DES_PORT}</port>
+    <port>3306</port>
     <username>${DES_USR}</username>
     <password>${DES_PSW}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterEncoding</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterSetResult</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useUnicode</code>
+        <attribute>true</attribute>
+      </attribute>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
         <attribute>N</attribute>
@@ -463,7 +475,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${DES_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -497,7 +509,7 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${ORI_DBNAME}</database>
-    <port>${ORI_PORT}</port>
+    <port>3306</port>
     <username>${ORI_USR}</username>
     <password>${ORI_PSW}</password>
     <servername/>
@@ -518,7 +530,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${ORI_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -668,19 +680,21 @@
     </partitioning>
     <connection>ORI_DB</connection>
     <sql># Countries with the 2 region
-select le.id country_id, le.name country_name, le.iso_alpha_2,le.iso_numeric,par.id reg_wb_id,par.name reg_wb_name, run.un_m49_code reg_un_id,run.name reg_un_name#,'' reg_iati_id, ''reg_iati_name
+select le.id country_id, le.name country_name, le.iso_alpha_2,le.iso_numeric,par.id reg_wb_id,par.name reg_wb_name, par.iso_numeric reg_un_id,par.name reg_un_name#,'' reg_iati_id, ''reg_iati_name
 from loc_elements le 
 join loc_elements par on par.id = le.parent_id
-left join rep_ind_regions run on run.id = le.rep_ind_regions_id
+#left join rep_ind_regions run on run.id = le.rep_ind_regions_id
 where le.is_active  
 and le.element_type_id = 2
 UNION ALL
 # UN-iati Region 
-select concat('un_',reg.id) country_id , 'NA' country_name, '' iso_alpha_2,'' iso_numeric, '' reg_wb_id, '' reg_wb_name,reg.un_m49_code  reg_un_id,reg.name reg_un_name#,'' reg_iati_id, ''reg_iati_name
-from rep_ind_regions reg
+select concat('un_',reg.id) country_id , '' country_name, '' iso_alpha_2,'' iso_numeric, '' reg_wb_id, '' reg_wb_name,reg.iso_numeric  reg_un_id,reg.name reg_un_name#,'' reg_iati_id, ''reg_iati_name
+from loc_elements reg
+where reg.is_active
+and reg.element_type_id = 1
 union all
-select  'WORLD' country_id , 'Global' country_name, 'na' iso_alpha_2,'na' iso_numeric, '0' reg_wb_id, 'Global' reg_wb_name,'0'  reg_un_id,'Global' reg_un_name
-;</sql>
+select  'WORLD' country_id , 'Global' country_name, 'na' iso_alpha_2,'na' iso_numeric, 'GL' reg_wb_id, 'Global' reg_wb_name,'GL'  reg_un_id,'Global' reg_un_name
+</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

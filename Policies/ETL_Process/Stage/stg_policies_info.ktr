@@ -588,23 +588,18 @@
     <fields>
       <field>
         <name>id_policy</name>
-        <rename/>
       </field>
       <field>
         <name>policy_title</name>
-        <rename/>
       </field>
       <field>
         <name>oics_id</name>
-        <rename/>
       </field>
       <field>
         <name>oics_title</name>
-        <rename/>
       </field>
       <field>
         <name>pdf</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -675,19 +670,16 @@
     </partitioning>
     <connection>ORI_DB</connection>
     <sql>select pol.id id_policy
-, pol.title policy_title
-, pol.expected_study_id oics_id
-, pesi.title oics_title
-, concat('https://marlo.cgiar.org/projects/',gu.acronym,'/studySummary.do?studyID=',pesi.project_expected_study_id,'&amp;cycle=',ph.description,'&amp;year=',ph.year) pdf
-from 
-report_synthesis_policies pol 
-inner join phases ph on pol.id_phase = ph.id
-INNER JOIN global_units gu ON gu.id = ph.global_unit_id AND gu.is_active
-inner join project_expected_study_info pesi  on pol.expected_study_id = pesi.project_expected_study_id and pol.id_phase = pesi.id_phase
-where is_contribution
-AND ph.year &lt; YEAR(SYSDATE())
-and ph.name = 'AR'
-;</sql>
+, poli.title policy_title
+, null oics_id
+, null oics_title
+, null pdf
+from project_policies pol
+join project_policy_info poli on pol.id=poli.project_policy_id
+join phases ph on ph.id=poli.id_phase
+JOIN global_units gu ON gu.id = ph.global_unit_id AND gu.is_active
+where poli.year = 2017 and 
+ph.year = poli.`year`</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

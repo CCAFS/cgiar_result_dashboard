@@ -8,3 +8,4 @@ config/S3rootkey.csv
 config/DB_config.csv
 /snowflake_migration/process/Output
 /snowflake_migration/process/send.sql
+config/cfg_local_PARALEL_2_BI.csv

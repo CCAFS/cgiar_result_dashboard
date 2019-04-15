@@ -441,13 +441,25 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${DES_DBNAME}</database>
-    <port>${DES_PORT}</port>
+    <port>3306</port>
     <username>${DES_USR}</username>
     <password>${DES_PSW}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterEncoding</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterSetResult</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useUnicode</code>
+        <attribute>true</attribute>
+      </attribute>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
         <attribute>N</attribute>
@@ -462,7 +474,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${DES_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -648,7 +660,8 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql># sub-national, national and multi-national 
+    <sql># BRIDGE 
+# sub-national, national and multi-national 
 select  pes.id id_oics,le.id id_loc#,le.name,pesi.rep_ind_geographic_scope_id,ph.global_unit_id, pes.*
 from project_expected_studies pes 
 INNER JOIN v_project_expected_studies_info_reported pesi ON pesi.project_expected_study_id = pes.id 
@@ -656,17 +669,19 @@ INNER JOIN phases ph on ph.id = pesi.id_phase
 LEFT JOIN projects_info prj ON prj.project_id = pes.project_id and pesi.id_phase = prj.id_phase 
 LEFT JOIN project_expected_study_countries pesc ON pesc.expected_id = pes.id AND pesc.id_phase = ph.id
 LEFT JOIN loc_elements le ON le.id = pesc.loc_element_id AND le.is_active 
-where pesi.rep_ind_geographic_scope_id in (3,4,5)
-
+left join project_expected_study_geographic_scopes sco on sco.expected_id=pesi.project_expected_study_id and sco.id_phase = pesi.id_phase
+where ifnull(pesi.rep_ind_geographic_scope_id,sco.rep_ind_geographic_scope_id)in (3,4,5)
 UNION ALL
 # regional un IATI
-select  pes.id id_oics, concat('un_',pesi.rep_ind_region_id) id_region #,pesi.*
+select  pes.id id_oics, concat('un_',reg.id_region) id_region #,pesi.*
 from project_expected_studies pes 
 INNER JOIN v_project_expected_studies_info_reported pesi ON pesi.project_expected_study_id = pes.id 
 INNER JOIN phases ph on ph.id = pesi.id_phase
-LEFT JOIN projects_info prj ON prj.project_id = pes.project_id and pesi.id_phase = prj.id_phase 
-where pesi.rep_ind_geographic_scope_id in (2)
-
+inner join project_expected_study_regions reg on reg.expected_id=pesi.project_expected_study_id and reg.id_phase = pesi.id_phase
+left join project_expected_study_geographic_scopes sco on sco.expected_id=pesi.project_expected_study_id and sco.id_phase = pesi.id_phase
+where ifnull(pesi.rep_ind_geographic_scope_id,sco.rep_ind_geographic_scope_id) in (2)
+#LEFT JOIN projects_info prj ON prj.project_id = pes.project_id and pesi.id_phase = prj.id_phase 
+#where pesi.rep_ind_geographic_scope_id in (2)
 UNION ALL
 # world scope
 select  pes.id id_oics, 'WORLD' id_region #,pesi.*
@@ -674,8 +689,8 @@ from project_expected_studies pes
 INNER JOIN v_project_expected_studies_info_reported pesi ON pesi.project_expected_study_id = pes.id 
 INNER JOIN phases ph on ph.id = pesi.id_phase
 LEFT JOIN projects_info prj ON prj.project_id = pes.project_id and pesi.id_phase = prj.id_phase 
-where pesi.rep_ind_geographic_scope_id in (1)
-
+left join project_expected_study_geographic_scopes sco on sco.expected_id=pesi.project_expected_study_id and sco.id_phase = pesi.id_phase
+where ifnull(pesi.rep_ind_geographic_scope_id,sco.rep_ind_geographic_scope_id) in (1)
 
 ;</sql>
     <limit>0</limit>

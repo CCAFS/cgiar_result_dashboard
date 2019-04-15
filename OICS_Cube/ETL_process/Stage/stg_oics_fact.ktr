@@ -441,13 +441,25 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${DES_DBNAME}</database>
-    <port>${DES_PORT}</port>
+    <port>3306</port>
     <username>${DES_USR}</username>
     <password>${DES_PSW}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterEncoding</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterSetResult</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useUnicode</code>
+        <attribute>true</attribute>
+      </attribute>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
         <attribute>N</attribute>
@@ -462,7 +474,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${DES_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -588,15 +600,12 @@ FROM phases ph
 INNER JOIN global_units gu ON gu.id = ph.global_unit_id AND gu.is_active
 INNER JOIN project_expected_studies pes ON pes.is_active
 INNER JOIN v_project_expected_studies_info_reported pesi ON pesi.project_expected_study_id = pes.id AND pesi.id_phase = ph.id
-LEFT JOIN projects_info prj ON prj.project_id = pes.project_id and pesi.id_phase = prj.id_phase 
 LEFT JOIN rep_ind_policy_investiment_types ripi ON ripi.id = pesi.rep_ind_policy_id
 LEFT JOIN rep_ind_organization_types riot ON riot.id = pesi.rep_ind_organization_type_id
 LEFT JOIN rep_ind_stage_process risp ON risp.id = pesi.rep_ind_stage_process_id
 LEFT JOIN rep_ind_stage_studies riss ON riss.id = pesi.rep_ind_stage_study_id
-LEFT JOIN rep_ind_geographic_scopes rigs ON rigs.id = pesi.rep_ind_geographic_scope_id
-
-
-</sql>
+LEFT JOIN project_expected_study_geographic_scopes rigs2 on rigs2.id_phase = pesi.id_phase and rigs2.expected_id =pesi.project_expected_study_id
+LEFT JOIN rep_ind_geographic_scopes rigs ON rigs.id = ifnull(pesi.rep_ind_geographic_scope_id,rigs2.rep_ind_geographic_scope_id)</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

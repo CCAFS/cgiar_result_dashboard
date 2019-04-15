@@ -720,44 +720,42 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>select pol.id id_policy,
-pes.id id_oics,
-pesi.id_phase,
-gu.id crp,
-ripi.id policy_investment_types,
-riot.id impl_org_types,
-risp.id rep_ind_stg_proc,
-riss.id stg_maturity,
-rigs.id geo_scopes,
+    <sql>select pol.id id_policy,#
+null id_oics, #
+poli.id_phase, #
+gu.id crp, #
+ripi.id policy_investment_types,#
+riot.id impl_org_types, #
+risp.id rep_ind_stg_proc, #
+null stg_maturity,#riss.id stg_maturity, #
+rigs.id geo_scopes,#
 case 
-WHEN pesi.rep_ind_geographic_scope_id  in (3,4,5) then pesc.loc_element_id
-WHEN pesi.rep_ind_geographic_scope_id  in (2) then concat('un_',pesi.rep_ind_region_id) 
-WHEN pesi.rep_ind_geographic_scope_id  in (1) then 'WORLD'
-else 'Error' 
-end location,
-IF(ido.is_cross_cutting =0, sido.id , '') srf, #
+WHEN pgeo.rep_ind_geographic_scope_id  in (3,4,5) then polc.id_country
+WHEN pgeo.rep_ind_geographic_scope_id  in (2) then concat('un_',polr.id_region) 
+WHEN pgeo.rep_ind_geographic_scope_id  in (1) then 'WORLD'
+WHEN pgeo.rep_ind_geographic_scope_id is null then null
+else CONCAT('Error: ',pgeo.rep_ind_geographic_scope_id)
+end location, #
+IF(ido.is_cross_cutting=0, sido.id , '') srf, #
 IF(ido.is_cross_cutting =1,sido.id,'') cci, #
-pesf.crp_program_id Flagship
-, pesins.institution_id
-FROM phases ph
-INNER JOIN global_units gu ON gu.id = ph.global_unit_id AND gu.is_active
-INNER JOIN project_expected_studies pes ON pes.is_active
-INNER JOIN project_expected_study_info pesi ON pesi.project_expected_study_id = pes.id AND pesi.id_phase = ph.id
-inner join report_synthesis_policies pol on pol.expected_study_id = pesi.project_expected_study_id and pol.id_phase = pesi.id_phase
-LEFT JOIN rep_ind_policy_investiment_types ripi ON ripi.id = pesi.rep_ind_policy_id
-LEFT JOIN rep_ind_organization_types riot ON riot.id = pesi.rep_ind_organization_type_id
-LEFT JOIN rep_ind_stage_process risp ON risp.id = pesi.rep_ind_stage_process_id
-LEFT JOIN rep_ind_stage_studies riss ON riss.id = pesi.rep_ind_stage_study_id
-LEFT JOIN rep_ind_geographic_scopes rigs ON rigs.id = pesi.rep_ind_geographic_scope_id
-LEFT JOIN project_expected_study_countries pesc ON pesc.expected_id = pes.id AND pesc.id_phase = pesi.id_phase
-left JOIN project_expected_study_sub_ido pess ON pess.expected_id = pes.id AND pess.id_phase = pesi.id_phase
-left join srf_sub_idos sido on sido.id = pess.sub_ido_id
+null Flagship #
+, null institution_id #
+FROM project_policies pol
+join project_policy_info poli on pol.id=poli.project_policy_id
+join phases ph on poli.id_phase=ph.id
+JOIN global_units gu ON gu.id = ph.global_unit_id AND gu.is_active
+left join rep_ind_policy_investiment_types ripi on ripi.id = poli.rep_ind_policy_investment_type_id
+LEFT JOIN rep_ind_organization_types riot ON riot.id = poli.rep_ind_organization_type_id
+LEFT JOIN rep_ind_stage_process risp ON risp.id = poli.rep_ind_stage_process_id
+left join project_policy_geographic_scopes pgeo on pgeo.project_policy_id = poli.project_policy_id and pgeo.id_phase=poli.id_phase
+LEFT JOIN rep_ind_geographic_scopes rigs ON rigs.id = pgeo.rep_ind_geographic_scope_id
+left join project_policy_countries polc on polc.project_policy_id = poli.project_policy_id and polc.id_phase=poli.id_phase
+left join project_policy_regions polr on polr.project_policy_id = poli.project_policy_id and polr.id_phase=poli.id_phase
+LEFT JOIN project_policy_sub_idos polis on polis.project_policy_id = poli.project_policy_id and polis.id_phase=poli.id_phase
+left join srf_sub_idos sido on sido.id = polis.sub_ido_id
 left join srf_idos ido on ido.id =sido.ido_id 
-left JOIN project_expected_study_flagships pesf ON pesf.expected_id = pes.id AND pesf.id_phase = ph.id
-left JOIN project_expected_study_institutions pesins ON pesins.expected_id = pes.id AND pesins.id_phase = ph.id
-where is_contribution
-#and 
-and ph.year = 2017
+where poli.year = 2017 and 
+ph.year = poli.`year`
 and ph.name = 'AR'</sql>
     <limit>0</limit>
     <lookup/>

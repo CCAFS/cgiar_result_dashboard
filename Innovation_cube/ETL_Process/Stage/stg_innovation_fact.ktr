@@ -441,13 +441,25 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${DES_DBNAME}</database>
-    <port>${DES_PORT}</port>
+    <port>3306</port>
     <username>${DES_USR}</username>
     <password>${DES_PSW}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterEncoding</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterSetResult</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useUnicode</code>
+        <attribute>true</attribute>
+      </attribute>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
         <attribute>N</attribute>
@@ -462,7 +474,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${DES_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -496,7 +508,7 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${ORI_DBNAME}</database>
-    <port>${ORI_PORT}</port>
+    <port>3306</port>
     <username>${ORI_USR}</username>
     <password>${ORI_PSW}</password>
     <servername/>
@@ -517,7 +529,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${ORI_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -681,10 +693,11 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>SELECT 	pin.id inno_id, pini.phase_research_id , pini.stage_innovation_id , pini.geographic_scope_id, 
+    <sql>SELECT pin.id inno_id, pini.phase_research_id , pini.stage_innovation_id , rigs.id geographic_scope_id, 
 pini.rep_ind_contribution_crp_id,pini.rep_ind_degree_innovation_id,pini.project_expected_studies_id,
-IF(pini.geographic_scope_id in (3,4,5), pic.id_country, if(pini.geographic_scope_id = 1,'WORLD',concat('un_',pini.rep_ind_region_id))) location, 
-pid.deliverable_id,pio.rep_ind_organization_type_id,ph.global_unit_id id_crp, riit.id inno_type ,ph.id phase_id
+IF(rigs.id in (3,4,5), pic.id_country, if(rigs.id = 1,'WORLD',concat('un_',reg.id_region))) location, 
+pid.deliverable_id,pio.rep_ind_organization_type_id,ph.global_unit_id id_crp,riit.id inno_type ,ph.id phase_id
+,rigs.`name`
 FROM project_innovations pin 
 INNER JOIN project_innovation_info pini ON pini.project_innovation_id = pin.id
 INNER JOIN phases ph on ph.id = pini.id_phase
@@ -694,8 +707,10 @@ LEFT JOIN rep_ind_stage_innovations risi ON risi.id = pini.stage_innovation_id
 LEFT JOIN rep_ind_innovation_types riit ON riit.id = pini.innovation_type_id
 LEFT JOIN rep_ind_contribution_of_crp ricc ON ricc.id = pini.rep_ind_contribution_crp_id
 LEFT JOIN rep_ind_degree_innovation ridi ON ridi.id = pini.rep_ind_degree_innovation_id
-LEFT JOIN rep_ind_geographic_scopes rigs ON rigs.id = pini.geographic_scope_id
+left join project_innovation_geographic_scopes igeo on igeo.project_innovation_id = pini.project_innovation_id and pini.id_phase=igeo.id_phase
+LEFT JOIN rep_ind_geographic_scopes rigs ON rigs.id = ifnull(igeo.rep_ind_geographic_scope_id,pini.geographic_scope_id)
 left JOIN project_innovation_countries pic ON pini.id_phase = pic.id_phase and pic.project_innovation_id = pini.project_innovation_id
+left JOIN project_innovation_regions reg ON pini.id_phase = reg.id_phase and reg.project_innovation_id = pini.project_innovation_id
 left join project_innovation_deliverables pid on pid.project_innovation_id = pini.project_innovation_id and pid.id_phase = pini.id_phase
 left join project_innovation_organizations pio on pio.project_innovation_id = pini.project_innovation_id and pio.id_phase = pini.id_phase
 WHERE pin.is_active
@@ -705,10 +720,10 @@ from report_synthesis_cross_cutting_dimension_innovations ri
 where pin.id = ri.project_innovation_id
 and ri.is_active
 )
+#and pin.id = 731
 and ph.name = 'AR'
 and ph.year = pini.year
-
-</sql>
+and ph.year &lt;=2018</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
