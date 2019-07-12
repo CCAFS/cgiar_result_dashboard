@@ -442,13 +442,25 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${DES_DBNAME}</database>
-    <port>${DES_PORT}</port>
+    <port>3306</port>
     <username>${DES_USR}</username>
     <password>${DES_PSW}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterEncoding</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterSetResult</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useUnicode</code>
+        <attribute>true</attribute>
+      </attribute>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
         <attribute>N</attribute>
@@ -463,7 +475,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${DES_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -577,15 +589,23 @@
     <fields>
       <field>
         <name>oics_id</name>
+        <rename/>
       </field>
       <field>
         <name>sido_id</name>
+        <rename/>
       </field>
       <field>
         <name>slo_id</name>
+        <rename/>
       </field>
       <field>
         <name>type</name>
+        <rename/>
+      </field>
+      <field>
+        <name>pk</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -714,9 +734,9 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>select pes.id oics_id, sido.id sido_id,null slo_id, 'CCI' type 
+    <sql>select concat(pes.id,'_',ph.id) pk,pes.id oics_id , sido.id sido_id,null slo_id, 'CCI' type 
 from project_expected_studies pes 
-INNER JOIN v_project_expected_studies_info_reported pesi ON pesi.project_expected_study_id = pes.id 
+INNER JOIN project_expected_study_info pesi ON pesi.project_expected_study_id = pes.id 
 LEFT JOIN projects_info prj ON prj.project_id = pes.project_id and pesi.id_phase = prj.id_phase 
 inner join phases ph on ph.id = pesi.id_phase
 INNER JOIN project_expected_study_sub_ido pess ON pess.expected_id = pes.id AND pess.id_phase = pesi.id_phase
@@ -724,10 +744,17 @@ inner join srf_sub_idos sido on sido.id = pess.sub_ido_id
 inner join srf_idos ido on ido.id =sido.ido_id 
 inner join srf_cross_cutting_issues cci on cci.id = ido.cross_cutting_issue 
 where ido.is_cross_cutting
+and  is_study_excluded(pesi.project_expected_study_id,pesi.id_phase)=0
+AND pesi.`year` = ph. YEAR
+AND ph. YEAR = 2018
+AND ph. NAME = 'AR'
+and pes.is_active
+and pesi.study_type_id = 1
+and ph.global_unit_id = 1
 union all 
-select pes.id,sido.id sido_id,slo_id,'SLO' type
+select  concat(pes.id,'_',ph.id) pk, pes.id,sido.id sido_id,slo_id,'SLO' type
 from project_expected_studies pes 
-INNER JOIN v_project_expected_studies_info_reported pesi ON pesi.project_expected_study_id = pes.id 
+INNER JOIN project_expected_study_info pesi ON pesi.project_expected_study_id = pes.id 
 LEFT JOIN projects_info prj ON prj.project_id = pes.project_id and pesi.id_phase = prj.id_phase 
 inner join phases ph on ph.id = pesi.id_phase
 INNER JOIN project_expected_study_sub_ido pess ON pess.expected_id = pes.id AND pess.id_phase = pesi.id_phase
@@ -736,8 +763,12 @@ inner join srf_idos ido on ido.id =sido.ido_id
 inner join srf_slo_idos sxi on sxi.ido_id = ido.id
 inner join srf_slos slo on slo.id = sxi.slo_id
 where !ido.is_cross_cutting
-
-;</sql>
+and  is_study_excluded(pesi.project_expected_study_id,pesi.id_phase)=0
+AND pesi.`year` = ph. YEAR
+AND ph. YEAR = 2018
+AND ph. NAME = 'AR'
+and pes.is_active
+and pesi.study_type_id = 1</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

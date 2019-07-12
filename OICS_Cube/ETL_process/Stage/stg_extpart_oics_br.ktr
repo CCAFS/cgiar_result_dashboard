@@ -441,13 +441,25 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${DES_DBNAME}</database>
-    <port>${DES_PORT}</port>
+    <port>3306</port>
     <username>${DES_USR}</username>
     <password>${DES_PSW}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterEncoding</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterSetResult</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useUnicode</code>
+        <attribute>true</attribute>
+      </attribute>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
         <attribute>N</attribute>
@@ -462,7 +474,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${DES_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -576,9 +588,15 @@
     <fields>
       <field>
         <name>oics</name>
+        <rename/>
       </field>
       <field>
         <name>ext_part</name>
+        <rename/>
+      </field>
+      <field>
+        <name>pk</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -648,15 +666,18 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>select pes.id oics,ins.id ext_part
+    <sql>select concat(pes.id,'_',ph.id) pk,pes.id oics,ins.id ext_part
 from project_expected_studies pes 
-INNER JOIN v_project_expected_studies_info_reported pesi ON pesi.project_expected_study_id = pes.id 
+INNER JOIN project_expected_study_info pesi ON pesi.project_expected_study_id = pes.id 
 INNER join phases ph on ph.id = pesi.id_phase
-LEFT join projects_info pinf on pinf.project_id = pes.project_id and pinf.id_phase = pesi.id_phase
-INNER JOIN project_expected_study_institutions pesins ON pesins.expected_id = pes.id AND pesins.id_phase = ph.id
+INNER JOIN project_expected_study_institutions pesins ON pesins.expected_id = pes.id AND pesins.id_phase = ph.id 
 INNER JOIN institutions ins ON ins.id = pesins.institution_id
-
-</sql>
+where  is_study_excluded(pesi.project_expected_study_id,pesi.id_phase)=0
+AND pesi.`year` = ph. YEAR
+AND ph. YEAR = 2018
+AND ph. NAME = 'AR'
+and pes.is_active
+and pesi.study_type_id = 1</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

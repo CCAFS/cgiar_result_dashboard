@@ -442,13 +442,25 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${DES_DBNAME}</database>
-    <port>${DES_PORT}</port>
+    <port>3306</port>
     <username>${DES_USR}</username>
     <password>${DES_PSW}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterEncoding</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterSetResult</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useUnicode</code>
+        <attribute>true</attribute>
+      </attribute>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
         <attribute>N</attribute>
@@ -463,7 +475,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${DES_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -576,20 +588,12 @@
     </partitioning>
     <fields>
       <field>
-        <name>id</name>
-        <rename>id_oics</rename>
+        <name>id_oics</name>
+        <rename/>
       </field>
       <field>
-        <name>title</name>
-        <rename>title_oics</rename>
-      </field>
-      <field>
-        <name>project_id</name>
-        <rename>id_project</rename>
-      </field>
-      <field>
-        <name>title_1</name>
-        <rename>title_project</rename>
+        <name>title_oics</name>
+        <rename/>
       </field>
       <field>
         <name>scope_comments</name>
@@ -612,7 +616,23 @@
         <rename/>
       </field>
       <field>
+        <name>climate_relev</name>
+        <rename/>
+      </field>
+      <field>
+        <name>id_project</name>
+        <rename/>
+      </field>
+      <field>
+        <name>title_project</name>
+        <rename/>
+      </field>
+      <field>
         <name>pdf</name>
+        <rename/>
+      </field>
+      <field>
+        <name>pk</name>
         <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -650,7 +670,7 @@
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>id</name>
+        <name>id_oics</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -683,7 +703,9 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>select pes.id,pesi.title,pesi.scope_comments, pesi.outcome_impact_statement,rigender.name gender_relev,riyouth.name youth_relev,ricap.name capdev_relev, pes.project_id, pinf.title,
+    <sql>select concat(pes.id,'_',ph.id) pk,
+pes.id id_oics,pesi.title title_oics,pesi.scope_comments, pesi.outcome_impact_statement,rigender.name gender_relev,riyouth.name youth_relev,ricap.name capdev_relev,ricc.name climate_relev, 
+pes.project_id id_project, pinf.title title_project,
 concat('https://marlo.cgiar.org/projects/',gu.acronym,'/studySummary.do?studyID=',pes.id,'&amp;cycle=',ph.description,'&amp;year=',ph.year) pdf
 from project_expected_studies pes 
 INNER JOIN project_expected_study_info pesi ON pesi.project_expected_study_id = pes.id 
@@ -693,19 +715,14 @@ LEFT join projects_info pinf on pinf.project_id = pes.project_id and pinf.id_pha
 LEFT JOIN rep_ind_gender_youth_focus_levels rigender ON rigender.id = pesi.gender_focus_level_id
 LEFT JOIN rep_ind_gender_youth_focus_levels riyouth ON riyouth.id = pesi.youth_focus_level_id
 LEFT JOIN rep_ind_gender_youth_focus_levels ricap ON ricap.id = pesi.capdev_focus_level_id
-where 
- NOT EXISTS (
-	SELECT *
-	FROM report_synthesis_crp_progress_studies rs
-	WHERE rs.project_expected_studies_id = pes.id
-	AND rs.is_active
-)
-and pes.is_active =1 
-and pes.year = ph.year   
-and !IFNULL(pinf.administrative,0)
-and ph.description = 'Reporting'
+LEFT JOIN rep_ind_gender_youth_focus_levels ricc ON ricc.id = pesi.climate_change_level_id
+where is_study_excluded(pesi.project_expected_study_id,pesi.id_phase)=0
+AND pesi.`year` = ph. YEAR
+AND ph. YEAR = 2018
+AND ph. NAME = 'AR'
+and pes.is_active
 and pesi.study_type_id = 1
-;</sql>
+</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

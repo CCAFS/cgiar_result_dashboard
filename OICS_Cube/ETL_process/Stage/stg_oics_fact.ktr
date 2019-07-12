@@ -560,16 +560,16 @@
   <order>
     <hop>
       <from>OICS</from>
-      <to>Sort rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort rows</from>
       <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Select values</from>
+      <to>Sort rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort rows</from>
       <to>stg_oics_fact</to>
       <enabled>Y</enabled>
     </hop>
@@ -587,25 +587,29 @@
     </partitioning>
     <connection>ORI_DB</connection>
     <sql>select 
+concat(pes.id,'_',ph.id) pk,
 pes.id id_oics,
 pesi.id_phase,
 gu.id crp,
-ripi.id policy_investment_types,
-riot.id impl_org_types,
-risp.id rep_ind_stg_proc,
 riss.id stg_maturity,
-rigs.id geo_scopes
-/*;select count(*)*/
+null policy_investment_types,
+null impl_org_types,
+null rep_ind_stg_proc,
+null geo_scopes,
+tag.id tag
 FROM phases ph
 INNER JOIN global_units gu ON gu.id = ph.global_unit_id AND gu.is_active
 INNER JOIN project_expected_studies pes ON pes.is_active
-INNER JOIN v_project_expected_studies_info_reported pesi ON pesi.project_expected_study_id = pes.id AND pesi.id_phase = ph.id
-LEFT JOIN rep_ind_policy_investiment_types ripi ON ripi.id = pesi.rep_ind_policy_id
-LEFT JOIN rep_ind_organization_types riot ON riot.id = pesi.rep_ind_organization_type_id
-LEFT JOIN rep_ind_stage_process risp ON risp.id = pesi.rep_ind_stage_process_id
+INNER JOIN project_expected_study_info pesi ON pesi.project_expected_study_id = pes.id AND pesi.id_phase = ph.id
 LEFT JOIN rep_ind_stage_studies riss ON riss.id = pesi.rep_ind_stage_study_id
-LEFT JOIN project_expected_study_geographic_scopes rigs2 on rigs2.id_phase = pesi.id_phase and rigs2.expected_id =pesi.project_expected_study_id
-LEFT JOIN rep_ind_geographic_scopes rigs ON rigs.id = ifnull(pesi.rep_ind_geographic_scope_id,rigs2.rep_ind_geographic_scope_id)</sql>
+left join evidence_tags tag on tag.id = pesi.evidence_tag_id
+where  is_study_excluded(pesi.project_expected_study_id,pesi.id_phase)=0
+AND pesi.`year` = ph. YEAR
+AND ph. YEAR = 2018
+AND ph. NAME = 'AR'
+and pes.is_active
+and pesi.study_type_id = 1
+</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -619,8 +623,8 @@ LEFT JOIN rep_ind_geographic_scopes rigs ON rigs.id = ifnull(pesi.rep_ind_geogra
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
-      <yloc>80</yloc>
+      <xloc>32</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -638,27 +642,43 @@ LEFT JOIN rep_ind_geographic_scopes rigs ON rigs.id = ifnull(pesi.rep_ind_geogra
     <fields>
       <field>
         <name>id_oics</name>
+        <rename/>
       </field>
       <field>
         <name>id_phase</name>
+        <rename/>
       </field>
       <field>
         <name>crp</name>
+        <rename/>
       </field>
       <field>
         <name>policy_investment_types</name>
+        <rename/>
       </field>
       <field>
         <name>impl_org_types</name>
-      </field>
-      <field>
-        <name>rep_ind_stg_proc</name>
+        <rename/>
       </field>
       <field>
         <name>stg_maturity</name>
+        <rename/>
+      </field>
+      <field>
+        <name>rep_ind_stg_proc</name>
+        <rename/>
       </field>
       <field>
         <name>geo_scopes</name>
+        <rename/>
+      </field>
+      <field>
+        <name>tag</name>
+        <rename/>
+      </field>
+      <field>
+        <name>pk</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -670,8 +690,8 @@ LEFT JOIN rep_ind_geographic_scopes rigs ON rigs.id = ifnull(pesi.rep_ind_geogra
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>80</yloc>
+      <xloc>208</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -719,8 +739,8 @@ LEFT JOIN rep_ind_geographic_scopes rigs ON rigs.id = ifnull(pesi.rep_ind_geogra
       </output>
     </remotesteps>
     <GUI>
-      <xloc>208</xloc>
-      <yloc>80</yloc>
+      <xloc>416</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -762,8 +782,8 @@ LEFT JOIN rep_ind_geographic_scopes rigs ON rigs.id = ifnull(pesi.rep_ind_geogra
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
-      <yloc>80</yloc>
+      <xloc>640</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

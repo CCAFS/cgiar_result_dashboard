@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>pre_cci_oics_br</name>
+    <name>dim_tags</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -428,10 +427,10 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2018/08/09 14:05:05.087</created_date>
+    <created_date>2019/07/08 11:34:27.196</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018/08/09 14:05:05.087</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2019/07/08 11:34:27.196</modified_date>
+    <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -505,49 +504,14 @@
   </connection>
   <order>
     <hop>
-      <from>cci lookup</from>
-      <to>oics_metadata lookup</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>oics_metadata lookup</from>
-      <to>Select values</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>stg_sloi_oics_fact</from>
-      <to>contibucion</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>contibucion</from>
-      <to>SLOs</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SLOs</from>
-      <to>cci lookup</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values</from>
-      <to>Null replace</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Null replace</from>
-      <to>pre_srf_oics_br</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>stg_sloi_oics_fact_2017</from>
-      <to>contibucion</to>
+      <from>stg_tags</from>
+      <to>dim_tags</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Null replace</name>
-    <type>IfNull</type>
+    <name>dim_tags</name>
+    <type>DimensionLookup</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -556,15 +520,43 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <replaceAllByValue>0</replaceAllByValue>
-    <replaceAllMask/>
-    <selectFields>N</selectFields>
-    <selectValuesType>N</selectValuesType>
-    <setEmptyStringAll>N</setEmptyStringAll>
-    <valuetypes>
-      </valuetypes>
+    <schema/>
+    <table>dim_tags</table>
+    <connection>DES_DB</connection>
+    <commit>100</commit>
+    <update>Y</update>
     <fields>
-      </fields>
+      <key>
+        <name>id</name>
+        <lookup>id</lookup>
+      </key>
+      <date>
+        <name/>
+        <from>date_from</from>
+        <to>date_to</to>
+      </date>
+      <field>
+        <name>name</name>
+        <lookup>name</lookup>
+        <update>Insert</update>
+      </field>
+      <return>
+        <name>pk_id_tags</name>
+        <rename/>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
+        <version>version</version>
+      </return>
+    </fields>
+    <sequence/>
+    <min_year>1900</min_year>
+    <max_year>2199</max_year>
+    <cache_size>5000</cache_size>
+    <preload_cache>N</preload_cache>
+    <use_start_date_alternative>N</use_start_date_alternative>
+    <start_date_alternative>none</start_date_alternative>
+    <start_date_field_name/>
+    <useBatch>N</useBatch>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -573,261 +565,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>592</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SLOs</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>cci lookup</send_true_to>
-    <send_false_to/>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>type</leftvalue>
-        <function>=</function>
-        <rightvalue/>
-        <value>
-          <name>constant</name>
-          <type>String</type>
-          <text>CCI</text>
-          <length>-1</length>
-          <precision>-1</precision>
-          <isnull>N</isnull>
-          <mask/>
-        </value>
-      </condition>
-    </compare>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
+      <xloc>224</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>Contribution</name>
-      </field>
-      <field>
-        <name>fk_id_cci</name>
-      </field>
-      <field>
-        <name>fk_id_oics</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>528</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>cci lookup</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DES_DB</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>dim_cci</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>sido_id</name>
-        <field>id_sub_ido</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>pk_id_cci</name>
-        <rename>fk_id_cci</rename>
-        <default/>
-        <type>Integer</type>
-      </value>
-    </lookup>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>contibucion</name>
-    <type>Formula</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <formula>
-      <field_name>Contribution</field_name>
-      <formula_string>1/[peso]</formula_string>
-      <value_type>Number</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>176</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>oics_metadata lookup</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DES_DB</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>dim_oics_metadata</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>oics_id</name>
-        <field>id_oics</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>pk_id_oics</name>
-        <rename>fk_id_oics</rename>
-        <default/>
-        <type>None</type>
-      </value>
-    </lookup>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>448</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>pre_srf_oics_br</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DES_DB</connection>
-    <schema/>
-    <table>pre_cci_oics_br</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>stg_sloi_oics_fact</name>
+    <name>stg_tags</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -838,9 +582,11 @@
       <schema_name/>
     </partitioning>
     <connection>DES_DB</connection>
-    <sql>select srf.*, 
-(select count(*) from stg_srf_oics_br where oics_id = srf.oics_id) peso
-from stg_srf_oics_br srf</sql>
+    <sql>SELECT
+  id
+, name
+FROM stg_tags
+</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -854,41 +600,8 @@ from stg_srf_oics_br srf</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>48</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>stg_sloi_oics_fact_2017</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DES_DB</connection>
-    <sql>select srf.*, 
-(select count(*) from stg_srf_oics_br_2017 where oics_id = srf.oics_id) peso
-from stg_srf_oics_br_2017 srf</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>32</xloc>
-      <yloc>128</yloc>
+      <xloc>80</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
