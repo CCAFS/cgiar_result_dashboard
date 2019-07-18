@@ -587,43 +587,68 @@
     </partitioning>
     <fields>
       <field>
-        <name>inno_id</name>
-      </field>
-      <field>
         <name>phase_research_id</name>
+        <rename/>
       </field>
       <field>
         <name>stage_innovation_id</name>
+        <rename/>
       </field>
       <field>
         <name>geographic_scope_id</name>
+        <rename/>
       </field>
       <field>
         <name>rep_ind_contribution_crp_id</name>
+        <rename/>
       </field>
       <field>
         <name>rep_ind_degree_innovation_id</name>
+        <rename/>
       </field>
       <field>
         <name>project_expected_studies_id</name>
+        <rename/>
       </field>
       <field>
         <name>location</name>
+        <rename/>
       </field>
       <field>
         <name>deliverable_id</name>
+        <rename/>
       </field>
       <field>
         <name>rep_ind_organization_type_id</name>
+        <rename/>
       </field>
       <field>
         <name>id_crp</name>
+        <rename/>
       </field>
       <field>
         <name>inno_type</name>
+        <rename/>
       </field>
       <field>
         <name>phase_id</name>
+        <rename/>
+      </field>
+      <field>
+        <name>pk</name>
+        <rename/>
+      </field>
+      <field>
+        <name>cont_org</name>
+        <rename/>
+      </field>
+      <field>
+        <name>lead_org</name>
+        <rename/>
+      </field>
+      <field>
+        <name>inno_id</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -660,7 +685,7 @@
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>inno_id</name>
+        <name>pk</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -693,11 +718,12 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>SELECT pin.id inno_id, pini.phase_research_id , pini.stage_innovation_id , rigs.id geographic_scope_id, 
+    <sql>/* UPDATED 20190412  */
+SELECT concat(pini.project_innovation_id,'_',pini.id_phase) pk ,pini.project_innovation_id inno_id, pini.phase_research_id , pini.stage_innovation_id , rigs.id geographic_scope_id, 
 pini.rep_ind_contribution_crp_id,pini.rep_ind_degree_innovation_id,pini.project_expected_studies_id,
 IF(rigs.id in (3,4,5), pic.id_country, if(rigs.id = 1,'WORLD',concat('un_',reg.id_region))) location, 
 pid.deliverable_id,pio.rep_ind_organization_type_id,ph.global_unit_id id_crp,riit.id inno_type ,ph.id phase_id
-,rigs.`name`
+,corg.institution_id cont_org, pini.lead_organization_id lead_org
 FROM project_innovations pin 
 INNER JOIN project_innovation_info pini ON pini.project_innovation_id = pin.id
 INNER JOIN phases ph on ph.id = pini.id_phase
@@ -713,17 +739,15 @@ left JOIN project_innovation_countries pic ON pini.id_phase = pic.id_phase and p
 left JOIN project_innovation_regions reg ON pini.id_phase = reg.id_phase and reg.project_innovation_id = pini.project_innovation_id
 left join project_innovation_deliverables pid on pid.project_innovation_id = pini.project_innovation_id and pid.id_phase = pini.id_phase
 left join project_innovation_organizations pio on pio.project_innovation_id = pini.project_innovation_id and pio.id_phase = pini.id_phase
+left join project_innovation_contributing_organizations corg on corg.project_innovation_id=pini.project_innovation_id and corg.id_phase = pini.id_phase 
 WHERE pin.is_active
-and not exists (
-select 1 
-from report_synthesis_cross_cutting_dimension_innovations ri
-where pin.id = ri.project_innovation_id
-and ri.is_active
-)
-#and pin.id = 731
+and is_innovation_excluded(pini.project_innovation_id,pini.id_phase) = 0
+-- and pin.id = 731
 and ph.name = 'AR'
 and ph.year = pini.year
-and ph.year &lt;=2018</sql>
+and ph.year =2018
+-- and ph.global_unit_id=1
+;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

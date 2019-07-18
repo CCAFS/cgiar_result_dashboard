@@ -504,11 +504,6 @@
   </connection>
   <order>
     <hop>
-      <from>Table input</from>
-      <to>innovation info lookup</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>innovation info lookup</from>
       <to>research_phases lookup </to>
       <enabled>Y</enabled>
@@ -579,7 +574,27 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>stg_innovation_fact</from>
+      <to>innovation info lookup</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>stg_innovation_fact_2017</from>
+      <to>innovation info lookup</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>phase lookup</from>
+      <to>lead_org</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>lead_org</from>
+      <to>contrib org</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>contrib org</from>
       <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
@@ -612,8 +627,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
-      <yloc>176</yloc>
+      <xloc>1168</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -659,8 +674,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>48</yloc>
+      <xloc>704</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -678,42 +693,63 @@
     <fields>
       <field>
         <name>fk_id_innovation_info</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_research_phases</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_innovation_stg</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_geo_scopes</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_contrib_crp</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_degree_inno</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_location</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_deliverables_info</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_smo_org_types</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_oics</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_crp</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_innovation_type</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_phases</name>
+        <rename/>
+      </field>
+      <field>
+        <name>fk_id_cont_ext_partner</name>
+        <rename/>
+      </field>
+      <field>
+        <name>fk_id_lead_ext_partner</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -725,13 +761,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1200</xloc>
-      <yloc>48</yloc>
+      <xloc>1104</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Table input</name>
+    <name>stg_innovation_fact_2017</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -742,7 +778,9 @@
       <schema_name/>
     </partitioning>
     <connection>DES_DB</connection>
-    <sql>select * from stg_innovation_fact</sql>
+    <sql>select f.*,
+0 cont_org, 0 lead_org
+from stg_innovation_fact_2017 f</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -756,8 +794,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>64</xloc>
-      <yloc>48</yloc>
+      <xloc>176</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -803,8 +841,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>176</yloc>
+      <xloc>400</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -850,8 +888,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>960</xloc>
-      <yloc>176</yloc>
+      <xloc>768</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -897,8 +935,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
-      <yloc>48</yloc>
+      <xloc>592</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -944,8 +982,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>400</xloc>
-      <yloc>48</yloc>
+      <xloc>320</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -991,8 +1029,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>48</yloc>
+      <xloc>464</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1018,8 +1056,8 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>inno_id</name>
-        <field>project_innovation_id</field>
+        <name>pk</name>
+        <field>pk</field>
         <condition>=</condition>
         <name2/>
       </key>
@@ -1038,8 +1076,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>144</xloc>
-      <yloc>176</yloc>
+      <xloc>112</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1085,8 +1123,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
-      <yloc>176</yloc>
+      <xloc>256</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1132,8 +1170,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1024</xloc>
-      <yloc>48</yloc>
+      <xloc>832</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1179,8 +1217,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
-      <yloc>176</yloc>
+      <xloc>528</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1226,8 +1264,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>784</xloc>
-      <yloc>176</yloc>
+      <xloc>656</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1273,8 +1311,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>176</yloc>
+      <xloc>896</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1316,8 +1354,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1360</xloc>
-      <yloc>48</yloc>
+      <xloc>1248</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1363,8 +1401,133 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>48</yloc>
+      <xloc>176</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>stg_innovation_fact</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DES_DB</connection>
+    <sql>select * from stg_innovation_fact</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>lead_org</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DES_DB</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_ext_partners</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>lead_org</name>
+        <field>id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>pk_id_ext_partner</name>
+        <rename>fk_id_lead_ext_partner</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>contrib org</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DES_DB</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_ext_partners</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>cont_org</name>
+        <field>id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>pk_id_ext_partner</name>
+        <rename>fk_id_cont_ext_partner</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1040</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

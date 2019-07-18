@@ -441,13 +441,25 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${DES_DBNAME}</database>
-    <port>${DES_PORT}</port>
+    <port>3306</port>
     <username>${DES_USR}</username>
     <password>${DES_PSW}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterEncoding</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterSetResult</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useUnicode</code>
+        <attribute>true</attribute>
+      </attribute>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
         <attribute>N</attribute>
@@ -462,7 +474,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${DES_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -496,7 +508,7 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${ORI_DBNAME}</database>
-    <port>${ORI_PORT}</port>
+    <port>3306</port>
     <username>${ORI_USR}</username>
     <password>${ORI_PSW}</password>
     <servername/>
@@ -517,7 +529,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${ORI_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -576,24 +588,35 @@
     <fields>
       <field>
         <name>project_innovation_id</name>
+        <rename/>
       </field>
       <field>
         <name>title</name>
+        <rename/>
       </field>
       <field>
         <name>narrative</name>
+        <rename/>
       </field>
       <field>
         <name>evidence_link</name>
+        <rename/>
       </field>
       <field>
         <name>gender</name>
+        <rename/>
       </field>
       <field>
         <name>youth</name>
+        <rename/>
+      </field>
+      <field>
+        <name>pk</name>
+        <rename/>
       </field>
       <field>
         <name>pdf</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -663,25 +686,19 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>SELECT 	pii.project_innovation_id,pii.title,pii.narrative, pii.evidence_link, rigender.name gender, riyouth.name youth
+    <sql>SELECT 	pii.project_innovation_id,concat(	pii.project_innovation_id,'_',pii.id_phase) pk, pii.title,pii.narrative, pii.evidence_link, rigender.name gender, riyouth.name youth
 ,CONCAT('https://marlo.cgiar.org/summaries/',gu.acronym,'/projectInnovationSummary.do?innovationID=',pi.id,'&amp;phaseID=',ph.id) pdf
 FROM project_innovations pi 
 INNER JOIN project_innovation_info pii ON pii.project_innovation_id = pi.id
-
 INNER JOIN phases ph on ph.id = pii.id_phase
 inner join global_units gu on gu.id = ph.global_unit_id
 LEFT JOIN rep_ind_gender_youth_focus_levels rigender ON rigender.id = pii.gender_focus_level_id
 LEFT JOIN rep_ind_gender_youth_focus_levels riyouth ON riyouth.id = pii.youth_focus_level_id
 WHERE  pi.is_active
-and not exists (
-select 1 
-from report_synthesis_cross_cutting_dimension_innovations ri
-where pi.id = ri.project_innovation_id
-and ri.is_active
-)
+and is_innovation_excluded(pii.project_innovation_id,pii.id_phase) = 0
 and ph.name = 'AR'
 and ph.year = pii.year
-;</sql>
+and ph.`year`=2018</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

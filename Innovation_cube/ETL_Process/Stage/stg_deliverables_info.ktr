@@ -430,7 +430,7 @@
     <created_date>2018/08/29 15:46:14.716</created_date>
     <modified_user>-</modified_user>
     <modified_date>2018/08/29 15:46:14.716</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -441,13 +441,25 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${DES_DBNAME}</database>
-    <port>${DES_PORT}</port>
+    <port>3306</port>
     <username>${DES_USR}</username>
     <password>${DES_PSW}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterEncoding</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterSetResult</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useUnicode</code>
+        <attribute>true</attribute>
+      </attribute>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
         <attribute>N</attribute>
@@ -462,7 +474,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${DES_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -563,6 +575,98 @@
     </hop>
   </order>
   <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>deliv_id</name>
+        <rename/>
+      </field>
+      <field>
+        <name>title</name>
+        <rename/>
+      </field>
+      <field>
+        <name>description</name>
+        <rename/>
+      </field>
+      <field>
+        <name>deliverable_type</name>
+        <rename/>
+      </field>
+      <field>
+        <name>dissemination_URL</name>
+        <rename/>
+      </field>
+      <field>
+        <name>DOI</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>240</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort rows</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>deliv_id</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>deliverables_info</name>
     <type>TableInput</type>
     <description/>
@@ -574,19 +678,22 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>SELECT 	distinct dev.deliverable_id deliv_id, dev.title, dev.description
+    <sql>SELECT 	distinct dev.deliverable_id deliv_id, dt.`name` deliverable_type,dev.title, dev.description,dis.dissemination_URL,
+get_deliverable_metadata (dev.deliverable_id,dev.id_phase,'DOI') as 'DOI'
 FROM project_innovations pi 
 INNER JOIN project_innovation_info pii ON pii.project_innovation_id = pi.id
-INNER JOIN report_synthesis_cross_cutting_dimension_innovations ri  ON pi.id = ri.project_innovation_id
 INNER JOIN phases ph on ph.id = pii.id_phase
 inner join project_innovation_deliverables pid on pid.project_innovation_id = pii.project_innovation_id and pid.id_phase = pii.id_phase
-inner join deliverables_info dev on dev.deliverable_id = pid.deliverable_id and dev.id_phase =pid.id_phase
-WHERE !ri.is_active 
+inner join deliverables_info dev on dev.deliverable_id = pid.deliverable_id and dev.id_phase =pid.id_phase and dev.is_active
+LEFT JOIN deliverable_types dt ON dt.id = dev.type_id
+LEFT JOIN deliverable_dissemination dis on dis.deliverable_id = dev.deliverable_id and dis.id_phase = dev.id_phase
+WHERE is_innovation_excluded(pii.project_innovation_id,pii.id_phase) = 0
 AND pi.is_active
 and ph.name = 'AR'
 and ph.year = pii.year
-
-</sql>
+and ph.`year`=2018
+order by 1;
+;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -644,86 +751,6 @@ and ph.year = pii.year
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>deliv_id</name>
-        <rename/>
-      </field>
-      <field>
-        <name>title</name>
-        <rename/>
-      </field>
-      <field>
-        <name>description</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>240</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sort rows</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>deliv_id</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
