@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>dim_oics_metadata</name>
+    <name>pre_geo_oics_br</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -428,9 +427,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2018/08/08 09:51:15.277</created_date>
+    <created_date>2019/07/25 16:06:11.752</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018/08/08 09:51:15.277</modified_date>
+    <modified_date>2019/07/25 16:06:11.752</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -505,19 +504,34 @@
   </connection>
   <order>
     <hop>
-      <from>stg_oics</from>
-      <to>dim_oics_metadata</to>
+      <from>Select values</from>
+      <to>pre_geo_oics_br</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>stg_oics_2017</from>
-      <to>dim_oics_metadata</to>
+      <from>geo_scope lookup</from>
+      <to>oics_metadata lookup</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>oics_metadata lookup</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>stg_geo_oics_br_2017</from>
+      <to>geo_scope lookup</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>stg_geo_oics_br</from>
+      <to>geo_scope lookup</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>dim_oics_metadata</name>
-    <type>DimensionLookup</type>
+    <name>Select values</name>
+    <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -526,93 +540,15 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <schema/>
-    <table>dim_oics_metadata</table>
-    <connection>DES_DB</connection>
-    <commit>100</commit>
-    <update>Y</update>
     <fields>
-      <key>
-        <name>pk</name>
-        <lookup>pk</lookup>
-      </key>
-      <date>
-        <name/>
-        <from>date_from</from>
-        <to>date_to</to>
-      </date>
       <field>
-        <name>id_oics</name>
-        <lookup>id_oics</lookup>
-        <update>Update</update>
+        <name>fk_id_geo_scopes</name>
       </field>
       <field>
-        <name>title_oics</name>
-        <lookup>title_oics</lookup>
-        <update>Update</update>
+        <name>fk_id_oics</name>
       </field>
-      <field>
-        <name>id_project</name>
-        <lookup>id_project</lookup>
-        <update>Update</update>
-      </field>
-      <field>
-        <name>title_project</name>
-        <lookup>title_project</lookup>
-        <update>Update</update>
-      </field>
-      <field>
-        <name>scope_comments</name>
-        <lookup>scope_comments</lookup>
-        <update>Update</update>
-      </field>
-      <field>
-        <name>outcome_impact_statement</name>
-        <lookup>outcome_impact_statement</lookup>
-        <update>Update</update>
-      </field>
-      <field>
-        <name>gender_relev</name>
-        <lookup>gender_relev</lookup>
-        <update>Update</update>
-      </field>
-      <field>
-        <name>youth_relev</name>
-        <lookup>youth_relev</lookup>
-        <update>Update</update>
-      </field>
-      <field>
-        <name>capdev_relev</name>
-        <lookup>capdev_relev</lookup>
-        <update>Update</update>
-      </field>
-      <field>
-        <name>pdf</name>
-        <lookup>pdf</lookup>
-        <update>Update</update>
-      </field>
-      <field>
-        <name>climate_relev</name>
-        <lookup>climate_relev</lookup>
-        <update>Update</update>
-      </field>
-      <return>
-        <name>pk_id_oics</name>
-        <rename/>
-        <creation_method>tablemax</creation_method>
-        <use_autoinc>N</use_autoinc>
-        <version>version</version>
-      </return>
+      <select_unspecified>N</select_unspecified>
     </fields>
-    <sequence/>
-    <min_year>1900</min_year>
-    <max_year>2199</max_year>
-    <cache_size>-1</cache_size>
-    <preload_cache>N</preload_cache>
-    <use_start_date_alternative>N</use_start_date_alternative>
-    <start_date_alternative>none</start_date_alternative>
-    <start_date_field_name/>
-    <useBatch>N</useBatch>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -621,13 +557,150 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>400</xloc>
+      <xloc>432</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>geo_scope lookup</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DES_DB</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_geo_scopes</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>scope_id</name>
+        <field>id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>pk_id_geo_scopes</name>
+        <rename>fk_id_geo_scopes</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>oics_metadata lookup</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DES_DB</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_oics_metadata</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>oics_id</name>
+        <field>id_oics</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>pk_id_oics</name>
+        <rename>fk_id_oics</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>stg_oics</name>
+    <name>pre_geo_oics_br</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DES_DB</connection>
+    <schema/>
+    <table>pre_geo_oics_br</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>stg_geo_oics_br</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -638,9 +711,7 @@
       <schema_name/>
     </partitioning>
     <connection>DES_DB</connection>
-    <sql>select id_oics,title_oics,id_project,title_project,scope_comments,outcome_impact_statement,gender_relev,youth_relev,capdev_relev,pdf,climate_relev,pk
-from stg_oics_metadata
-</sql>
+    <sql>select * from stg_geo_oics_br</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -654,13 +725,13 @@ from stg_oics_metadata
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
-      <yloc>48</yloc>
+      <xloc>96</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>stg_oics_2017</name>
+    <name>stg_geo_oics_br_2017</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -671,9 +742,7 @@ from stg_oics_metadata
       <schema_name/>
     </partitioning>
     <connection>DES_DB</connection>
-    <sql>select id_oics,title_oics,id_project,title_project,scope_comments,outcome_impact_statement,gender_relev,youth_relev, capdev_relev,pdf,null climate_relev,pk
-from stg_oics_metadata_2017 
-</sql>
+    <sql>select * from stg_geo_oics_br_2017</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -687,8 +756,8 @@ from stg_oics_metadata_2017
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
-      <yloc>144</yloc>
+      <xloc>96</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

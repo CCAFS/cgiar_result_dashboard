@@ -595,7 +595,6 @@ riss.id stg_maturity,
 null policy_investment_types,
 null impl_org_types,
 null rep_ind_stg_proc,
-null geo_scopes,
 tag.id tag
 FROM phases ph
 INNER JOIN global_units gu ON gu.id = ph.global_unit_id AND gu.is_active
@@ -666,10 +665,6 @@ and pesi.study_type_id = 1
       </field>
       <field>
         <name>rep_ind_stg_proc</name>
-        <rename/>
-      </field>
-      <field>
-        <name>geo_scopes</name>
         <rename/>
       </field>
       <field>

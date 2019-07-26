@@ -529,11 +529,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>stg_stg_maturities lookup</from>
-      <to>geo_scopes lookup</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Select values</from>
       <to>Not defined</to>
       <enabled>Y</enabled>
@@ -541,11 +536,6 @@
     <hop>
       <from>Not defined</from>
       <to>pre_oics_fact</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>geo_scopes lookup</from>
-      <to>dim_phases lookup</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -566,6 +556,11 @@
     <hop>
       <from>dim_tags lookup</from>
       <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>stg_stg_maturities lookup</from>
+      <to>dim_phases lookup</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -597,8 +592,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1152</xloc>
-      <yloc>128</yloc>
+      <xloc>1120</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -635,10 +630,6 @@
         <rename/>
       </field>
       <field>
-        <name>fk_id_geo_scopes</name>
-        <rename/>
-      </field>
-      <field>
         <name>fk_id_phases</name>
         <rename/>
       </field>
@@ -661,7 +652,7 @@
     </remotesteps>
     <GUI>
       <xloc>1056</xloc>
-      <yloc>32</yloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -754,13 +745,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
-      <yloc>128</yloc>
+      <xloc>720</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>geo_scopes lookup</name>
+    <name>dim_tags lookup</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -776,21 +767,21 @@
     <cache_size>0</cache_size>
     <lookup>
       <schema/>
-      <table>dim_geo_scopes</table>
+      <table>dim_tags</table>
       <orderby/>
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>geo_scopes</name>
+        <name>tag</name>
         <field>id</field>
         <condition>=</condition>
         <name2/>
       </key>
       <value>
-        <name>pk_id_geo_scopes</name>
-        <rename>fk_id_geo_scopes</rename>
+        <name>pk_id_tags</name>
+        <rename>fk_id_tag</rename>
         <default/>
-        <type>Integer</type>
+        <type>None</type>
       </value>
     </lookup>
     <cluster_schema/>
@@ -801,8 +792,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
-      <yloc>32</yloc>
+      <xloc>960</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -828,8 +819,8 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>id_oics</name>
-        <field>id_oics</field>
+        <name>pk</name>
+        <field>pk</field>
         <condition>=</condition>
         <name2/>
       </key>
@@ -848,8 +839,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>912</xloc>
-      <yloc>32</yloc>
+      <xloc>848</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -939,7 +930,7 @@
     </remotesteps>
     <GUI>
       <xloc>1232</xloc>
-      <yloc>16</yloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1143,53 +1134,6 @@ from stg_oics_fact_2017;</sql>
     </remotesteps>
     <GUI>
       <xloc>608</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dim_tags lookup</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DES_DB</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>dim_tags</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>tag</name>
-        <field>id</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>pk_id_tags</name>
-        <rename>fk_id_tag</rename>
-        <default/>
-        <type>None</type>
-      </value>
-    </lookup>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>976</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>

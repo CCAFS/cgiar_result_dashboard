@@ -381,8 +381,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1184</xloc>
-      <yloc>240</yloc>
+      <xloc>1056</xloc>
+      <yloc>352</yloc>
     </entry>
     <entry>
       <name>Send to snowflake?</name>
@@ -403,8 +403,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1040</xloc>
-      <yloc>240</yloc>
+      <xloc>912</xloc>
+      <yloc>352</yloc>
     </entry>
     <entry>
       <name>migration_process</name>
@@ -437,8 +437,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1040</xloc>
-      <yloc>336</yloc>
+      <xloc>912</xloc>
+      <yloc>448</yloc>
     </entry>
     <entry>
       <name>PARTNERSHIPS</name>
@@ -665,8 +665,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1040</xloc>
-      <yloc>144</yloc>
+      <xloc>912</xloc>
+      <yloc>256</yloc>
     </entry>
     <entry>
       <name>save_to_log END SEND</name>
@@ -711,8 +711,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1184</xloc>
-      <yloc>336</yloc>
+      <xloc>1056</xloc>
+      <yloc>448</yloc>
     </entry>
     <entry>
       <name>init_variables</name>
@@ -781,8 +781,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1040</xloc>
-      <yloc>16</yloc>
+      <xloc>912</xloc>
+      <yloc>128</yloc>
     </entry>
   </entries>
   <hops>
@@ -818,7 +818,7 @@
       <to>PARTNERSHIPS</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
@@ -915,6 +915,15 @@
     <hop>
       <from>policies</from>
       <to>save_to_log ETL END</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>INNOVATION</from>
+      <to>policies</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

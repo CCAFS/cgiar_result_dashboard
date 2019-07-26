@@ -588,45 +588,71 @@
     <fields>
       <field>
         <name>id_policy</name>
+        <rename/>
       </field>
       <field>
         <name>id_oics</name>
+        <rename/>
       </field>
       <field>
         <name>id_phase</name>
+        <rename/>
       </field>
       <field>
         <name>crp</name>
+        <rename/>
       </field>
       <field>
         <name>policy_investment_types</name>
+        <rename/>
       </field>
       <field>
         <name>impl_org_types</name>
+        <rename/>
       </field>
       <field>
         <name>rep_ind_stg_proc</name>
+        <rename/>
       </field>
       <field>
         <name>stg_maturity</name>
+        <rename/>
       </field>
       <field>
         <name>geo_scopes</name>
+        <rename/>
       </field>
       <field>
         <name>location</name>
+        <rename/>
       </field>
       <field>
         <name>srf</name>
+        <rename/>
       </field>
       <field>
         <name>cci</name>
+        <rename/>
       </field>
       <field>
         <name>Flagship</name>
+        <rename/>
       </field>
       <field>
         <name>institution_id</name>
+        <rename/>
+      </field>
+      <field>
+        <name>owner</name>
+        <rename/>
+      </field>
+      <field>
+        <name>sdg_id</name>
+        <rename/>
+      </field>
+      <field>
+        <name>pk</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -720,26 +746,30 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>select pol.id id_policy,#
-null id_oics, #
-poli.id_phase, #
-gu.id crp, #
-ripi.id policy_investment_types,#
-riot.id impl_org_types, #
-risp.id rep_ind_stg_proc, #
-null stg_maturity,#riss.id stg_maturity, #
-rigs.id geo_scopes,#
+    <sql>select pol.id id_policy,
+null id_oics, 
+poli.id_phase,
+gu.id crp, 
+ripi.id policy_investment_types,
+riot.id impl_org_types, 
+risp.id rep_ind_stg_proc, 
+null stg_maturity,
+rigs.id geo_scopes,
 case 
 WHEN pgeo.rep_ind_geographic_scope_id  in (3,4,5) then polc.id_country
 WHEN pgeo.rep_ind_geographic_scope_id  in (2) then concat('un_',polr.id_region) 
 WHEN pgeo.rep_ind_geographic_scope_id  in (1) then 'WORLD'
 WHEN pgeo.rep_ind_geographic_scope_id is null then null
 else CONCAT('Error: ',pgeo.rep_ind_geographic_scope_id)
-end location, #
-IF(ido.is_cross_cutting=0, sido.id , '') srf, #
-IF(ido.is_cross_cutting =1,sido.id,'') cci, #
-null Flagship #
-, null institution_id #
+end location, 
+IF(ido.is_cross_cutting=0, sido.id , '') srf, 
+IF(ido.is_cross_cutting =1,sido.id,'') cci, 
+null Flagship 
+, null institution_id 
+,ppo.rep_ind_policy_type_id owner
+,concat(sido.id,'_',sdgi.id) sdg_id
+,concat(pol.id,'_',ph.id) pk
+-- select count(distinct  pol.id)
 FROM project_policies pol
 join project_policy_info poli on pol.id=poli.project_policy_id
 join phases ph on poli.id_phase=ph.id
@@ -753,10 +783,16 @@ left join project_policy_countries polc on polc.project_policy_id = poli.project
 left join project_policy_regions polr on polr.project_policy_id = poli.project_policy_id and polr.id_phase=poli.id_phase
 LEFT JOIN project_policy_sub_idos polis on polis.project_policy_id = poli.project_policy_id and polis.id_phase=poli.id_phase
 left join srf_sub_idos sido on sido.id = polis.sub_ido_id
-left join srf_idos ido on ido.id =sido.ido_id 
-where poli.year = 2017 and 
-ph.year = poli.`year`
-and ph.name = 'AR'</sql>
+left join srf_idos ido on ido.id =sido.ido_id
+left join sub_ido_sdg_target sdgit on sdgit.sub_ido_id = sido.id
+left join sdg_targets sdgt on sdgt.id = sdgit.sdg_target_id 
+left join sdg_indicators sdgi on sdgi.sdg_target_id = sdgt.id
+left join project_policy_owners ppo on ppo.project_policy_id = poli.project_policy_id and ppo.id_phase=poli.project_policy_id
+where ph.year = poli.`year`
+and ph.name = 'AR'
+and ph.`year`=2018
+and pol.is_active
+and is_policy_excluded(poli.project_policy_id,poli.id_phase)=0</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
