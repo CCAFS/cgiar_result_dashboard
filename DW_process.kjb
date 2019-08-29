@@ -539,8 +539,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>800</xloc>
-      <yloc>16</yloc>
+      <xloc>656</xloc>
+      <yloc>144</yloc>
     </entry>
     <entry>
       <name>altmetrics</name>
@@ -845,7 +845,7 @@
       <to>altmetrics</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
@@ -923,6 +923,15 @@
     </hop>
     <hop>
       <from>INNOVATION</from>
+      <to>publications</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>publications</from>
       <to>policies</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>

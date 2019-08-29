@@ -575,6 +575,116 @@
     </hop>
   </order>
   <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+      </field>
+      <field>
+        <name>pk</name>
+      </field>
+      <field>
+        <name>authors</name>
+      </field>
+      <field>
+        <name>year</name>
+      </field>
+      <field>
+        <name>title</name>
+      </field>
+      <field>
+        <name>journal</name>
+      </field>
+      <field>
+        <name>volume</name>
+      </field>
+      <field>
+        <name>issue</name>
+      </field>
+      <field>
+        <name>pages</name>
+      </field>
+      <field>
+        <name>is_ISI_journal</name>
+      </field>
+      <field>
+        <name>is_open_access</name>
+      </field>
+      <field>
+        <name>DOI</name>
+      </field>
+      <field>
+        <name>Handle</name>
+      </field>
+      <field>
+        <name>Citation</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort rows</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>id</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>240</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>peer_review_papers</name>
     <type>TableInput</type>
     <description/>
@@ -586,8 +696,38 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>select * from report_synthesis_peer_review_papers;
-</sql>
+    <sql>select dev.id id, concat(devi.deliverable_id,'_',devi.id_phase) pk,
+(select group_concat(concat(du.last_name,' ',Du.first_name)) 
+from deliverable_users du 
+where du.deliverable_id = devi.deliverable_id and du.id_phase = devi.id_phase
+) authors,
+ph.year,
+get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'dc.title') as 'title',
+pm.journal,
+pm.volume,
+pm.issue,
+pm.pages,
+pm.isi_publication is_ISI_journal,
+dd.is_open_access,
+get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'marlo.doi') as 'DOI',
+get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'marlo.handle') as 'Handle',
+get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'dc.identifier.citation') as 'Citation'
+from deliverables dev
+join deliverables_info devi on dev.id = devi.deliverable_id
+left join deliverable_dissemination dd on dd.deliverable_id=devi.deliverable_id and dd.id_phase=devi.id_phase
+left join deliverable_publications_metada pm on pm.deliverable_id=devi.deliverable_id and pm.id_phase = devi.id_phase
+join phases ph on ph.id = devi.id_phase
+join global_units gu on gu.id = ph.global_unit_id
+where ifnull(if(devi.new_expected_year=-1,null,devi.new_expected_year), devi.`year`) = ph.year
+and ph.year = 2018
+and ph.name = 'AR'
+and dev.is_active
+and devi.is_active
+and devi.`status` not in (5)
+and devi.type_id = 63 -- Journal Article (peer reviewed)
+and is_deliverable_excluded(devi.deliverable_id,devi.id_phase) = 0
+-- and gu.acronym = 'CCAFS'
+-- and devi.deliverable_id = 260</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -601,7 +741,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
+      <xloc>96</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -644,115 +784,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
-      <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>id</name>
-        <rename/>
-      </field>
-      <field>
-        <name>title</name>
-        <rename/>
-      </field>
-      <field>
-        <name>journal</name>
-        <rename/>
-      </field>
-      <field>
-        <name>year</name>
-        <rename/>
-      </field>
-      <field>
-        <name>authors</name>
-        <rename/>
-      </field>
-      <field>
-        <name>citation</name>
-        <rename/>
-      </field>
-      <field>
-        <name>is_ISI_journal</name>
-        <rename/>
-      </field>
-      <field>
-        <name>is_open_access</name>
-        <rename/>
-      </field>
-      <field>
-        <name>url</name>
-        <rename/>
-      </field>
-      <field>
-        <name>phase_id</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sort rows</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>id</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>176</xloc>
+      <xloc>448</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>

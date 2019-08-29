@@ -508,6 +508,11 @@
       <to>dim_publications_info</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>stg_publications_info_2017</from>
+      <to>dim_publications_info</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>dim_publications_info</name>
@@ -527,8 +532,8 @@
     <update>Y</update>
     <fields>
       <key>
-        <name>id</name>
-        <lookup>id</lookup>
+        <name>pk</name>
+        <lookup>pk</lookup>
       </key>
       <date>
         <name/>
@@ -561,11 +566,6 @@
         <update>Update</update>
       </field>
       <field>
-        <name>url</name>
-        <lookup>url</lookup>
-        <update>Update</update>
-      </field>
-      <field>
         <name>is_ISI_journal</name>
         <lookup>is_ISI_journal</lookup>
         <update>Update</update>
@@ -576,8 +576,33 @@
         <update>Update</update>
       </field>
       <field>
-        <name>phase_id</name>
-        <lookup>phase_id</lookup>
+        <name>volume</name>
+        <lookup>volume</lookup>
+        <update>Update</update>
+      </field>
+      <field>
+        <name>issue</name>
+        <lookup>issue</lookup>
+        <update>Update</update>
+      </field>
+      <field>
+        <name>pages</name>
+        <lookup>pages</lookup>
+        <update>Update</update>
+      </field>
+      <field>
+        <name>DOI</name>
+        <lookup>DOI</lookup>
+        <update>Update</update>
+      </field>
+      <field>
+        <name>Handle</name>
+        <lookup>Handle</lookup>
+        <update>Update</update>
+      </field>
+      <field>
+        <name>id</name>
+        <lookup>id</lookup>
         <update>Update</update>
       </field>
       <return>
@@ -638,6 +663,38 @@
     <GUI>
       <xloc>80</xloc>
       <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>stg_publications_info_2017</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DES_DB</connection>
+    <sql>select id,	title,	citation,	Journal,	year,	authors,	is_ISI_journal,	is_open_access,	pk,	'' volume,	'' issue, '' pages, url DOI,'' Handle
+from stg_publications_info_2017 ;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>80</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
