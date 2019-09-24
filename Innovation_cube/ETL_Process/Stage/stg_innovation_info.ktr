@@ -588,35 +588,27 @@
     <fields>
       <field>
         <name>project_innovation_id</name>
-        <rename/>
       </field>
       <field>
         <name>title</name>
-        <rename/>
       </field>
       <field>
         <name>narrative</name>
-        <rename/>
       </field>
       <field>
         <name>evidence_link</name>
-        <rename/>
       </field>
       <field>
         <name>gender</name>
-        <rename/>
       </field>
       <field>
         <name>youth</name>
-        <rename/>
       </field>
       <field>
         <name>pk</name>
-        <rename/>
       </field>
       <field>
         <name>pdf</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -687,7 +679,7 @@
     </partitioning>
     <connection>ORI_DB</connection>
     <sql>SELECT 	pii.project_innovation_id,concat(	pii.project_innovation_id,'_',pii.id_phase) pk, pii.title,pii.narrative, pii.evidence_link, rigender.name gender, riyouth.name youth
-,CONCAT('https://marlo.cgiar.org/summaries/',gu.acronym,'/projectInnovationSummary.do?innovationID=',pi.id,'&amp;phaseID=',ph.id) pdf
+,ifnull(pii.external_link,CONCAT('https://marlo.cgiar.org/summaries/',gu.acronym,'/projectInnovationSummary.do?innovationID=',pi.id,'&amp;phaseID=',ph.id)) pdf
 FROM project_innovations pi 
 INNER JOIN project_innovation_info pii ON pii.project_innovation_id = pi.id
 INNER JOIN phases ph on ph.id = pii.id_phase

@@ -694,7 +694,7 @@
     <sql>select concat(pes.id,'_',ph.id) pk,
 pes.id id_oics,pesi.title title_oics,pesi.scope_comments, pesi.outcome_impact_statement,rigender.name gender_relev,riyouth.name youth_relev,ricap.name capdev_relev,ricc.name climate_relev, 
 pes.project_id id_project, pinf.title title_project,
-if(pesi.is_public,concat('https://marlo.cgiar.org/projects/',gu.acronym,'/studySummary.do?studyID=',pes.id,'&amp;cycle=',ph.description,'&amp;year=',ph.year),null) pdf
+ifnull(pesi.external_link,concat('https://marlo.cgiar.org/projects/',gu.acronym,'/studySummary.do?studyID=',pes.id,'&amp;cycle=',ph.description,'&amp;year=',ph.year)) pdf
 from project_expected_studies pes 
 INNER JOIN project_expected_study_info pesi ON pesi.project_expected_study_id = pes.id 
 inner join phases ph on ph.id = pesi.id_phase

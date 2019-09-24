@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>stg_publications_info</name>
+    <name>stg_milestone_status_reasons</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -427,10 +427,10 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2018/10/03 08:55:21.407</created_date>
+    <created_date>2019/09/09 08:34:42.090</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018/10/03 08:55:21.407</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2019/09/09 08:34:42.090</modified_date>
+    <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -559,8 +559,8 @@
   </connection>
   <order>
     <hop>
-      <from>peer_review_papers</from>
-      <to>Sort rows</to>
+      <from>Select values</from>
+      <to>stg_milestone_status_reasons</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -569,8 +569,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values</from>
-      <to>stg_publications_info</to>
+      <from>milestones_status_reasons</from>
+      <to>Sort rows</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -588,45 +588,15 @@
     <fields>
       <field>
         <name>id</name>
+        <rename/>
       </field>
       <field>
-        <name>pk</name>
+        <name>name</name>
+        <rename/>
       </field>
       <field>
-        <name>authors</name>
-      </field>
-      <field>
-        <name>year</name>
-      </field>
-      <field>
-        <name>title</name>
-      </field>
-      <field>
-        <name>journal</name>
-      </field>
-      <field>
-        <name>volume</name>
-      </field>
-      <field>
-        <name>issue</name>
-      </field>
-      <field>
-        <name>pages</name>
-      </field>
-      <field>
-        <name>is_ISI_journal</name>
-      </field>
-      <field>
-        <name>is_open_access</name>
-      </field>
-      <field>
-        <name>DOI</name>
-      </field>
-      <field>
-        <name>Handle</name>
-      </field>
-      <field>
-        <name>Citation</name>
+        <name>description</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -638,8 +608,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>64</yloc>
+      <xloc>352</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -663,7 +633,7 @@
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>id</name>
+        <name>name</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -679,13 +649,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>64</yloc>
+      <xloc>256</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>peer_review_papers</name>
+    <name>milestones_status_reasons</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -696,39 +666,7 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>select dev.id id, concat(devi.deliverable_id,'_',devi.id_phase) pk,
-ifnull( 
-(select group_concat(concat(du.last_name,' ',du.first_name)) 
-from deliverable_users du 
-where du.deliverable_id = devi.deliverable_id and du.id_phase = devi.id_phase
-),get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'marlo.authors')) authors,
-ph.year,
-get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'dc.title') as 'title',
-pm.journal,
-pm.volume,
-pm.issue,
-pm.pages,
-pm.isi_publication is_ISI_journal,
-dd.is_open_access,
-get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'marlo.doi') as 'DOI',
-get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'marlo.handle') as 'Handle',
-get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'dc.identifier.citation') as 'Citation'
-from deliverables dev
-join deliverables_info devi on dev.id = devi.deliverable_id
-left join deliverable_dissemination dd on dd.deliverable_id=devi.deliverable_id and dd.id_phase=devi.id_phase
-left join deliverable_publications_metada pm on pm.deliverable_id=devi.deliverable_id and pm.id_phase = devi.id_phase
-join phases ph on ph.id = devi.id_phase
-join global_units gu on gu.id = ph.global_unit_id
-where ifnull(if(devi.new_expected_year=-1,null,devi.new_expected_year), devi.`year`) = ph.year
-and ph.year = 2018
-and ph.name = 'AR'
-and dev.is_active
-and devi.is_active
-and devi.`status` not in (5)
-and devi.type_id = 63 -- Journal Article (peer reviewed)
-and is_deliverable_excluded(devi.deliverable_id,devi.id_phase) = 0
--- and gu.acronym = 'PIM'
--- and devi.deliverable_id = 260</sql>
+    <sql>select * from rep_ind_milestone_reasons</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -742,13 +680,13 @@ and is_deliverable_excluded(devi.deliverable_id,devi.id_phase) = 0
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
-      <yloc>64</yloc>
+      <xloc>144</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>stg_publications_info</name>
+    <name>stg_milestone_status_reasons</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -760,7 +698,7 @@ and is_deliverable_excluded(devi.deliverable_id,devi.id_phase) = 0
     </partitioning>
     <connection>DES_DB</connection>
     <schema/>
-    <table>stg_publications_info</table>
+    <table>stg_milestone_status_reasons</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -785,8 +723,8 @@ and is_deliverable_excluded(devi.deliverable_id,devi.id_phase) = 0
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>64</yloc>
+      <xloc>480</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

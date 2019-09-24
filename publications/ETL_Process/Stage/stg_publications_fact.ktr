@@ -588,19 +588,15 @@
     <fields>
       <field>
         <name>publication</name>
-        <rename/>
       </field>
       <field>
         <name>pk</name>
-        <rename/>
       </field>
       <field>
         <name>phase</name>
-        <rename/>
       </field>
       <field>
         <name>crp</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>

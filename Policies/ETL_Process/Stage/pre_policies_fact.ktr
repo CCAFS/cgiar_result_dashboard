@@ -1432,7 +1432,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>48</xloc>
+      <xloc>32</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1449,7 +1449,7 @@
       <schema_name/>
     </partitioning>
     <connection>DES_DB</connection>
-    <sql>select f.*,null owner  
+    <sql>select f.*,0 owner  
 from stg_policies_fact_2017 f</sql>
     <limit>0</limit>
     <lookup/>
@@ -1465,7 +1465,7 @@ from stg_policies_fact_2017 f</sql>
     </remotesteps>
     <GUI>
       <xloc>48</xloc>
-      <yloc>160</yloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

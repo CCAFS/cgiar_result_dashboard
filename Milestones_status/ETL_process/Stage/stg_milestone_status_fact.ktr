@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>stg_publications_info</name>
+    <name>stg_milestone_status_fact</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -427,9 +428,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2018/10/03 08:55:21.407</created_date>
+    <created_date>2018/10/03 10:07:01.452</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018/10/03 08:55:21.407</modified_date>
+    <modified_date>2018/10/03 10:07:01.452</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -559,7 +560,7 @@
   </connection>
   <order>
     <hop>
-      <from>peer_review_papers</from>
+      <from>milestone_status</from>
       <to>Sort rows</to>
       <enabled>Y</enabled>
     </hop>
@@ -570,7 +571,7 @@
     </hop>
     <hop>
       <from>Select values</from>
-      <to>stg_publications_info</to>
+      <to>stg_milestone_status_fact</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -587,46 +588,37 @@
     </partitioning>
     <fields>
       <field>
-        <name>id</name>
+        <name>milestone_staus_info_id</name>
       </field>
       <field>
-        <name>pk</name>
+        <name>milestones_status</name>
       </field>
       <field>
-        <name>authors</name>
+        <name>status_reason</name>
       </field>
       <field>
-        <name>year</name>
+        <name>phase_id</name>
       </field>
       <field>
-        <name>title</name>
+        <name>crp_id</name>
       </field>
       <field>
-        <name>journal</name>
+        <name>milestone_pk</name>
       </field>
       <field>
-        <name>volume</name>
+        <name>flagship_id</name>
       </field>
       <field>
-        <name>issue</name>
+        <name>gender_level</name>
       </field>
       <field>
-        <name>pages</name>
+        <name>youth_level</name>
       </field>
       <field>
-        <name>is_ISI_journal</name>
+        <name>capdev_level</name>
       </field>
       <field>
-        <name>is_open_access</name>
-      </field>
-      <field>
-        <name>DOI</name>
-      </field>
-      <field>
-        <name>Handle</name>
-      </field>
-      <field>
-        <name>Citation</name>
+        <name>climate_level</name>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -638,7 +630,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
+      <xloc>288</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -663,7 +655,7 @@
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>id</name>
+        <name>milestone_pk</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -679,13 +671,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
+      <xloc>176</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>peer_review_papers</name>
+    <name>milestone_status</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -696,39 +688,25 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>select dev.id id, concat(devi.deliverable_id,'_',devi.id_phase) pk,
-ifnull( 
-(select group_concat(concat(du.last_name,' ',du.first_name)) 
-from deliverable_users du 
-where du.deliverable_id = devi.deliverable_id and du.id_phase = devi.id_phase
-),get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'marlo.authors')) authors,
-ph.year,
-get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'dc.title') as 'title',
-pm.journal,
-pm.volume,
-pm.issue,
-pm.pages,
-pm.isi_publication is_ISI_journal,
-dd.is_open_access,
-get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'marlo.doi') as 'DOI',
-get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'marlo.handle') as 'Handle',
-get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'dc.identifier.citation') as 'Citation'
-from deliverables dev
-join deliverables_info devi on dev.id = devi.deliverable_id
-left join deliverable_dissemination dd on dd.deliverable_id=devi.deliverable_id and dd.id_phase=devi.id_phase
-left join deliverable_publications_metada pm on pm.deliverable_id=devi.deliverable_id and pm.id_phase = devi.id_phase
-join phases ph on ph.id = devi.id_phase
-join global_units gu on gu.id = ph.global_unit_id
-where ifnull(if(devi.new_expected_year=-1,null,devi.new_expected_year), devi.`year`) = ph.year
-and ph.year = 2018
+    <sql>
+select 
+fpom.id  milestone_staus_info_id, fpom.milestones_status, fpom.rep_ind_milestone_reason_id status_reason, ph.id phase_id, ph.global_unit_id crp_id, 
+concat(fpom.crp_milestone_id,'_',ph.id) milestone_pk ,
+li.crp_program flagship_id, ccgender.rep_ind_gender_youth_focus_level_id gender_level, ccyouth.rep_ind_gender_youth_focus_level_id youth_level, 
+cccapdev.rep_ind_gender_youth_focus_level_id capdev_level, ccclimate.rep_ind_gender_youth_focus_level_id climate_level
+from report_synthesis rs 
+join phases ph on ph.id = rs.id_phase
+JOIN report_synthesis_flagship_progress fp on rs.id = fp.id 
+join report_synthesis_flagship_progress_outcomes fpo on fp.id = fpo.report_synthesis_flagship_progress_id
+join report_synthesis_flagship_progress_outcome_milestones fpom on fpom.report_synthesis_outcome_id=fpo.id
+left join liaison_institutions li on li.id = rs.liaison_institution_id
+left join report_synthesis_flagship_progress_cross ccgender on ccgender.report_synthesis_flagship_progress_outcome_milestone_id = fpom.id and ccgender.cgiar_cross_cutting_marker_id =1
+left join report_synthesis_flagship_progress_cross ccyouth on ccyouth.report_synthesis_flagship_progress_outcome_milestone_id = fpom.id and ccyouth.cgiar_cross_cutting_marker_id =2
+left join report_synthesis_flagship_progress_cross cccapdev on cccapdev.report_synthesis_flagship_progress_outcome_milestone_id = fpom.id and cccapdev.cgiar_cross_cutting_marker_id =3
+left join report_synthesis_flagship_progress_cross ccclimate on ccclimate.report_synthesis_flagship_progress_outcome_milestone_id = fpom.id and ccclimate.cgiar_cross_cutting_marker_id =4
+where ph.year=2018
 and ph.name = 'AR'
-and dev.is_active
-and devi.is_active
-and devi.`status` not in (5)
-and devi.type_id = 63 -- Journal Article (peer reviewed)
-and is_deliverable_excluded(devi.deliverable_id,devi.id_phase) = 0
--- and gu.acronym = 'PIM'
--- and devi.deliverable_id = 260</sql>
+;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -742,13 +720,13 @@ and is_deliverable_excluded(devi.deliverable_id,devi.id_phase) = 0
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
+      <xloc>80</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>stg_publications_info</name>
+    <name>stg_milestone_status_fact</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -760,7 +738,7 @@ and is_deliverable_excluded(devi.deliverable_id,devi.id_phase) = 0
     </partitioning>
     <connection>DES_DB</connection>
     <schema/>
-    <table>stg_publications_info</table>
+    <table>stg_milestone_status_fact</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -785,7 +763,7 @@ and is_deliverable_excluded(devi.deliverable_id,devi.id_phase) = 0
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
+      <xloc>416</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
