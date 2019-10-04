@@ -351,8 +351,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>288</xloc>
-      <yloc>96</yloc>
+      <xloc>208</xloc>
+      <yloc>192</yloc>
     </entry>
     <entry>
       <name>START</name>
@@ -381,8 +381,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1056</xloc>
-      <yloc>416</yloc>
+      <xloc>1024</xloc>
+      <yloc>192</yloc>
     </entry>
     <entry>
       <name>Send to snowflake?</name>
@@ -403,8 +403,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>912</xloc>
-      <yloc>416</yloc>
+      <xloc>880</xloc>
+      <yloc>192</yloc>
     </entry>
     <entry>
       <name>migration_process</name>
@@ -437,8 +437,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>912</xloc>
-      <yloc>512</yloc>
+      <xloc>880</xloc>
+      <yloc>288</yloc>
     </entry>
     <entry>
       <name>PARTNERSHIPS</name>
@@ -471,8 +471,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>384</xloc>
-      <yloc>96</yloc>
+      <xloc>304</xloc>
+      <yloc>192</yloc>
     </entry>
     <entry>
       <name>2018_train_part_cube</name>
@@ -505,7 +505,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>608</xloc>
+      <xloc>432</xloc>
       <yloc>96</yloc>
     </entry>
     <entry>
@@ -539,8 +539,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>704</xloc>
-      <yloc>96</yloc>
+      <xloc>432</xloc>
+      <yloc>192</yloc>
     </entry>
     <entry>
       <name>altmetrics</name>
@@ -573,8 +573,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>800</xloc>
-      <yloc>96</yloc>
+      <xloc>560</xloc>
+      <yloc>192</yloc>
     </entry>
     <entry>
       <name>save_to_log ETL START</name>
@@ -665,8 +665,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>912</xloc>
-      <yloc>320</yloc>
+      <xloc>704</xloc>
+      <yloc>192</yloc>
     </entry>
     <entry>
       <name>save_to_log END SEND</name>
@@ -711,8 +711,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1056</xloc>
-      <yloc>512</yloc>
+      <xloc>1024</xloc>
+      <yloc>288</yloc>
     </entry>
     <entry>
       <name>init_variables</name>
@@ -781,7 +781,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>912</xloc>
+      <xloc>560</xloc>
       <yloc>96</yloc>
     </entry>
     <entry>
@@ -815,8 +815,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>912</xloc>
-      <yloc>208</yloc>
+      <xloc>704</xloc>
+      <yloc>96</yloc>
     </entry>
     <entry>
       <name>PARTNERSHIPS 2018</name>
@@ -849,7 +849,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>496</xloc>
+      <xloc>304</xloc>
       <yloc>96</yloc>
     </entry>
   </entries>

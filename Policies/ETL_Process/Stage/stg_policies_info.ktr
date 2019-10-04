@@ -699,9 +699,9 @@ from project_policies pol
 join project_policy_info poli on pol.id=poli.project_policy_id
 join phases ph on ph.id=poli.id_phase
 JOIN global_units gu ON gu.id = ph.global_unit_id AND gu.is_active
-join project_policy_cross_cutting_markers ccmp on ccmp.project_policy_id =poli.project_policy_id and ccmp.id_phase = poli.id_phase
-join cgiar_cross_cutting_markers ccm on ccm.id = ccmp.cgiar_cross_cutting_marker_id
-join rep_ind_gender_youth_focus_levels ccs on ccs.id = ccmp.rep_ind_gender_youth_focus_level_id
+left join project_policy_cross_cutting_markers ccmp on ccmp.project_policy_id =poli.project_policy_id and ccmp.id_phase = poli.id_phase
+left join cgiar_cross_cutting_markers ccm on ccm.id = ccmp.cgiar_cross_cutting_marker_id
+left join rep_ind_gender_youth_focus_levels ccs on ccs.id = ccmp.rep_ind_gender_youth_focus_level_id
 where ph.year = poli.`year`
 and is_policy_excluded(poli.project_policy_id,poli.id_phase)=0
 and ph.`year` = 2018

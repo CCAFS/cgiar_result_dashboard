@@ -588,45 +588,63 @@
     <fields>
       <field>
         <name>id</name>
+        <rename/>
       </field>
       <field>
         <name>pk</name>
+        <rename/>
       </field>
       <field>
         <name>authors</name>
+        <rename/>
       </field>
       <field>
         <name>year</name>
+        <rename/>
       </field>
       <field>
         <name>title</name>
+        <rename/>
       </field>
       <field>
         <name>journal</name>
+        <rename/>
       </field>
       <field>
         <name>volume</name>
+        <rename/>
       </field>
       <field>
         <name>issue</name>
+        <rename/>
       </field>
       <field>
         <name>pages</name>
+        <rename/>
       </field>
       <field>
         <name>is_ISI_journal</name>
+        <rename/>
       </field>
       <field>
         <name>is_open_access</name>
+        <rename/>
       </field>
       <field>
         <name>DOI</name>
+        <rename/>
       </field>
       <field>
         <name>Handle</name>
+        <rename/>
       </field>
       <field>
         <name>Citation</name>
+        <rename/>
+      </field>
+      <field>
+        <name>deliverable_group</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -697,6 +715,7 @@
     </partitioning>
     <connection>ORI_DB</connection>
     <sql>select dev.id id, concat(devi.deliverable_id,'_',devi.id_phase) pk,
+ifnull(dg.deliverable_group,devi.deliverable_id) deliverable_group,
 ifnull( 
 (select group_concat(concat(du.last_name,' ',du.first_name)) 
 from deliverable_users du 
@@ -717,6 +736,7 @@ from deliverables dev
 join deliverables_info devi on dev.id = devi.deliverable_id
 left join deliverable_dissemination dd on dd.deliverable_id=devi.deliverable_id and dd.id_phase=devi.id_phase
 left join deliverable_publications_metada pm on pm.deliverable_id=devi.deliverable_id and pm.id_phase = devi.id_phase
+left join deliverables_groups dg on dg.deliverable_id = devi.deliverable_id and dg.id_phase=devi.id_phase
 join phases ph on ph.id = devi.id_phase
 join global_units gu on gu.id = ph.global_unit_id
 where ifnull(if(devi.new_expected_year=-1,null,devi.new_expected_year), devi.`year`) = ph.year

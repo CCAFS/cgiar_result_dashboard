@@ -605,6 +605,11 @@
         <lookup>id</lookup>
         <update>Update</update>
       </field>
+      <field>
+        <name>deliverable_group</name>
+        <lookup>deliverable_group</lookup>
+        <update>Update</update>
+      </field>
       <return>
         <name>pk_id_publication_info</name>
         <rename/>
@@ -678,7 +683,7 @@
       <schema_name/>
     </partitioning>
     <connection>DES_DB</connection>
-    <sql>select id,	title,	citation,	Journal,	year,	authors,	is_ISI_journal,	is_open_access,	pk,	'' volume,	'' issue, '' pages, url DOI,'' Handle
+    <sql>select id ,	title,	citation,	Journal,	year,	authors,	is_ISI_journal,	is_open_access,	pk,	'' volume,	'' issue, '' pages, url DOI,'' Handle,CAST(id AS CHAR) deliverable_group
 from stg_publications_info_2017 ;</sql>
     <limit>0</limit>
     <lookup/>

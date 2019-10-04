@@ -709,7 +709,7 @@ AND pesi.`year` = ph. YEAR
 AND ph. YEAR = 2018
 AND ph. NAME = 'AR'
 and pes.is_active
-and pesi.study_type_id = 1
+
 </sql>
     <limit>0</limit>
     <lookup/>

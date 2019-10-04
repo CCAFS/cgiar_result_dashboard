@@ -588,15 +588,23 @@
     <fields>
       <field>
         <name>publication</name>
+        <rename/>
       </field>
       <field>
         <name>pk</name>
+        <rename/>
       </field>
       <field>
         <name>phase</name>
+        <rename/>
       </field>
       <field>
         <name>crp</name>
+        <rename/>
+      </field>
+      <field>
+        <name>institution_id</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -682,11 +690,12 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>select dev.id publication, concat(devi.deliverable_id,'_',devi.id_phase) pk,devi.id_phase phase,gu.id crp
+    <sql>select dev.id publication, concat(devi.deliverable_id,'_',devi.id_phase) pk,devi.id_phase phase,gu.id crp,aff.institution_id 
 from deliverables dev
 join deliverables_info devi on dev.id = devi.deliverable_id
 left join deliverable_dissemination dd on dd.deliverable_id=devi.deliverable_id and dd.id_phase=devi.id_phase
 left join deliverable_publications_metada pm on pm.deliverable_id=devi.deliverable_id and pm.id_phase = devi.id_phase
+left join deliverable_affiliations aff on aff.deliverable_id = devi.deliverable_id and aff.id_phase = devi.id_phase
 join phases ph on ph.id = devi.id_phase
 join global_units gu on gu.id = ph.global_unit_id
 where ifnull(if(devi.new_expected_year=-1,null,devi.new_expected_year), devi.`year`) = ph.year
