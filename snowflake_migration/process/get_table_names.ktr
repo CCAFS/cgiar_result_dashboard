@@ -521,11 +521,19 @@
       <schema_name/>
     </partitioning>
     <connection>DES_DB</connection>
-    <sql>SELECT table_name table_name,upper(table_name) sf_table_name  FROM information_schema.tables 
-where (table_name like 'fact_%' or table_name like 'dim_%' or table_name like 'br_%')
-
-
-;</sql>
+    <sql>SELECT table_name table_name,upper(table_name) sf_table_name, 'Fact' type  FROM information_schema.tables 
+where table_schema ='dashboard_bi' and table_name like 'fact_%' 
+Union all 
+SELECT table_name table_name,upper(table_name) sf_table_name, 'Bridge' type  FROM information_schema.tables 
+where table_schema ='dashboard_bi' and table_name like 'br_%'
+Union all 
+SELECT table_name table_name,upper(table_name) sf_table_name, 'Dimension'  type FROM information_schema.tables 
+where table_schema ='dashboard_bi' and  table_name like 'dim_%'
+-- Union all 
+-- SELECT table_name table_name,upper(table_name) sf_table_name, 'View' type FROM information_schema.tables 
+-- where table_schema ='dashboard_bi' and table_name like 'vw_%'
+order by table_name 
+</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

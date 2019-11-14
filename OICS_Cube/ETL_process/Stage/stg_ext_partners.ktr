@@ -589,27 +589,21 @@
     <fields>
       <field>
         <name>id</name>
-        <rename/>
       </field>
       <field>
         <name>name</name>
-        <rename/>
       </field>
       <field>
         <name>acronym</name>
-        <rename/>
       </field>
       <field>
         <name>website_link</name>
-        <rename/>
       </field>
       <field>
         <name>type</name>
-        <rename/>
       </field>
       <field>
         <name>headquarter</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -679,11 +673,16 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>select ins.id, ins.name, ins.acronym, ins.website_link, ity.name type , loc.iso_alpha_2 headquarter
+    <sql>select ins.id, ins.name, ins.acronym, ins.website_link, smo.name  type , loc.iso_alpha_2 headquarter
 from  institutions ins 
 join institution_types ity on ity.id = ins.institution_type_id
 join institutions_locations il on il.institution_id = ins.id and il.is_headquater = 1
-join loc_elements loc on loc.id = il.loc_element_id </sql>
+join rep_ind_organization_types smo on smo.id = ity.rep_ind_organization_type_id
+join loc_elements loc on loc.id = il.loc_element_id 
+union ALL
+select ins.id, ins.name, ins.acronym, ins.website_link, null  type , null headquarter
+from institutions_dashboard ins
+;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

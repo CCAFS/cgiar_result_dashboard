@@ -588,15 +588,12 @@
     <fields>
       <field>
         <name>oics_id</name>
-        <rename/>
       </field>
       <field>
         <name>scope_id</name>
-        <rename/>
       </field>
       <field>
         <name>pk</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -676,7 +673,7 @@ AND pesi.`year` = ph. YEAR
 AND ph. YEAR = 2018
 AND ph. NAME = 'AR'
 and pes.is_active
-and pesi.study_type_id = 11</sql>
+and pesi.study_type_id = 1</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

@@ -430,7 +430,7 @@
     <created_date>2019/09/10 15:04:36.294</created_date>
     <modified_user>-</modified_user>
     <modified_date>2019/09/10 15:04:36.294</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -510,37 +510,6 @@
     </hop>
   </order>
   <step>
-    <name>stg_milestone_status_info</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DES_DB</connection>
-    <sql>select * from stg_milestone_status_info</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>176</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>dim_milestone_status_info</name>
     <type>DimensionLookup</type>
     <description/>
@@ -569,37 +538,37 @@
       <field>
         <name>outcome_sumary</name>
         <lookup>outcome_sumary</lookup>
-        <update>Insert</update>
+        <update>Update</update>
       </field>
       <field>
         <name>milestone_evidence</name>
         <lookup>milestone_evidence</lookup>
-        <update>Insert</update>
+        <update>Update</update>
       </field>
       <field>
         <name>other_reason</name>
         <lookup>other_reason</lookup>
-        <update>Insert</update>
+        <update>Update</update>
       </field>
       <field>
         <name>gender_justification</name>
         <lookup>gender_justification</lookup>
-        <update>Insert</update>
+        <update>Update</update>
       </field>
       <field>
         <name>youth_justification</name>
         <lookup>youth_justification</lookup>
-        <update>Insert</update>
+        <update>Update</update>
       </field>
       <field>
         <name>capdev_justification</name>
         <lookup>capdev_justification</lookup>
-        <update>Insert</update>
+        <update>Update</update>
       </field>
       <field>
         <name>climate_justification</name>
         <lookup>climate_justification</lookup>
-        <update>Insert</update>
+        <update>Update</update>
       </field>
       <return>
         <name>pk_id_milestone_status_info</name>
@@ -627,6 +596,37 @@
     </remotesteps>
     <GUI>
       <xloc>320</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>stg_milestone_status_info</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DES_DB</connection>
+    <sql>select * from stg_milestone_status_info</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>176</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>

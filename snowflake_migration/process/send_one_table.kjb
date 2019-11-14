@@ -375,17 +375,30 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>256</xloc>
+      <xloc>288</xloc>
       <yloc>32</yloc>
     </entry>
     <entry>
-      <name>Success</name>
+      <name>execute migration</name>
       <description/>
-      <type>SUCCESS</type>
+      <type>SHELL</type>
+      <filename/>
+      <work_directory>${Internal.Entry.Current.Directory}</work_directory>
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <set_append_logfile>N</set_append_logfile>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <insertScript>Y</insertScript>
+      <script>snowsql -f send.sql --config ../../config/config_snowflake</script>
+      <loglevel>Basic</loglevel>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>608</xloc>
+      <xloc>544</xloc>
       <yloc>32</yloc>
     </entry>
     <entry>
@@ -409,30 +422,17 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>368</xloc>
+      <xloc>416</xloc>
       <yloc>32</yloc>
     </entry>
     <entry>
-      <name>execute migration</name>
+      <name>Success</name>
       <description/>
-      <type>SHELL</type>
-      <filename/>
-      <work_directory>${Internal.Entry.Current.Directory}</work_directory>
-      <arg_from_previous>N</arg_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <set_append_logfile>N</set_append_logfile>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <insertScript>Y</insertScript>
-      <script>snowsql -f send.sql --config ../../config/config_snowflake</script>
-      <loglevel>Basic</loglevel>
+      <type>SUCCESS</type>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>496</xloc>
+      <xloc>656</xloc>
       <yloc>32</yloc>
     </entry>
   </entries>
@@ -447,17 +447,8 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>set_table_name_var</from>
-      <to>create_csv</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>create_csv</from>
-      <to>create migration script</to>
+      <from>execute migration</from>
+      <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -474,8 +465,17 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>execute migration</from>
-      <to>Success</to>
+      <from>create_csv</from>
+      <to>create migration script</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>set_table_name_var</from>
+      <to>create_csv</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

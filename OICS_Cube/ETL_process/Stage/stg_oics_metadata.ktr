@@ -692,7 +692,7 @@
     </partitioning>
     <connection>ORI_DB</connection>
     <sql>select concat(pes.id,'_',ph.id) pk,
-pes.id id_oics,pesi.title title_oics,pesi.scope_comments, pesi.outcome_impact_statement,rigender.name gender_relev,riyouth.name youth_relev,ricap.name capdev_relev,ricc.name climate_relev, 
+pes.id id_oics,pesi.title title_oics,pesi.scope_comments, pesi.outcome_impact_statement,rigender.powb_name gender_relev,riyouth.powb_name youth_relev,ricap.powb_name capdev_relev,ricc.powb_name climate_relev, 
 pes.project_id id_project, pinf.title title_project,
 ifnull(pesi.external_link,concat('https://marlo.cgiar.org/projects/',gu.acronym,'/studySummary.do?studyID=',pes.id,'&amp;cycle=',ph.description,'&amp;year=',ph.year)) pdf
 from project_expected_studies pes 

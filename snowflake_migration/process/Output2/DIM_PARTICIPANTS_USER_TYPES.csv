@@ -1,0 +1,5 @@
+pk_id_participant_user_type,version,date_from,date_to,id,"name","definition"
+0,1,,,,,
+1,1,1900-01-01 00:00:00,2200-01-01 00:00:00,1,"End users",
+2,1,1900-01-01 00:00:00,2200-01-01 00:00:00,2,"Next users",
+3,1,1900-01-01 00:00:00,2200-01-01 00:00:00,3,"Not defined",

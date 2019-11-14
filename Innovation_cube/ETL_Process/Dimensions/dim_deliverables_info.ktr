@@ -538,27 +538,27 @@
       <field>
         <name>title</name>
         <lookup>title</lookup>
-        <update>Insert</update>
+        <update>Update</update>
       </field>
       <field>
         <name>description</name>
         <lookup>description</lookup>
-        <update>Insert</update>
+        <update>Update</update>
       </field>
       <field>
         <name>deliverable_type</name>
         <lookup>deliverable_type</lookup>
-        <update>Insert</update>
+        <update>Update</update>
       </field>
       <field>
         <name>dissemination_URL</name>
         <lookup>dissemination_URL</lookup>
-        <update>Insert</update>
+        <update>Update</update>
       </field>
       <field>
         <name>DOI</name>
         <lookup>DOI</lookup>
-        <update>Insert</update>
+        <update>Update</update>
       </field>
       <return>
         <name>pk_id_deliverables_info</name>

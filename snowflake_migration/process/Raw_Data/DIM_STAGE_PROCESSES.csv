@@ -1,0 +1,7 @@
+pk_id_stage_processes,version,date_from,date_to,id,"name","description"
+0,1,,,,,
+1,1,1900-01-01 00:00:00,2200-01-01 00:00:00,1,"Stage 1 of outcome/impact case study","Research taken up by next user (decision maker or intermediary)"
+2,1,1900-01-01 00:00:00,2200-01-01 00:00:00,2,"Stage 2 of outcome/impact case study","Policy/Law etc. Enacted "
+3,1,1900-01-01 00:00:00,2200-01-01 00:00:00,3,"Level 1","Research taken up by next user (decision maker or intermediary) = Level 1 of outcome/impact case"
+4,1,1900-01-01 00:00:00,2200-01-01 00:00:00,4,"Level 2","Policy/Law etc. Enacted = Level 2 of Outcome/Impact Case"
+5,1,1900-01-01 00:00:00,2200-01-01 00:00:00,5,"Level 3","Evidence of impact on people and/or natural environment of the changed policy or investment = Level 3 of Outcome/Impact Case"

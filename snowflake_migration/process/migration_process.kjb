@@ -412,6 +412,29 @@
       <xloc>400</xloc>
       <yloc>32</yloc>
     </entry>
+    <entry>
+      <name>extract_raw_data</name>
+      <description/>
+      <type>SHELL</type>
+      <filename/>
+      <work_directory>${Internal.Entry.Current.Directory}/Raw_Data</work_directory>
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <set_append_logfile>N</set_append_logfile>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <insertScript>Y</insertScript>
+      <script>__extract.bat</script>
+      <loglevel>Basic</loglevel>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>528</xloc>
+      <yloc>32</yloc>
+    </entry>
   </entries>
   <hops>
     <hop>
@@ -435,6 +458,15 @@
     <hop>
       <from>get_table_names</from>
       <to>send_one_table</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>send_one_table</from>
+      <to>extract_raw_data</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
