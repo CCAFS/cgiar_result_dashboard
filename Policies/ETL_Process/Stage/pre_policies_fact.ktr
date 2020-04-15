@@ -560,23 +560,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>dim_location</from>
-      <to>dim_srf</to>
+      <from>stg_policies_fact_2017</from>
+      <to>dim_policies_info</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>dim_srf</from>
-      <to>dim_cci</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>dim_cci</from>
-      <to>dim_flagships</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>dim_flagships</from>
-      <to>dim_ext_part</to>
+      <from>dim_oicr_mtadata</from>
+      <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -585,18 +575,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>stg_policies_fact_2017</from>
-      <to>dim_policies_info</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>dim_policies_owners</from>
-      <to>dim_sdg</to>
+      <to>dim_oicr_mtadata</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>dim_sdg</from>
-      <to>Select values</to>
+      <from>dim_location</from>
+      <to>dim_ext_part</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -628,8 +613,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1328</xloc>
-      <yloc>32</yloc>
+      <xloc>1104</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -647,48 +632,51 @@
     <fields>
       <field>
         <name>fk_id_policy_info</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_crp</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_pol_inv_typ</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_smo_org_types</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_stage_processes</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_stg_maturity</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_geo_scopes</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_phases</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_location</name>
-      </field>
-      <field>
-        <name>fk_id_srf</name>
-      </field>
-      <field>
-        <name>fk_id_cci</name>
-      </field>
-      <field>
-        <name>fk_id_flagship</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_ext_partner</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_policy_owner</name>
+        <rename/>
       </field>
       <field>
-        <name>fk_id_sdg</name>
+        <name>fk_id_oics</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -700,8 +688,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1264</xloc>
-      <yloc>192</yloc>
+      <xloc>1072</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -753,53 +741,6 @@
     </GUI>
   </step>
   <step>
-    <name>dim_cci</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DES_DB</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>dim_cci</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>cci</name>
-        <field>id_sub_ido</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>pk_id_cci</name>
-        <rename>fk_id_cci</rename>
-        <default/>
-        <type>None</type>
-      </value>
-    </lookup>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>944</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>dim_ext_part</name>
     <type>DBLookup</type>
     <description/>
@@ -841,55 +782,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dim_flagships</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DES_DB</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>dim_flagships</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>Flagship</name>
-        <field>id</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>pk_id_flagship</name>
-        <rename>fk_id_flagship</rename>
-        <default/>
-        <type>None</type>
-      </value>
-    </lookup>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1008</xloc>
-      <yloc>192</yloc>
+      <xloc>832</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -935,8 +829,55 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
-      <yloc>32</yloc>
+      <xloc>720</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dim_oicr_mtadata</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DES_DB</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_oics_metadata</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>id_oics</name>
+        <field>pk</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>pk_id_oics</name>
+        <rename>fk_id_oics</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>960</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -982,8 +923,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>720</xloc>
-      <yloc>192</yloc>
+      <xloc>672</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1076,102 +1017,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1136</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dim_sdg</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DES_DB</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>dim_sdg</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>sdg_id</name>
-        <field>id</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>pk_id_sdg</name>
-        <rename>fk_id_sdg</rename>
-        <default/>
-        <type>None</type>
-      </value>
-    </lookup>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1200</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dim_srf</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DES_DB</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>dim_srf</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>srf</name>
-        <field>id_sub_ido</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>pk_id_srf</name>
-        <rename>fk_id_srf</rename>
-        <default/>
-        <type>None</type>
-      </value>
-    </lookup>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>880</xloc>
-      <yloc>192</yloc>
+      <xloc>976</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1217,8 +1064,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>640</xloc>
-      <yloc>32</yloc>
+      <xloc>608</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1265,7 +1112,7 @@
     </remotesteps>
     <GUI>
       <xloc>320</xloc>
-      <yloc>32</yloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1307,8 +1154,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
-      <yloc>192</yloc>
+      <xloc>1104</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1402,7 +1249,7 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>192</yloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1449,7 +1296,7 @@
       <schema_name/>
     </partitioning>
     <connection>DES_DB</connection>
-    <sql>select f.*,0 owner  
+    <sql>select id_policy, id_oics, id_phase, crp, policy_investment_types, impl_org_types, rep_ind_stg_proc, stg_maturity, geo_scopes, location, institution_id,	pk
 from stg_policies_fact_2017 f</sql>
     <limit>0</limit>
     <lookup/>

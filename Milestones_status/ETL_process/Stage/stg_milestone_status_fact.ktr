@@ -594,36 +594,59 @@
     <fields>
       <field>
         <name>milestone_staus_info_id</name>
+        <rename/>
       </field>
       <field>
         <name>milestones_status</name>
+        <rename/>
       </field>
       <field>
         <name>status_reason</name>
+        <rename/>
       </field>
       <field>
         <name>phase_id</name>
+        <rename/>
       </field>
       <field>
         <name>crp_id</name>
+        <rename/>
       </field>
       <field>
         <name>milestone_pk</name>
+        <rename/>
       </field>
       <field>
         <name>flagship_id</name>
+        <rename/>
       </field>
       <field>
         <name>gender_level</name>
+        <rename/>
       </field>
       <field>
         <name>youth_level</name>
+        <rename/>
       </field>
       <field>
         <name>capdev_level</name>
+        <rename/>
       </field>
       <field>
         <name>climate_level</name>
+        <rename/>
+      </field>
+      <field>
+        <name>cci</name>
+        <rename/>
+      </field>
+      <field>
+        <name>srf</name>
+        <rename/>
+      </field>
+      <field>
+        <name>sdg_id</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -695,9 +718,12 @@
     <connection>ORI_DB</connection>
     <sql>select 
 fpom.id  milestone_staus_info_id, fpom.milestones_status, fpom.rep_ind_milestone_reason_id status_reason, ph.id phase_id, ph.global_unit_id crp_id, 
-concat(fpom.crp_milestone_id,'_',ph.id) milestone_pk ,
+concat(mile.composed_id,'_',outc.id_phase )milestone_pk ,
 li.crp_program flagship_id, ccgender.rep_ind_gender_youth_focus_level_id gender_level, ccyouth.rep_ind_gender_youth_focus_level_id youth_level, 
-cccapdev.rep_ind_gender_youth_focus_level_id capdev_level, ccclimate.rep_ind_gender_youth_focus_level_id climate_level
+cccapdev.rep_ind_gender_youth_focus_level_id capdev_level, ccclimate.rep_ind_gender_youth_focus_level_id climate_level,
+IF(ido.is_cross_cutting=0, sido.id , '') srf, 
+IF(ido.is_cross_cutting =1,sido.id,'') cci, 
+concat(sido.id,'_',sdgi.id) sdg_id
 from report_synthesis rs 
 join phases ph on ph.id = rs.id_phase
 JOIN report_synthesis_flagship_progress fp on rs.id = fp.id 
@@ -705,6 +731,12 @@ join report_synthesis_flagship_progress_outcomes fpo on fp.id = fpo.report_synth
 join report_synthesis_flagship_progress_outcome_milestones fpom on fpom.report_synthesis_outcome_id=fpo.id
 join crp_milestones mile on mile.id = fpom.crp_milestone_id and mile.is_active
 join crp_program_outcomes outc on outc.id = mile.crp_program_outcome_id and outc.is_active
+left join crp_outcome_sub_idos osido on osido.crp_program_outcome_id = outc.id
+left join srf_sub_idos sido on sido.id = osido.srf_sub_ido_id
+left join srf_idos ido on ido.id =sido.ido_id
+left join sub_ido_sdg_target sdgit on sdgit.sub_ido_id = sido.id
+left join sdg_targets sdgt on sdgt.id = sdgit.sdg_target_id 
+left join sdg_indicators sdgi on sdgi.sdg_target_id = sdgt.id
 left join liaison_institutions li on li.id = rs.liaison_institution_id
 left join report_synthesis_flagship_progress_cross ccgender on ccgender.report_synthesis_flagship_progress_outcome_milestone_id = fpom.id and ccgender.cgiar_cross_cutting_marker_id =1
 left join report_synthesis_flagship_progress_cross ccyouth on ccyouth.report_synthesis_flagship_progress_outcome_milestone_id = fpom.id and ccyouth.cgiar_cross_cutting_marker_id =2
@@ -713,7 +745,8 @@ left join report_synthesis_flagship_progress_cross ccclimate on ccclimate.report
 where ph.year=2018
 and ph.name = 'AR'
 and ifnull(mile.extended_year,mile.year) = ph.year
-;</sql>
+;
+</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -729,6 +762,42 @@ and ifnull(mile.extended_year,mile.year) = ph.year
     <GUI>
       <xloc>80</xloc>
       <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>milestone_status_2017</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>ORI_DB</connection>
+    <sql>select mile.id milestone_staus_info_id,
+mile.mileston_status_id milestones_status,	
+0 status_reason,	
+mile.id_phase phase_id,	ph.global_unit_id crp_id,	concat(mile.id,'-',mile.id_phase) milestone_pk,	0 flagship_id,	0 gender_level,0 youth_level,	0	capdev_level,	0	climate_level
+from dashboard_milestones_2017 mile
+join phases ph on ph.id = mile.id_phase;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>80</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -772,42 +841,6 @@ and ifnull(mile.extended_year,mile.year) = ph.year
     <GUI>
       <xloc>416</xloc>
       <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>milestone_status_2017</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>ORI_DB</connection>
-    <sql>select mile.id milestone_staus_info_id,
-mile.mileston_status_id milestones_status,	
-0 status_reason,	
-mile.id_phase phase_id,	ph.global_unit_id crp_id,	concat(mile.id,'-',mile.id_phase) milestone_pk,	0 flagship_id,	0 gender_level,0 youth_level,	0	capdev_level,	0	climate_level
-from dashboard_milestones_2017 mile
-join phases ph on ph.id = mile.id_phase;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>80</xloc>
-      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

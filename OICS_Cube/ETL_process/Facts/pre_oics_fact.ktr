@@ -611,35 +611,27 @@
     <fields>
       <field>
         <name>fk_id_crp</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_pol_inv_typ</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_smo_org_types</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_stage_processes</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_stg_maturity</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_phases</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_oics</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_tag</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>

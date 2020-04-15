@@ -570,6 +570,21 @@
     </hop>
     <hop>
       <from>milestone_status_info lookup</from>
+      <to>srf lookup</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>srf lookup</from>
+      <to>cci lookup</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>cci lookup</from>
+      <to>sdg lookup </to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sdg lookup </from>
       <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
@@ -602,8 +617,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1264</xloc>
-      <yloc>192</yloc>
+      <xloc>1424</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -663,6 +678,18 @@
         <name>fk_id_cross_cutting_level_youth</name>
         <rename/>
       </field>
+      <field>
+        <name>fk_id_sdg</name>
+        <rename/>
+      </field>
+      <field>
+        <name>fk_id_srf</name>
+        <rename/>
+      </field>
+      <field>
+        <name>fk_id_cci</name>
+        <rename/>
+      </field>
       <select_unspecified>N</select_unspecified>
     </fields>
     <cluster_schema/>
@@ -673,8 +700,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1168</xloc>
-      <yloc>32</yloc>
+      <xloc>1424</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -720,7 +747,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
+      <xloc>736</xloc>
       <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
@@ -767,7 +794,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>912</xloc>
+      <xloc>800</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
@@ -814,7 +841,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
+      <xloc>96</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
@@ -861,7 +888,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
+      <xloc>272</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
@@ -908,7 +935,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>624</xloc>
+      <xloc>560</xloc>
       <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
@@ -955,7 +982,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
+      <xloc>976</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1002,7 +1029,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
+      <xloc>464</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1049,7 +1076,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
+      <xloc>384</xloc>
       <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1096,7 +1123,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>992</xloc>
+      <xloc>896</xloc>
       <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1143,7 +1170,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
+      <xloc>208</xloc>
       <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1186,8 +1213,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1328</xloc>
-      <yloc>32</yloc>
+      <xloc>1424</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1264,8 +1291,149 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>752</xloc>
+      <xloc>656</xloc>
       <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>srf lookup</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DES_DB</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_srf</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>srf</name>
+        <field>id_sub_ido</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>pk_id_srf</name>
+        <rename>fk_id_srf</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1088</xloc>
+      <yloc>16</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>cci lookup</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DES_DB</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_cci</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>cci</name>
+        <field>id_sub_ido</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>pk_id_cci</name>
+        <rename>fk_id_cci</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1168</xloc>
+      <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>sdg lookup </name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DES_DB</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_sdg</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>sdg_id</name>
+        <field>id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>pk_id_sdg</name>
+        <rename>fk_id_sdg</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1264</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

@@ -589,23 +589,18 @@
     <fields>
       <field>
         <name>oics_id</name>
-        <rename/>
       </field>
       <field>
         <name>sido_id</name>
-        <rename/>
       </field>
       <field>
         <name>slo_id</name>
-        <rename/>
       </field>
       <field>
         <name>type</name>
-        <rename/>
       </field>
       <field>
         <name>pk</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -717,7 +712,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
+      <xloc>448</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
@@ -750,7 +745,6 @@ AND ph. YEAR = 2018
 AND ph. NAME = 'AR'
 and pes.is_active
 and pesi.study_type_id = 1
-and ph.global_unit_id = 1
 union all 
 select  concat(pes.id,'_',ph.id) pk, pes.id,sido.id sido_id,slo_id,'SLO' type
 from project_expected_studies pes 

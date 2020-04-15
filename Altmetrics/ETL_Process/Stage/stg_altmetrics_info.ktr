@@ -441,7 +441,7 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${DES_DBNAME}</database>
-    <port>${DES_PORT}</port>
+    <port>3306</port>
     <username>${DES_USR}</username>
     <password>${DES_PSW}</password>
     <servername/>
@@ -474,7 +474,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${DES_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -508,7 +508,7 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${ORI_DBNAME}</database>
-    <port>${ORI_PORT}</port>
+    <port>3306</port>
     <username>${ORI_USR}</username>
     <password>${ORI_PSW}</password>
     <servername/>
@@ -529,7 +529,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${ORI_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -588,24 +588,39 @@
     <fields>
       <field>
         <name>id</name>
+        <rename/>
       </field>
       <field>
         <name>title</name>
+        <rename/>
       </field>
       <field>
         <name>journal_title</name>
+        <rename/>
       </field>
       <field>
         <name>author</name>
+        <rename/>
       </field>
       <field>
         <name>publication_date</name>
+        <rename/>
       </field>
       <field>
         <name>doi</name>
+        <rename/>
       </field>
       <field>
         <name>detail_url</name>
+        <rename/>
+      </field>
+      <field>
+        <name>image_url</name>
+        <rename/>
+      </field>
+      <field>
+        <name>last_updated</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -675,7 +690,7 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>select a.id,a.title, a.journal_title, a.author, publication_date, a.doi, a.detail_url
+    <sql>select a.id,a.title, a.journal_title, a.author, publication_date, a.doi, a.detail_url,a.image_url, a.last_updated
 from report_synthesis_altmetrics a</sql>
     <limit>0</limit>
     <lookup/>

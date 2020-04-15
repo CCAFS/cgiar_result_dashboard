@@ -677,15 +677,15 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>select concat(mile.id,'_',outc.id_phase) pk,
-mile.id milestone_id, clean_html_tags(mile.title) milestone_title,mile.year milestone_year,clean_html_tags(outc.description) outcome_description, outc.`year` outcome_target_year
+    <sql>select concat(mile.composed_id,'_',outc.id_phase) pk,
+mile.composed_id milestone_id, clean_html_tags(mile.title) milestone_title,mile.year milestone_year,clean_html_tags(outc.description) outcome_description, outc.`year` outcome_target_year
 from crp_milestones mile 
 join crp_program_outcomes outc on outc.id = mile.crp_program_outcome_id  and outc.is_active
 join phases ph on outc.id_phase = ph.id
 where mile.is_active
 and ifnull(extended_year,mile.year) = ph.year
 and ph.year=2018
-and ph.`name`='AR'
+and ph.`name`='AR';
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -702,6 +702,38 @@ and ph.`name`='AR'
     <GUI>
       <xloc>96</xloc>
       <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>milestones_2017</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>ORI_DB</connection>
+    <sql>select concat(mile.id,'-',mile.id_phase) pk,	mile.id milestone_id,mile.milestone_title	milestone_title,0	milestone_year,mile.outcome_title	outcome_description,0	outcome_target_year
+from dashboard_milestones_2017 mile</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -745,38 +777,6 @@ and ph.`name`='AR'
     <GUI>
       <xloc>432</xloc>
       <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>milestones_2017</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>ORI_DB</connection>
-    <sql>select concat(mile.id,'-',mile.id_phase) pk,	mile.id milestone_id,mile.milestone_title	milestone_title,0	milestone_year,mile.outcome_title	outcome_description,0	outcome_target_year
-from dashboard_milestones_2017 mile</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>96</xloc>
-      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

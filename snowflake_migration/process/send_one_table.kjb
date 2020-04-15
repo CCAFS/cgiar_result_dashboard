@@ -319,7 +319,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>144</xloc>
+      <xloc>160</xloc>
       <yloc>32</yloc>
     </entry>
     <entry>
@@ -398,7 +398,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>544</xloc>
+      <xloc>576</xloc>
       <yloc>32</yloc>
     </entry>
     <entry>
@@ -432,7 +432,7 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>656</xloc>
+      <xloc>704</xloc>
       <yloc>32</yloc>
     </entry>
   </entries>

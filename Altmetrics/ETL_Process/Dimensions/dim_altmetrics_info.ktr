@@ -441,7 +441,7 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${DES_DBNAME}</database>
-    <port>${DES_PORT}</port>
+    <port>3306</port>
     <username>${DES_USR}</username>
     <password>${DES_PSW}</password>
     <servername/>
@@ -474,7 +474,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${DES_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -565,6 +565,16 @@
         <lookup>detail_url</lookup>
         <update>Update</update>
       </field>
+      <field>
+        <name>image_url</name>
+        <lookup>image_url</lookup>
+        <update>Update</update>
+      </field>
+      <field>
+        <name>last_updated</name>
+        <lookup>last_updated</lookup>
+        <update>Update</update>
+      </field>
       <return>
         <name>pk_id_altmetrics_info</name>
         <rename/>
@@ -590,7 +600,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
+      <xloc>208</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -621,7 +631,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>32</xloc>
+      <xloc>64</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>

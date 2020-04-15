@@ -687,6 +687,28 @@
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
+      <field>
+        <name>start_year</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>end_year</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
     </fields>
     <cluster_schema/>
     <remotesteps>
@@ -830,6 +852,18 @@
       <field>
         <field_name>s3filename</field_name>
         <variable_name>S3FILENAME</variable_name>
+        <variable_type>JVM</variable_type>
+        <default_value/>
+      </field>
+      <field>
+        <field_name>start_year</field_name>
+        <variable_name>START_YEAR</variable_name>
+        <variable_type>JVM</variable_type>
+        <default_value/>
+      </field>
+      <field>
+        <field_name>end_year</field_name>
+        <variable_name>END_YEAR</variable_name>
         <variable_type>JVM</variable_type>
         <default_value/>
       </field>

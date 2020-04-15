@@ -593,12 +593,6 @@
         <name>policy_title</name>
       </field>
       <field>
-        <name>oics_id</name>
-      </field>
-      <field>
-        <name>oics_title</name>
-      </field>
-      <field>
         <name>pdf</name>
       </field>
       <field>
@@ -687,8 +681,6 @@
     <sql>
 select pol.id id_policy
 , poli.title policy_title
-, null oics_id
-, null oics_title
 , null pdf
 ,max(if (ccm.`name` = 'Gender',ccs.powb_name,'')) Gender
 ,max(if (ccm.`name` = 'Youth',ccs.powb_name,'')) Youth
@@ -704,7 +696,8 @@ left join cgiar_cross_cutting_markers ccm on ccm.id = ccmp.cgiar_cross_cutting_m
 left join rep_ind_gender_youth_focus_levels ccs on ccs.id = ccmp.rep_ind_gender_youth_focus_level_id
 where ph.year = poli.`year`
 and is_policy_excluded(poli.project_policy_id,poli.id_phase)=0
-and ph.`year` = 2018
+and ph.`year` between ${START_YEAR} and ${END_YEAR}
+-- and ph.`year` BETWEEN 2018 AND 2019
 and ph.name = 'AR'
 and pol.is_active
 group by pol.id, poli.title 
@@ -712,7 +705,7 @@ group by pol.id, poli.title
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cluster_schema/>
     <remotesteps>
