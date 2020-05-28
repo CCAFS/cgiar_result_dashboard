@@ -684,13 +684,14 @@ join crp_program_outcomes outc on outc.id = mile.crp_program_outcome_id  and out
 join phases ph on outc.id_phase = ph.id
 where mile.is_active
 and ifnull(extended_year,mile.year) = ph.year
-and ph.year=2018
+-- and ph.year=2018
+and ph.year between ${START_YEAR} and ${END_YEAR} 
 and ph.`name`='AR';
 </sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cluster_schema/>
     <remotesteps>

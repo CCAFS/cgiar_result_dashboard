@@ -594,59 +594,45 @@
     <fields>
       <field>
         <name>milestone_staus_info_id</name>
-        <rename/>
       </field>
       <field>
         <name>milestones_status</name>
-        <rename/>
       </field>
       <field>
         <name>status_reason</name>
-        <rename/>
       </field>
       <field>
         <name>phase_id</name>
-        <rename/>
       </field>
       <field>
         <name>crp_id</name>
-        <rename/>
       </field>
       <field>
         <name>milestone_pk</name>
-        <rename/>
       </field>
       <field>
         <name>flagship_id</name>
-        <rename/>
       </field>
       <field>
         <name>gender_level</name>
-        <rename/>
       </field>
       <field>
         <name>youth_level</name>
-        <rename/>
       </field>
       <field>
         <name>capdev_level</name>
-        <rename/>
       </field>
       <field>
         <name>climate_level</name>
-        <rename/>
       </field>
       <field>
         <name>cci</name>
-        <rename/>
       </field>
       <field>
         <name>srf</name>
-        <rename/>
       </field>
       <field>
         <name>sdg_id</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -717,7 +703,7 @@
     </partitioning>
     <connection>ORI_DB</connection>
     <sql>select 
-fpom.id  milestone_staus_info_id, fpom.milestones_status, fpom.rep_ind_milestone_reason_id status_reason, ph.id phase_id, ph.global_unit_id crp_id, 
+fpom.id  milestone_staus_info_id, ifnull(fpom.milestones_status,mile.milestone_status) milestones_status, fpom.rep_ind_milestone_reason_id status_reason, ph.id phase_id, ph.global_unit_id crp_id, 
 concat(mile.composed_id,'_',outc.id_phase )milestone_pk ,
 li.crp_program flagship_id, ccgender.rep_ind_gender_youth_focus_level_id gender_level, ccyouth.rep_ind_gender_youth_focus_level_id youth_level, 
 cccapdev.rep_ind_gender_youth_focus_level_id capdev_level, ccclimate.rep_ind_gender_youth_focus_level_id climate_level,
@@ -742,7 +728,8 @@ left join report_synthesis_flagship_progress_cross ccgender on ccgender.report_s
 left join report_synthesis_flagship_progress_cross ccyouth on ccyouth.report_synthesis_flagship_progress_outcome_milestone_id = fpom.id and ccyouth.cgiar_cross_cutting_marker_id =2
 left join report_synthesis_flagship_progress_cross cccapdev on cccapdev.report_synthesis_flagship_progress_outcome_milestone_id = fpom.id and cccapdev.cgiar_cross_cutting_marker_id =3
 left join report_synthesis_flagship_progress_cross ccclimate on ccclimate.report_synthesis_flagship_progress_outcome_milestone_id = fpom.id and ccclimate.cgiar_cross_cutting_marker_id =4
-where ph.year=2018
+-- where ph.year=2018
+where ph.year between ${START_YEAR} and ${END_YEAR} 
 and ph.name = 'AR'
 and ifnull(mile.extended_year,mile.year) = ph.year
 ;
@@ -750,7 +737,7 @@ and ifnull(mile.extended_year,mile.year) = ph.year
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cluster_schema/>
     <remotesteps>

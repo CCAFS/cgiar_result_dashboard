@@ -710,7 +710,7 @@ WHEN pgeo.rep_ind_geographic_scope_id is null then null
 else CONCAT('Error: ',pgeo.rep_ind_geographic_scope_id)
 end location, 
 null Flagship 
-,sins.id institution_id 
+,sins.institution_id institution_id 
 ,ppo.rep_ind_policy_type_id owner
 ,concat(pol.id,'_',ph.id) pk
 

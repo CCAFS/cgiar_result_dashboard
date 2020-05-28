@@ -670,14 +670,15 @@ join project_expected_study_geographic_scopes g on g.expected_id = pesi.project_
 join phases ph on ph.id = pesi.id_phase
 where is_study_excluded(g.expected_id,g.id_phase)=0
 AND pesi.`year` = ph. YEAR
-AND ph. YEAR = 2018
+-- AND ph. YEAR between 2018 and 2019
+AND ph.year between ${START_YEAR} and ${END_YEAR} 
 AND ph. NAME = 'AR'
 and pes.is_active
 and pesi.study_type_id = 1</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cluster_schema/>
     <remotesteps>

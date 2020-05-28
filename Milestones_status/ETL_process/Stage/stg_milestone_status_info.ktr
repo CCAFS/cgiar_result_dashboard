@@ -701,7 +701,8 @@ left join report_synthesis_flagship_progress_cross ccgender on ccgender.report_s
 left join report_synthesis_flagship_progress_cross ccyouth on ccyouth.report_synthesis_flagship_progress_outcome_milestone_id = fpom.id and ccyouth.cgiar_cross_cutting_marker_id =2
 left join report_synthesis_flagship_progress_cross cccapdev on cccapdev.report_synthesis_flagship_progress_outcome_milestone_id = fpom.id and cccapdev.cgiar_cross_cutting_marker_id =3
 left join report_synthesis_flagship_progress_cross ccclimate on ccclimate.report_synthesis_flagship_progress_outcome_milestone_id = fpom.id and ccclimate.cgiar_cross_cutting_marker_id =4
-where ph.year = 2018
+-- where ph.year = 2018
+where ph.year between ${START_YEAR} and ${END_YEAR} 
 and ph.name = 'AR'
 and ifnull(mile.extended_year,mile.year) = ph.year
 
@@ -709,7 +710,7 @@ and ifnull(mile.extended_year,mile.year) = ph.year
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cluster_schema/>
     <remotesteps>

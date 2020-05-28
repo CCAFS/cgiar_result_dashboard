@@ -575,6 +575,11 @@
         <lookup>Climate</lookup>
         <update>Update</update>
       </field>
+      <field>
+        <name>description</name>
+        <lookup>description</lookup>
+        <update>Update</update>
+      </field>
       <return>
         <name>pk_id_policy_info</name>
         <rename/>
@@ -648,7 +653,7 @@
       <schema_name/>
     </partitioning>
     <connection>DES_DB</connection>
-    <sql>select pi.id_policy,pi.policy_title,pi.pdf,pi.pk,null Gender,null Youth,null	CapDev, null Climate
+    <sql>select pi.id_policy,pi.policy_title,pi.pdf,pi.pk,null Gender,null Youth,null	CapDev, null Climate,'' description 
 from stg_policies_info_2017 pi</sql>
     <limit>0</limit>
     <lookup/>

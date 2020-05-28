@@ -632,51 +632,39 @@
     <fields>
       <field>
         <name>fk_id_policy_info</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_crp</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_pol_inv_typ</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_smo_org_types</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_stage_processes</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_stg_maturity</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_geo_scopes</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_phases</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_location</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_ext_partner</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_policy_owner</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_oics</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -1017,8 +1005,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>48</yloc>
+      <xloc>880</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1296,7 +1284,7 @@
       <schema_name/>
     </partitioning>
     <connection>DES_DB</connection>
-    <sql>select id_policy, id_oics, id_phase, crp, policy_investment_types, impl_org_types, rep_ind_stg_proc, stg_maturity, geo_scopes, location, institution_id,	pk
+    <sql>select id_policy, id_oics, id_phase, crp, policy_investment_types, impl_org_types, rep_ind_stg_proc, stg_maturity, geo_scopes, location, institution_id, pk, 0 owner
 from stg_policies_fact_2017 f</sql>
     <limit>0</limit>
     <lookup/>
@@ -1311,7 +1299,7 @@ from stg_policies_fact_2017 f</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>48</xloc>
+      <xloc>64</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>

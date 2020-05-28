@@ -430,7 +430,7 @@
     <created_date>2018/10/22 15:00:20.135</created_date>
     <modified_user>-</modified_user>
     <modified_date>2018/10/22 15:00:20.135</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -441,7 +441,7 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${DES_DBNAME}</database>
-    <port>${DES_PORT}</port>
+    <port>3306</port>
     <username>${DES_USR}</username>
     <password>${DES_PSW}</password>
     <servername/>
@@ -474,7 +474,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${DES_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -508,7 +508,7 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${ORI_DBNAME}</database>
-    <port>${ORI_PORT}</port>
+    <port>3306</port>
     <username>${ORI_USR}</username>
     <password>${ORI_PSW}</password>
     <servername/>
@@ -529,7 +529,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${ORI_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -575,40 +575,6 @@
     </hop>
   </order>
   <step>
-    <name>altmetrics</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>ORI_DB</connection>
-    <sql>select a.id altmetric_id, p.id phase_id, p.global_unit_id crp_id, a.attention_score, a.news_total,a.blog_total,a.policy_total,twitter_total,a.facebook_total,mendeley_total
-from report_synthesis_altmetrics a
-join phases p on p.id = a.id_phase
-</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>48</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Select values</name>
     <type>SelectValues</type>
     <description/>
@@ -622,43 +588,33 @@ join phases p on p.id = a.id_phase
     <fields>
       <field>
         <name>altmetric_id</name>
-        <rename/>
       </field>
       <field>
         <name>phase_id</name>
-        <rename/>
       </field>
       <field>
         <name>crp_id</name>
-        <rename/>
       </field>
       <field>
         <name>attention_score</name>
-        <rename/>
       </field>
       <field>
         <name>news_total</name>
-        <rename/>
       </field>
       <field>
         <name>blog_total</name>
-        <rename/>
       </field>
       <field>
         <name>policy_total</name>
-        <rename/>
       </field>
       <field>
         <name>twitter_total</name>
-        <rename/>
       </field>
       <field>
         <name>facebook_total</name>
-        <rename/>
       </field>
       <field>
         <name>mendeley_total</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -720,6 +676,43 @@ join phases p on p.id = a.id_phase
     </remotesteps>
     <GUI>
       <xloc>176</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>altmetrics</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>ORI_DB</connection>
+    <sql>select a.id altmetric_id, ph.id phase_id, ph.global_unit_id crp_id, a.attention_score, a.news_total,a.blog_total,a.policy_total,twitter_total,a.facebook_total,mendeley_total
+from report_synthesis_altmetrics a
+join phases ph on ph.id = a.id_phase
+where ph.name = 'AR'
+-- and ph.year between 2018 and 2019
+AND ph.year between ${START_YEAR} and ${END_YEAR}  
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>

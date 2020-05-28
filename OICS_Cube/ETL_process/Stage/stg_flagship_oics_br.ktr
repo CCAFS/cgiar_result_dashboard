@@ -670,14 +670,15 @@ INNER JOIN project_expected_study_flagships pesf ON pesf.expected_id = pes.id AN
 INNER JOIN crp_programs cpfl ON cpfl.id = pesf.crp_program_id AND cpfl.is_active AND cpfl.program_type = 1
 where is_study_excluded(pesi.project_expected_study_id,pesi.id_phase)=0
 AND pesi.`year` = ph. YEAR
-AND ph. YEAR = 2018
+-- AND ph. YEAR between 2018 and 2019
+AND ph.year between ${START_YEAR} and ${END_YEAR} 
 AND ph. NAME = 'AR'
 and pes.is_active
 and pesi.study_type_id = 1</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cluster_schema/>
     <remotesteps>

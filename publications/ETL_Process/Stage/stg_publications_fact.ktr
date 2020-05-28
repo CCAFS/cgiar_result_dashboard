@@ -588,23 +588,18 @@
     <fields>
       <field>
         <name>publication</name>
-        <rename/>
       </field>
       <field>
         <name>pk</name>
-        <rename/>
       </field>
       <field>
         <name>phase</name>
-        <rename/>
       </field>
       <field>
         <name>crp</name>
-        <rename/>
       </field>
       <field>
         <name>institution_id</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -699,7 +694,8 @@ left join deliverable_affiliations aff on aff.deliverable_id = devi.deliverable_
 join phases ph on ph.id = devi.id_phase
 join global_units gu on gu.id = ph.global_unit_id
 where ifnull(if(devi.new_expected_year=-1,null,devi.new_expected_year), devi.`year`) = ph.year
-and ph.year = 2018
+-- AND ph. YEAR between 2018 and 2019
+AND ph.year between ${START_YEAR} and ${END_YEAR}  
 and ph.name = 'AR'
 and dev.is_active
 and devi.is_active
@@ -712,7 +708,7 @@ and is_deliverable_excluded(devi.deliverable_id,devi.id_phase) = 0
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cluster_schema/>
     <remotesteps>

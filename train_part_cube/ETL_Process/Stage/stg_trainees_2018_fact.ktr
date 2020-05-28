@@ -588,23 +588,18 @@
     <fields>
       <field>
         <name>id_phase</name>
-        <rename/>
       </field>
       <field>
         <name>global_unit_id</name>
-        <rename/>
       </field>
       <field>
         <name>term</name>
-        <rename/>
       </field>
       <field>
         <name>gender</name>
-        <rename/>
       </field>
       <field>
         <name>quantity</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -762,13 +757,15 @@ join report_synthesis rs on rs.id = ccd.id
 join liaison_institutions li on li.id = rs.liaison_institution_id and li.acronym = 'PMU'
 join phases ph on rs.id_phase = ph.id
 )train
-where year = 2018
+where 
+-- year between 2018 and 2019
+year between ${START_YEAR} and ${END_YEAR} 
 and name='AR'
 ;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cluster_schema/>
     <remotesteps>

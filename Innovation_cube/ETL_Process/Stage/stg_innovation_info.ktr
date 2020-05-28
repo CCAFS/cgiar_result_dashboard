@@ -588,39 +588,30 @@
     <fields>
       <field>
         <name>project_innovation_id</name>
-        <rename/>
       </field>
       <field>
         <name>title</name>
-        <rename/>
       </field>
       <field>
         <name>narrative</name>
-        <rename/>
       </field>
       <field>
         <name>evidence_link</name>
-        <rename/>
       </field>
       <field>
         <name>gender</name>
-        <rename/>
       </field>
       <field>
         <name>youth</name>
-        <rename/>
       </field>
       <field>
         <name>pk</name>
-        <rename/>
       </field>
       <field>
         <name>pdf</name>
-        <rename/>
       </field>
       <field>
         <name>number_of_innovations</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -703,11 +694,12 @@ WHERE  pi.is_active
 and is_innovation_excluded(pii.project_innovation_id,pii.id_phase) = 0
 and ph.name = 'AR'
 and ph.year = pii.year
-and ph.`year`=2018</sql>
+-- AND ph. YEAR between 2018 and 2019
+AND ph.year between ${START_YEAR} and ${END_YEAR}  </sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cluster_schema/>
     <remotesteps>

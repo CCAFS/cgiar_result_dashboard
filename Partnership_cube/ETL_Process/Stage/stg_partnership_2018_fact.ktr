@@ -684,14 +684,15 @@ left join report_synthesis_key_partnership_external_main_areas kepma on kepma.re
 left join report_synthesis_key_partnership_external_institutions kepei on kepei.report_synthesis_key_partnership_external_id = kep.id
 -- left join institutions ins on ins.id = kepei.institution_id
 where kp.is_active
-and ph.year = 2018
+-- AND ph. YEAR between 2018 and 2019
+AND ph.year between ${START_YEAR} and ${END_YEAR}  
 and ph.name='AR'
 ;
 </sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cluster_schema/>
     <remotesteps>

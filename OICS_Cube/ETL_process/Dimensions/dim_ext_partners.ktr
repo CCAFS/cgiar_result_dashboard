@@ -591,6 +591,11 @@
         <lookup>headquarter</lookup>
         <update>Update</update>
       </field>
+      <field>
+        <name>hq_name</name>
+        <lookup>hq_name</lookup>
+        <update>Update</update>
+      </field>
       <return>
         <name>pk_id_ext_partner</name>
         <rename/>
