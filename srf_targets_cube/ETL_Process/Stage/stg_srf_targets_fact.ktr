@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>stg_innovation_info</name>
+    <name>stg_srf_targets_fact</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -427,9 +427,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2018/08/28 14:57:49.117</created_date>
+    <created_date>2020/06/14 23:42:07.567</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018/08/28 14:57:49.117</modified_date>
+    <modified_date>2020/06/14 23:42:07.567</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -559,18 +559,18 @@
   </connection>
   <order>
     <hop>
-      <from>Table input</from>
+      <from>srf_target</from>
       <to>Sort rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
+      <to>stg_srf_targets_fact</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Sort rows</from>
       <to>Select values</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values</from>
-      <to>stg_innovations_info</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -587,31 +587,32 @@
     </partitioning>
     <fields>
       <field>
-        <name>project_innovation_id</name>
+        <name>srf_target_id</name>
+        <rename/>
       </field>
       <field>
-        <name>title</name>
+        <name>phase_id</name>
+        <rename/>
       </field>
       <field>
-        <name>narrative</name>
+        <name>crp_id</name>
+        <rename/>
       </field>
       <field>
-        <name>evidence_link</name>
+        <name>location_id</name>
+        <rename/>
       </field>
       <field>
-        <name>gender</name>
+        <name>sdg_id</name>
+        <rename/>
       </field>
       <field>
-        <name>youth</name>
+        <name>link_id</name>
+        <rename/>
       </field>
       <field>
-        <name>pk</name>
-      </field>
-      <field>
-        <name>pdf</name>
-      </field>
-      <field>
-        <name>number_of_innovations</name>
+        <name>target_case_id</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -624,7 +625,7 @@
     </remotesteps>
     <GUI>
       <xloc>240</xloc>
-      <yloc>64</yloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -648,7 +649,7 @@
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>project_innovation_id</name>
+        <name>target_case_id</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -665,12 +666,12 @@
     </remotesteps>
     <GUI>
       <xloc>144</xloc>
-      <yloc>64</yloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Table input</name>
+    <name>srf_target</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -681,21 +682,29 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>SELECT 	pii.project_innovation_id,concat(	pii.project_innovation_id,'_',pii.id_phase) pk, pii.title,pii.narrative, pii.evidence_link, rigender.name gender, riyouth.name youth
-,ifnull(pii.number_of_innovations,1) number_of_innovations
-,ifnull(pii.external_link,CONCAT('https://marlo.cgiar.org/summaries/',gu.acronym,'/projectInnovationSummary.do?innovationID=',pi.id,'&amp;phaseID=',ph.id)) pdf
-FROM project_innovations pi 
-INNER JOIN project_innovation_info pii ON pii.project_innovation_id = pi.id
-INNER JOIN phases ph on ph.id = pii.id_phase
-inner join global_units gu on gu.id = ph.global_unit_id
-LEFT JOIN rep_ind_gender_youth_focus_levels rigender ON rigender.id = pii.gender_focus_level_id
-LEFT JOIN rep_ind_gender_youth_focus_levels riyouth ON riyouth.id = pii.youth_focus_level_id
-WHERE  pi.is_active
-and is_innovation_excluded(pii.project_innovation_id,pii.id_phase) = 0
+    <sql>select srf.id srf_target_id, ph.id phase_id,gu.id crp_id,loc.loc_element_id location_id, sdg.id sdg_id,link.id link_id,rspt.id target_case_id
+from report_synthesis_srf_progress_targets_cases rspt
+join report_synthesis_srf_progress rsp on rsp.id=rspt.report_synthesis_srf_progress_id
+join report_synthesis rs on rs.id = rsp.id
+join liaison_institutions li on li.id = rs.liaison_institution_id
+
+join srf_slo_indicator_targets srf on srf.id = rspt.srf_slo_indicator_targets_id
+
+left join report_synthesis_srf_progress_targets_cases_locations loc on loc.report_synthesis_srf_progress_targets_case_id = rspt.id
+left join report_synthesis_srf_progress_targets_cases_links link on link.report_synthesis_srf_progress_targets_case_id = rspt.id
+left join srf_slo_indicator_targets_sdgs srfsdg on srf.id = srfsdg.srf_slo_indicator_target_id
+left join sustainable_development_goals sdg on sdg.id = srfsdg.sustainable_development_goal_id	
+join phases ph on ph.id = rs.id_phase  and li.global_unit_id = ph.global_unit_id
+join global_units gu on gu.id = ph.global_unit_id
+where li.acronym = 'PMU'
+and rsp.is_active
+and rs.is_active
 and ph.name = 'AR'
-and ph.year = pii.year
--- AND ph. YEAR between 2018 and 2019
-AND ph.year between ${START_YEAR} and ${END_YEAR}  </sql>
+and ph.`year` BETWEEN 2017 and ${END_YEAR}
+;
+
+
+</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -710,12 +719,12 @@ AND ph.year between ${START_YEAR} and ${END_YEAR}  </sql>
     </remotesteps>
     <GUI>
       <xloc>48</xloc>
-      <yloc>64</yloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>stg_innovations_info</name>
+    <name>stg_srf_targets_fact</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -727,7 +736,7 @@ AND ph.year between ${START_YEAR} and ${END_YEAR}  </sql>
     </partitioning>
     <connection>DES_DB</connection>
     <schema/>
-    <table>stg_innovations_info</table>
+    <table>stg_srf_targets_fact</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -753,7 +762,7 @@ AND ph.year between ${START_YEAR} and ${END_YEAR}  </sql>
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>64</yloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>stg_innovation_info</name>
+    <name>stg_srf_cases_links</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -427,10 +427,10 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2018/08/28 14:57:49.117</created_date>
+    <created_date>2020/06/14 23:32:14.979</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018/08/28 14:57:49.117</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2020/06/14 23:32:14.979</modified_date>
+    <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -559,7 +559,7 @@
   </connection>
   <order>
     <hop>
-      <from>Table input</from>
+      <from>Cases_links</from>
       <to>Sort rows</to>
       <enabled>Y</enabled>
     </hop>
@@ -570,10 +570,43 @@
     </hop>
     <hop>
       <from>Select values</from>
-      <to>stg_innovations_info</to>
+      <to>stg_srf_cases_links</to>
       <enabled>Y</enabled>
     </hop>
   </order>
+  <step>
+    <name>Cases_links</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>ORI_DB</connection>
+    <sql>select id, link 
+from report_synthesis_srf_progress_targets_cases_links;
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>Select values</name>
     <type>SelectValues</type>
@@ -587,31 +620,12 @@
     </partitioning>
     <fields>
       <field>
-        <name>project_innovation_id</name>
+        <name>id</name>
+        <rename/>
       </field>
       <field>
-        <name>title</name>
-      </field>
-      <field>
-        <name>narrative</name>
-      </field>
-      <field>
-        <name>evidence_link</name>
-      </field>
-      <field>
-        <name>gender</name>
-      </field>
-      <field>
-        <name>youth</name>
-      </field>
-      <field>
-        <name>pk</name>
-      </field>
-      <field>
-        <name>pdf</name>
-      </field>
-      <field>
-        <name>number_of_innovations</name>
+        <name>link</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -624,7 +638,7 @@
     </remotesteps>
     <GUI>
       <xloc>240</xloc>
-      <yloc>64</yloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -648,7 +662,7 @@
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>project_innovation_id</name>
+        <name>id</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -665,57 +679,12 @@
     </remotesteps>
     <GUI>
       <xloc>144</xloc>
-      <yloc>64</yloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Table input</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>ORI_DB</connection>
-    <sql>SELECT 	pii.project_innovation_id,concat(	pii.project_innovation_id,'_',pii.id_phase) pk, pii.title,pii.narrative, pii.evidence_link, rigender.name gender, riyouth.name youth
-,ifnull(pii.number_of_innovations,1) number_of_innovations
-,ifnull(pii.external_link,CONCAT('https://marlo.cgiar.org/summaries/',gu.acronym,'/projectInnovationSummary.do?innovationID=',pi.id,'&amp;phaseID=',ph.id)) pdf
-FROM project_innovations pi 
-INNER JOIN project_innovation_info pii ON pii.project_innovation_id = pi.id
-INNER JOIN phases ph on ph.id = pii.id_phase
-inner join global_units gu on gu.id = ph.global_unit_id
-LEFT JOIN rep_ind_gender_youth_focus_levels rigender ON rigender.id = pii.gender_focus_level_id
-LEFT JOIN rep_ind_gender_youth_focus_levels riyouth ON riyouth.id = pii.youth_focus_level_id
-WHERE  pi.is_active
-and is_innovation_excluded(pii.project_innovation_id,pii.id_phase) = 0
-and ph.name = 'AR'
-and ph.year = pii.year
--- AND ph. YEAR between 2018 and 2019
-AND ph.year between ${START_YEAR} and ${END_YEAR}  </sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>48</xloc>
-      <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>stg_innovations_info</name>
+    <name>stg_srf_cases_links</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -727,7 +696,7 @@ AND ph.year between ${START_YEAR} and ${END_YEAR}  </sql>
     </partitioning>
     <connection>DES_DB</connection>
     <schema/>
-    <table>stg_innovations_info</table>
+    <table>stg_srf_cases_links</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -752,8 +721,8 @@ AND ph.year between ${START_YEAR} and ${END_YEAR}  </sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>64</yloc>
+      <xloc>352</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

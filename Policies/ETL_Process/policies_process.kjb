@@ -386,7 +386,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>160</xloc>
-      <yloc>64</yloc>
+      <yloc>48</yloc>
     </entry>
     <entry>
       <name>stg_policies_fact</name>
