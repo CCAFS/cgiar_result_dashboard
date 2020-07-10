@@ -375,7 +375,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>416</xloc>
+      <xloc>408</xloc>
       <yloc>96</yloc>
     </entry>
     <entry>
@@ -411,7 +411,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>592</xloc>
+      <xloc>616</xloc>
       <yloc>96</yloc>
     </entry>
     <entry>
@@ -447,7 +447,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>752</xloc>
+      <xloc>824</xloc>
       <yloc>96</yloc>
     </entry>
     <entry>
@@ -483,8 +483,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>256</xloc>
-      <yloc>336</yloc>
+      <xloc>304</xloc>
+      <yloc>240</yloc>
     </entry>
     <entry>
       <name>dim_smo_org_types</name>
@@ -519,7 +519,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>400</xloc>
+      <xloc>416</xloc>
       <yloc>304</yloc>
     </entry>
     <entry>
@@ -591,8 +591,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>912</xloc>
-      <yloc>336</yloc>
+      <xloc>832</xloc>
+      <yloc>288</yloc>
     </entry>
     <entry>
       <name>FIN</name>
@@ -601,8 +601,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>416</xloc>
-      <yloc>544</yloc>
+      <xloc>960</xloc>
+      <yloc>560</yloc>
     </entry>
     <entry>
       <name>stg_oics_fact</name>
@@ -637,8 +637,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>368</xloc>
-      <yloc>192</yloc>
+      <xloc>512</xloc>
+      <yloc>144</yloc>
     </entry>
     <entry>
       <name>pre_oics_fact</name>
@@ -673,8 +673,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>48</xloc>
-      <yloc>544</yloc>
+      <xloc>1056</xloc>
+      <yloc>464</yloc>
     </entry>
     <entry>
       <name>oics_fact</name>
@@ -709,8 +709,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
-      <yloc>544</yloc>
+      <xloc>1056</xloc>
+      <yloc>560</yloc>
     </entry>
     <entry>
       <name>stg_srf_oics_br</name>
@@ -745,8 +745,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>272</xloc>
-      <yloc>144</yloc>
+      <xloc>416</xloc>
+      <yloc>192</yloc>
     </entry>
     <entry>
       <name>pre_srf_oics_br</name>
@@ -781,8 +781,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>448</yloc>
+      <xloc>608</xloc>
+      <yloc>464</yloc>
     </entry>
     <entry>
       <name>br_srf_oics</name>
@@ -817,8 +817,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
-      <yloc>432</yloc>
+      <xloc>720</xloc>
+      <yloc>416</yloc>
     </entry>
     <entry>
       <name>stg_stg_maturities</name>
@@ -853,7 +853,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>672</xloc>
+      <xloc>720</xloc>
       <yloc>64</yloc>
     </entry>
     <entry>
@@ -890,7 +890,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>720</xloc>
-      <yloc>336</yloc>
+      <yloc>240</yloc>
     </entry>
     <entry>
       <name>dim_stage_processes</name>
@@ -926,7 +926,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>512</xloc>
-      <yloc>336</yloc>
+      <yloc>240</yloc>
     </entry>
     <entry>
       <name>pre_cci_oics_br</name>
@@ -961,8 +961,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>144</xloc>
-      <yloc>448</yloc>
+      <xloc>832</xloc>
+      <yloc>464</yloc>
     </entry>
     <entry>
       <name>br_cci_oics</name>
@@ -997,8 +997,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>48</xloc>
-      <yloc>432</yloc>
+      <xloc>928</xloc>
+      <yloc>416</yloc>
     </entry>
     <entry>
       <name>init_variables</name>
@@ -1069,8 +1069,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>464</xloc>
-      <yloc>144</yloc>
+      <xloc>608</xloc>
+      <yloc>192</yloc>
     </entry>
     <entry>
       <name>pre_loc_oics_br</name>
@@ -1105,8 +1105,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>480</xloc>
-      <yloc>448</yloc>
+      <xloc>416</xloc>
+      <yloc>464</yloc>
     </entry>
     <entry>
       <name>br_loc_oics</name>
@@ -1141,8 +1141,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>400</xloc>
-      <yloc>432</yloc>
+      <xloc>512</xloc>
+      <yloc>416</yloc>
     </entry>
     <entry>
       <name>stg_locations</name>
@@ -1177,8 +1177,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>864</xloc>
-      <yloc>48</yloc>
+      <xloc>928</xloc>
+      <yloc>32</yloc>
     </entry>
     <entry>
       <name>dim_locations</name>
@@ -1213,8 +1213,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1152</xloc>
-      <yloc>304</yloc>
+      <xloc>928</xloc>
+      <yloc>224</yloc>
     </entry>
     <entry>
       <name>stg_flagship_oics_br</name>
@@ -1249,8 +1249,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>176</xloc>
-      <yloc>192</yloc>
+      <xloc>304</xloc>
+      <yloc>144</yloc>
     </entry>
     <entry>
       <name>pre_flagship_oics_br</name>
@@ -1285,8 +1285,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>896</xloc>
-      <yloc>448</yloc>
+      <xloc>304</xloc>
+      <yloc>336</yloc>
     </entry>
     <entry>
       <name>br_flagship_oics</name>
@@ -1321,8 +1321,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>784</xloc>
-      <yloc>432</yloc>
+      <xloc>176</xloc>
+      <yloc>384</yloc>
     </entry>
     <entry>
       <name>stg_ext_partners</name>
@@ -1357,7 +1357,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>944</xloc>
+      <xloc>1032</xloc>
       <yloc>96</yloc>
     </entry>
     <entry>
@@ -1393,8 +1393,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1328</xloc>
-      <yloc>304</yloc>
+      <xloc>1056</xloc>
+      <yloc>272</yloc>
     </entry>
     <entry>
       <name>stg_extpart_oics_br</name>
@@ -1429,8 +1429,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>96</xloc>
-      <yloc>160</yloc>
+      <xloc>176</xloc>
+      <yloc>192</yloc>
     </entry>
     <entry>
       <name>pre_extpart_oics_br</name>
@@ -1465,8 +1465,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1104</xloc>
-      <yloc>448</yloc>
+      <xloc>512</xloc>
+      <yloc>336</yloc>
     </entry>
     <entry>
       <name>br_extpart_oics</name>
@@ -1501,8 +1501,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1008</xloc>
-      <yloc>432</yloc>
+      <xloc>416</xloc>
+      <yloc>384</yloc>
     </entry>
     <entry>
       <name>dim_srf_targets</name>
@@ -1537,8 +1537,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1424</xloc>
-      <yloc>336</yloc>
+      <xloc>1056</xloc>
+      <yloc>368</yloc>
     </entry>
     <entry>
       <name>stg_srf_targets</name>
@@ -1573,7 +1573,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>944</xloc>
+      <xloc>1040</xloc>
       <yloc>192</yloc>
     </entry>
     <entry>
@@ -1609,8 +1609,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1200</xloc>
-      <yloc>432</yloc>
+      <xloc>608</xloc>
+      <yloc>384</yloc>
     </entry>
     <entry>
       <name>stg_srftar_oics_br</name>
@@ -1645,8 +1645,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>560</xloc>
-      <yloc>192</yloc>
+      <xloc>720</xloc>
+      <yloc>144</yloc>
     </entry>
     <entry>
       <name>pre_srftar_oics_br</name>
@@ -1681,8 +1681,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1296</xloc>
-      <yloc>448</yloc>
+      <xloc>720</xloc>
+      <yloc>320</yloc>
     </entry>
     <entry>
       <name>stg_stage_processes</name>
@@ -1718,7 +1718,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>512</xloc>
-      <yloc>64</yloc>
+      <yloc>48</yloc>
     </entry>
     <entry>
       <name>stg_sdg_oics_br</name>
@@ -1753,8 +1753,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>752</xloc>
-      <yloc>192</yloc>
+      <xloc>928</xloc>
+      <yloc>128</yloc>
     </entry>
     <entry>
       <name>pre_sdg_oics_br</name>
@@ -1789,8 +1789,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1504</xloc>
-      <yloc>464</yloc>
+      <xloc>928</xloc>
+      <yloc>320</yloc>
     </entry>
     <entry>
       <name>br_sdg_oics</name>
@@ -1825,8 +1825,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1408</xloc>
-      <yloc>432</yloc>
+      <xloc>832</xloc>
+      <yloc>368</yloc>
     </entry>
     <entry>
       <name>stg_tags</name>
@@ -1897,7 +1897,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>96</xloc>
+      <xloc>176</xloc>
       <yloc>304</yloc>
     </entry>
     <entry>
@@ -1933,8 +1933,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>656</xloc>
-      <yloc>144</yloc>
+      <xloc>816</xloc>
+      <yloc>192</yloc>
     </entry>
     <entry>
       <name>pre_geo_oics_br</name>
@@ -1969,8 +1969,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>672</xloc>
-      <yloc>448</yloc>
+      <xloc>176</xloc>
+      <yloc>464</yloc>
     </entry>
     <entry>
       <name>br_geo_oics</name>
@@ -2005,8 +2005,116 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>576</xloc>
-      <yloc>432</yloc>
+      <xloc>304</xloc>
+      <yloc>416</yloc>
+    </entry>
+    <entry>
+      <name>stg_milestones_oics_br</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${Internal.Entry.Current.Directory}\Stage\stg_milestones_oics_br.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>80</xloc>
+      <yloc>240</yloc>
+    </entry>
+    <entry>
+      <name>br_milestones_oics</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${Internal.Entry.Current.Directory}\Dimensions\br_milestones_oics.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>80</xloc>
+      <yloc>448</yloc>
+    </entry>
+    <entry>
+      <name>pre_milestones_oics_br</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${Internal.Entry.Current.Directory}\Stage\pre_milestones_oics_br.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>80</xloc>
+      <yloc>352</yloc>
     </entry>
   </entries>
   <hops>
@@ -2326,15 +2434,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>br_flagship_oics</from>
-      <to>pre_geo_oics_br</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>pre_geo_oics_br</from>
       <to>br_geo_oics</to>
       <from_nr>0</from_nr>
@@ -2398,15 +2497,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>stg_extpart_oics_br</from>
-      <to>dim_tags</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>dim_stg_maturities</from>
       <to>dim_oics_metadata</to>
       <from_nr>0</from_nr>
@@ -2436,6 +2526,51 @@
     <hop>
       <from>dim_srf_targets</from>
       <to>pre_sdg_oics_br</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>stg_extpart_oics_br</from>
+      <to>stg_milestones_oics_br</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>pre_milestones_oics_br</from>
+      <to>br_milestones_oics</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>br_flagship_oics</from>
+      <to>pre_milestones_oics_br</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>br_milestones_oics</from>
+      <to>pre_geo_oics_br</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>stg_milestones_oics_br</from>
+      <to>dim_tags</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

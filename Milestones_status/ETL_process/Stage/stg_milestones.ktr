@@ -678,15 +678,16 @@
     </partitioning>
     <connection>ORI_DB</connection>
     <sql>select concat(mile.composed_id,'_',outc.id_phase) pk,
-mile.composed_id milestone_id, clean_html_tags(mile.title) milestone_title,mile.year milestone_year,clean_html_tags(outc.description) outcome_description, outc.`year` outcome_target_year
+ mile.composed_id milestone_id, clean_html_tags(mile.title) milestone_title,ifnull(extended_year,mile.year) milestone_year,clean_html_tags(outc.description) outcome_description, outc.`year` outcome_target_year
 from crp_milestones mile 
 join crp_program_outcomes outc on outc.id = mile.crp_program_outcome_id  and outc.is_active
 join phases ph on outc.id_phase = ph.id
 where mile.is_active
-and ifnull(extended_year,mile.year) = ph.year
--- and ph.year=2018
 and ph.year between ${START_YEAR} and ${END_YEAR} 
-and ph.`name`='AR';
+-- and ph.year between 2018 and 2019
+and ph.`name`='AR'
+
+
 </sql>
     <limit>0</limit>
     <lookup/>

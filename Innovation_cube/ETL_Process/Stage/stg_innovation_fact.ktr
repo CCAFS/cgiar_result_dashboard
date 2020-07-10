@@ -587,6 +587,12 @@
     </partitioning>
     <fields>
       <field>
+        <name>inno_id</name>
+      </field>
+      <field>
+        <name>pk</name>
+      </field>
+      <field>
         <name>phase_research_id</name>
       </field>
       <field>
@@ -602,7 +608,7 @@
         <name>rep_ind_degree_innovation_id</name>
       </field>
       <field>
-        <name>project_expected_studies_id</name>
+        <name>oicr_pk</name>
       </field>
       <field>
         <name>location</name>
@@ -621,21 +627,6 @@
       </field>
       <field>
         <name>phase_id</name>
-      </field>
-      <field>
-        <name>pk</name>
-      </field>
-      <field>
-        <name>cont_org</name>
-      </field>
-      <field>
-        <name>lead_org</name>
-      </field>
-      <field>
-        <name>inno_id</name>
-      </field>
-      <field>
-        <name>all_partners</name>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -705,74 +696,34 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>/* UPDATED 20190412  */
-/*Contrib*/
-SELECT pin.id inno_id, concat(pini.project_innovation_id,'_',pini.id_phase) pk , pini.phase_research_id , pini.stage_innovation_id , rigs.id geographic_scope_id, 
-pini.rep_ind_contribution_crp_id,pini.rep_ind_degree_innovation_id,pini.project_expected_studies_id,
+    <sql>SELECT  distinct pin.id inno_id, concat(pini.project_innovation_id,'_',pini.id_phase) pk , pini.phase_research_id , pini.stage_innovation_id , rigs.id geographic_scope_id, 
+pini.rep_ind_contribution_crp_id,pini.rep_ind_degree_innovation_id,concat(oicr.expected_id,'_',oicr.id_phase) oicr_pk,
 IF(rigs.id in (3,4,5), pic.id_country, if(rigs.id = 1,'WORLD',concat('un_',reg.id_region))) location, 
-pid.deliverable_id,pio.rep_ind_organization_type_id,ph.global_unit_id id_crp,riit.id inno_type ,ph.id phase_id
-,corg.institution_id cont_org, pini.lead_organization_id lead_org
-, ins.id all_partners
-FROM project_innovations pin 
-INNER JOIN project_innovation_info pini ON pini.project_innovation_id = pin.id
-INNER JOIN phases ph on ph.id = pini.id_phase
-INNER JOIN projects_info pi ON pi.id_phase = ph.id and pin.project_id = pi.project_id
-INNER JOIN projects p ON p.id = pi.project_id AND p.is_active
-LEFT JOIN rep_ind_stage_innovations risi ON risi.id = pini.stage_innovation_id
-LEFT JOIN rep_ind_innovation_types riit ON riit.id = pini.innovation_type_id
-LEFT JOIN rep_ind_contribution_of_crp ricc ON ricc.id = pini.rep_ind_contribution_crp_id
-LEFT JOIN rep_ind_degree_innovation ridi ON ridi.id = pini.rep_ind_degree_innovation_id
-left join project_innovation_geographic_scopes igeo on igeo.project_innovation_id = pini.project_innovation_id and pini.id_phase=igeo.id_phase
-LEFT JOIN rep_ind_geographic_scopes rigs ON rigs.id = ifnull(igeo.rep_ind_geographic_scope_id,pini.geographic_scope_id)
-left JOIN project_innovation_countries pic ON pini.id_phase = pic.id_phase and pic.project_innovation_id = pini.project_innovation_id
-left JOIN project_innovation_regions reg ON pini.id_phase = reg.id_phase and reg.project_innovation_id = pini.project_innovation_id
-left join project_innovation_deliverables pid on pid.project_innovation_id = pini.project_innovation_id and pid.id_phase = pini.id_phase
-left join project_innovation_organizations pio on pio.project_innovation_id = pini.project_innovation_id and pio.id_phase = pini.id_phase
-left join project_innovation_contributing_organizations corg on corg.project_innovation_id=pini.project_innovation_id and corg.id_phase = pini.id_phase 
-left join institutions ins on ins.id = corg.institution_id
-WHERE pin.is_active
-and is_innovation_excluded(pini.project_innovation_id,pini.id_phase) = 0
--- and pin.id = 245
-and ph.name = 'AR'
-and ph.year = pini.year
--- AND ph. YEAR between 2018 and 2019
-AND ph.year between ${START_YEAR} and ${END_YEAR}  
--- and ph.global_unit_id=1
+pid.deliverable_id,pio.rep_ind_organization_type_id,ph.global_unit_id id_crp,pini.innovation_type_id inno_type ,ph.id phase_id
 
-union all 
-/*leader*/
-SELECT pin.id inno_id, concat(pini.project_innovation_id,'_',pini.id_phase) pk , pini.phase_research_id , pini.stage_innovation_id , rigs.id geographic_scope_id, 
-pini.rep_ind_contribution_crp_id,pini.rep_ind_degree_innovation_id,pini.project_expected_studies_id,
-IF(rigs.id in (3,4,5), pic.id_country, if(rigs.id = 1,'WORLD',concat('un_',reg.id_region))) location, 
-pid.deliverable_id,pio.rep_ind_organization_type_id,ph.global_unit_id id_crp,riit.id inno_type ,ph.id phase_id
-,corg.institution_id cont_org, pini.lead_organization_id lead_org
-, ins.id all_partners
 FROM project_innovations pin 
 INNER JOIN project_innovation_info pini ON pini.project_innovation_id = pin.id
 INNER JOIN phases ph on ph.id = pini.id_phase
 INNER JOIN projects_info pi ON pi.id_phase = ph.id and pin.project_id = pi.project_id
 INNER JOIN projects p ON p.id = pi.project_id AND p.is_active
 LEFT JOIN rep_ind_stage_innovations risi ON risi.id = pini.stage_innovation_id
-LEFT JOIN rep_ind_innovation_types riit ON riit.id = pini.innovation_type_id
 LEFT JOIN rep_ind_contribution_of_crp ricc ON ricc.id = pini.rep_ind_contribution_crp_id
-LEFT JOIN rep_ind_degree_innovation ridi ON ridi.id = pini.rep_ind_degree_innovation_id
 left join project_innovation_geographic_scopes igeo on igeo.project_innovation_id = pini.project_innovation_id and pini.id_phase=igeo.id_phase
 LEFT JOIN rep_ind_geographic_scopes rigs ON rigs.id = ifnull(igeo.rep_ind_geographic_scope_id,pini.geographic_scope_id)
 left JOIN project_innovation_countries pic ON pini.id_phase = pic.id_phase and pic.project_innovation_id = pini.project_innovation_id
 left JOIN project_innovation_regions reg ON pini.id_phase = reg.id_phase and reg.project_innovation_id = pini.project_innovation_id
 left join project_innovation_deliverables pid on pid.project_innovation_id = pini.project_innovation_id and pid.id_phase = pini.id_phase
 left join project_innovation_organizations pio on pio.project_innovation_id = pini.project_innovation_id and pio.id_phase = pini.id_phase
-left join project_innovation_contributing_organizations corg on corg.project_innovation_id=pini.project_innovation_id and corg.id_phase = pini.id_phase 
-left join institutions ins on ins.id = pini.lead_organization_id
+left join project_expected_study_innovations oicr on oicr.project_innovation_id = pini.project_innovation_id and oicr.id_phase = pini.id_phase
 WHERE pin.is_active
 and is_innovation_excluded(pini.project_innovation_id,pini.id_phase) = 0
--- and pin.id = 245
+-- and pin.id = 1550
 and ph.name = 'AR'
 and ph.year = pini.year
 -- AND ph. YEAR between 2018 and 2019
 AND ph.year between ${START_YEAR} and ${END_YEAR}  
 -- and ph.global_unit_id=1
-;</sql>
+</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

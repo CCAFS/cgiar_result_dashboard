@@ -652,7 +652,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
+      <xloc>144</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
@@ -713,6 +713,8 @@
     </partitioning>
     <connection>ORI_DB</connection>
     <sql>
+
+
 select id_phase,global_unit_id, term,gender,qty quantity
 from (
 select ccd.id,ph.global_unit_id,ph.id id_phase,ph.year, ph.name,
@@ -744,14 +746,14 @@ join liaison_institutions li on li.id = rs.liaison_institution_id and li.acronym
 join phases ph on rs.id_phase = ph.id
 union all
 select ccd.id,ph.global_unit_id,ph.id,ph.year, ph.name,
-4 term,1 gender ,ccd.trainees_phd_female
+4 term,1 gender ,ifnull(ccd.trainees_phd_female,phd_female) trainees_phd_female
 from report_synthesis_cross_cutting_dimensions ccd
 join report_synthesis rs on rs.id = ccd.id
 join liaison_institutions li on li.id = rs.liaison_institution_id and li.acronym = 'PMU'
 join phases ph on rs.id_phase = ph.id
 union all 
 select ccd.id,ph.global_unit_id,ph.id,ph.year, ph.name,
-4 term,2 gender, trainees_phd_male
+4 term,2 gender, ifnull(trainees_phd_male,phd_male) trainees_phd_male
 from report_synthesis_cross_cutting_dimensions ccd
 join report_synthesis rs on rs.id = ccd.id
 join liaison_institutions li on li.id = rs.liaison_institution_id and li.acronym = 'PMU'

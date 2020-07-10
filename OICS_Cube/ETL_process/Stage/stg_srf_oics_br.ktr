@@ -589,18 +589,27 @@
     <fields>
       <field>
         <name>oics_id</name>
+        <rename/>
       </field>
       <field>
         <name>sido_id</name>
+        <rename/>
       </field>
       <field>
         <name>slo_id</name>
+        <rename/>
       </field>
       <field>
         <name>type</name>
+        <rename/>
       </field>
       <field>
         <name>pk</name>
+        <rename/>
+      </field>
+      <field>
+        <name>is_primary</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -729,7 +738,7 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>select concat(pes.id,'_',ph.id) pk,pes.id oics_id , sido.id sido_id,null slo_id, 'CCI' type 
+    <sql>select concat(pes.id,'_',ph.id) pk,pes.id oics_id , sido.id sido_id,null slo_id, 'CCI' type, ifnull(pess.is_primary,0) is_primary
 from project_expected_studies pes 
 INNER JOIN project_expected_study_info pesi ON pesi.project_expected_study_id = pes.id 
 LEFT JOIN projects_info prj ON prj.project_id = pes.project_id and pesi.id_phase = prj.id_phase 
@@ -747,7 +756,7 @@ AND ph. NAME = 'AR'
 and pes.is_active
 and pesi.study_type_id = 1
 union all 
-select  concat(pes.id,'_',ph.id) pk, pes.id,sido.id sido_id,slo_id,'SLO' type
+select  concat(pes.id,'_',ph.id) pk, pes.id,sido.id sido_id,slo_id,'SLO' type, ifnull(pess.is_primary,0) is_primary
 from project_expected_studies pes 
 INNER JOIN project_expected_study_info pesi ON pesi.project_expected_study_id = pes.id 
 LEFT JOIN projects_info prj ON prj.project_id = pes.project_id and pesi.id_phase = prj.id_phase 
@@ -764,7 +773,9 @@ AND ph.year between ${START_YEAR} and ${END_YEAR}
 -- AND ph. YEAR between 2018 and 2019
 AND ph. NAME = 'AR'
 and pes.is_active
-and pesi.study_type_id = 1</sql>
+and pesi.study_type_id = 1
+-- and ph.global_unit_id = 1
+;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

@@ -442,13 +442,25 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>${DES_DBNAME}</database>
-    <port>${DES_PORT}</port>
+    <port>3306</port>
     <username>${DES_USR}</username>
     <password>${DES_PSW}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterEncoding</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterSetResult</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useUnicode</code>
+        <attribute>true</attribute>
+      </attribute>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
         <attribute>N</attribute>
@@ -463,7 +475,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${DES_PORT}</attribute>
+        <attribute>3306</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -575,7 +587,7 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>SELECT slo.id id_slo, slo.title slo,ido.id id_ido, ido.description ido,sido.id id_sub_ido,sido.description sub_ido
+    <sql>SELECT slo.id id_slo,sido.smo_code, slo.title slo,ido.id id_ido, ido.description ido,sido.id id_sub_ido,sido.description sub_ido
 FROM srf_slos slo
 inner join  srf_slo_idos sxi on slo.id = sxi.slo_id
 inner join srf_idos ido on ido.id =sxi.ido_id
@@ -613,21 +625,31 @@ where !ido.is_cross_cutting</sql>
     <fields>
       <field>
         <name>id_slo</name>
+        <rename/>
+      </field>
+      <field>
+        <name>smo_code</name>
+        <rename/>
       </field>
       <field>
         <name>slo</name>
+        <rename/>
       </field>
       <field>
         <name>id_ido</name>
+        <rename/>
       </field>
       <field>
         <name>ido</name>
+        <rename/>
       </field>
       <field>
         <name>id_sub_ido</name>
+        <rename/>
       </field>
       <field>
         <name>sub_ido</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>

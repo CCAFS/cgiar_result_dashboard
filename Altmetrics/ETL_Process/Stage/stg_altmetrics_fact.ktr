@@ -697,7 +697,7 @@ from report_synthesis_altmetrics a
 join phases ph on ph.id = a.id_phase
 where ph.name = 'AR'
 -- and ph.year between 2018 and 2019
-AND ph.year between ${START_YEAR} and ${END_YEAR}  
+AND ph.year between 2017 and ${END_YEAR}  
 </sql>
     <limit>0</limit>
     <lookup/>

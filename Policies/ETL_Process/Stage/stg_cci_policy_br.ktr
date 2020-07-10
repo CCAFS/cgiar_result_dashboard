@@ -430,7 +430,7 @@
     <created_date>2020/04/14 20:24:22.645</created_date>
     <modified_user>-</modified_user>
     <modified_date>2020/04/14 20:24:22.645</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -575,8 +575,8 @@
     </hop>
   </order>
   <step>
-    <name>br_cci</name>
-    <type>TableInput</type>
+    <name>Select values</name>
+    <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -585,27 +585,18 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>ORI_DB</connection>
-    <sql>select concat(pol.id,'_',ph.id) policy_pk, psido.id cci_id, ifnull(ppolis.is_primary,0) is_primary
-from project_policies pol
-join project_policy_info poli on pol.id=poli.project_policy_id
-join phases ph on ph.id=poli.id_phase
-JOIN project_policy_sub_idos ppolis on ppolis.project_policy_id = poli.project_policy_id and ppolis.id_phase=poli.id_phase
-join srf_sub_idos psido on psido.id = ppolis.sub_ido_id
-join srf_idos pido on pido.id =psido.ido_id
-where ph.year = poli.`year`
-and is_policy_excluded(poli.project_policy_id,poli.id_phase)=0
-and pido.is_cross_cutting=1
-and ph.`year` between ${START_YEAR} and ${END_YEAR}
--- and ph.`year` BETWEEN 2019 AND 2019
-and ph.name = 'AR'
-and pol.is_active
-group by pol.id, poli.title</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
+    <fields>
+      <field>
+        <name>policy_pk</name>
+      </field>
+      <field>
+        <name>cci_id</name>
+      </field>
+      <field>
+        <name>is_primary</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -614,7 +605,7 @@ group by pol.id, poli.title</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>48</xloc>
+      <xloc>288</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -661,8 +652,8 @@ group by pol.id, poli.title</sql>
     </GUI>
   </step>
   <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
+    <name>br_cci</name>
+    <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -671,21 +662,27 @@ group by pol.id, poli.title</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>policy_pk</name>
-        <rename/>
-      </field>
-      <field>
-        <name>cci_id</name>
-        <rename/>
-      </field>
-      <field>
-        <name>is_primary</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
+    <connection>ORI_DB</connection>
+    <sql>select concat(pol.id,'_',ph.id) policy_pk, psido.id cci_id, ifnull(ppolis.is_primary,0) is_primary
+from project_policies pol
+join project_policy_info poli on pol.id=poli.project_policy_id
+join phases ph on ph.id=poli.id_phase
+JOIN project_policy_sub_idos ppolis on ppolis.project_policy_id = poli.project_policy_id and ppolis.id_phase=poli.id_phase
+join srf_sub_idos psido on psido.id = ppolis.sub_ido_id
+join srf_idos pido on pido.id =psido.ido_id
+where ph.year = poli.`year`
+and is_policy_excluded(poli.project_policy_id,poli.id_phase)=0
+and pido.is_cross_cutting=1
+and ph.`year` between ${START_YEAR} and ${END_YEAR}
+-- and ph.`year` BETWEEN 2019 AND 2019
+and ph.name = 'AR'
+and pol.is_active
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -694,7 +691,7 @@ group by pol.id, poli.title</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
+      <xloc>48</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
