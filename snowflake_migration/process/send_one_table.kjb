@@ -379,7 +379,7 @@
       <yloc>32</yloc>
     </entry>
     <entry>
-      <name>execute migration</name>
+      <name>execute migration Windows</name>
       <description/>
       <type>SHELL</type>
       <filename/>
@@ -398,7 +398,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>624</xloc>
+      <xloc>704</xloc>
       <yloc>128</yloc>
     </entry>
     <entry>
@@ -422,7 +422,7 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>496</xloc>
+      <xloc>400</xloc>
       <yloc>128</yloc>
     </entry>
     <entry>
@@ -432,7 +432,7 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>736</xloc>
+      <xloc>832</xloc>
       <yloc>32</yloc>
     </entry>
     <entry>
@@ -457,6 +457,51 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <xloc>384</xloc>
       <yloc>32</yloc>
     </entry>
+    <entry>
+      <name>Is windows?</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>SO_NAME</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>Windows</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>544</xloc>
+      <yloc>128</yloc>
+    </entry>
+    <entry>
+      <name>execute migration Linux</name>
+      <description/>
+      <type>SHELL</type>
+      <filename/>
+      <work_directory>${Internal.Entry.Current.Directory}</work_directory>
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <set_append_logfile>N</set_append_logfile>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <insertScript>Y</insertScript>
+      <script>./snowsql -f send.sql --config ../../config/config_snowflake</script>
+      <loglevel>Basic</loglevel>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>704</xloc>
+      <yloc>224</yloc>
+    </entry>
   </entries>
   <hops>
     <hop>
@@ -469,7 +514,7 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>execute migration</from>
+      <from>execute migration Windows</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -497,6 +542,15 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
     </hop>
     <hop>
       <from>Send to snowflake?</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Send to snowflake?</from>
       <to>create migration script</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -506,7 +560,7 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
     </hop>
     <hop>
       <from>create migration script</from>
-      <to>execute migration</to>
+      <to>Is windows?</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -514,12 +568,30 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Send to snowflake?</from>
-      <to>Success</to>
+      <from>Is windows?</from>
+      <to>execute migration Windows</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Is windows?</from>
+      <to>execute migration Linux</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>execute migration Linux</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>

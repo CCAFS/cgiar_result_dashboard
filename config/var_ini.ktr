@@ -709,6 +709,17 @@
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
+      <field>
+        <name>so_name</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
     </fields>
     <cluster_schema/>
     <remotesteps>
@@ -864,6 +875,12 @@
       <field>
         <field_name>end_year</field_name>
         <variable_name>END_YEAR</variable_name>
+        <variable_type>JVM</variable_type>
+        <default_value/>
+      </field>
+      <field>
+        <field_name>so_name</field_name>
+        <variable_name>SO_NAME</variable_name>
         <variable_type>JVM</variable_type>
         <default_value/>
       </field>

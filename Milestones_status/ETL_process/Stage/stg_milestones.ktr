@@ -719,8 +719,13 @@ and ph.`name`='AR'
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>select concat(mile.id,'-',mile.id_phase) pk,	mile.id milestone_id,mile.milestone_title	milestone_title,0	milestone_year,mile.outcome_title	outcome_description,0	outcome_target_year
-from dashboard_milestones_2017 mile</sql>
+    <sql>select concat(mile.id,'-',ph.id) pk, CONVERT(mile.id , CHAR) milestone_id, mile.crp_milestone_title	milestone_title,2017 milestone_year,
+mile.crp_program_outcome_description	outcome_description,	2021 outcome_target_year
+-- ,mile.*
+from results_dashboard_ar_2017_info mile
+join phases ph on ph.global_unit_id = mile.global_unit_id and ph.`year`=2017 and ph.`name`='AR'
+;
+</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

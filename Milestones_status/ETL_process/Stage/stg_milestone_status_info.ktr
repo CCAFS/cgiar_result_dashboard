@@ -737,8 +737,10 @@ and ifnull(mile.extended_year,mile.year) = ph.year
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>select mile.id,	null outcome_sumary ,mile.progress_evidence milestone_evidence	,null other_reason	,null gender_justification	,null youth_justification	,null capdev_justification	,null climate_justification
-from dashboard_milestones_2017 mile</sql>
+    <sql>select mile.id id, null outcome_sumary ,mile.milestone_evidence milestone_evidence	,null other_reason	,null gender_justification	,null youth_justification	,null capdev_justification	,null climate_justification 
+from results_dashboard_ar_2017_info mile
+join phases ph on ph.global_unit_id = mile.global_unit_id and ph.`year`=2017 and ph.`name`='AR'
+;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

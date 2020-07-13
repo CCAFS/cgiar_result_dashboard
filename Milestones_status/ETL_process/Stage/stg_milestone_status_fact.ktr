@@ -765,11 +765,15 @@ and ifnull(mile.extended_year,mile.year) = ph.year
     </partitioning>
     <connection>ORI_DB</connection>
     <sql>select mile.id milestone_staus_info_id,
-mile.mileston_status_id milestones_status,	
+mile.milestone_status milestones_status,	
 0 status_reason,	
-mile.id_phase phase_id,	ph.global_unit_id crp_id,	concat(mile.id,'-',mile.id_phase) milestone_pk,	0 flagship_id,	0 gender_level,0 youth_level,	0	capdev_level,	0	climate_level
-from dashboard_milestones_2017 mile
-join phases ph on ph.id = mile.id_phase;</sql>
+ph.id phase_id,	ph.global_unit_id crp_id,	concat(mile.id,'-',ph.id) milestone_pk,	crp_program_id flagship_id,	0 gender_level,0 youth_level,	0	capdev_level,	0	climate_level,
+null srf, 
+null cci, 
+null sdg_id
+from results_dashboard_ar_2017_info mile
+join phases ph on ph.global_unit_id = mile.global_unit_id and ph.`year`=2017 and ph.`name`='AR'
+</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
