@@ -702,7 +702,7 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>select 
+    <sql>select distinct
 fpom.id  milestone_staus_info_id, ifnull(fpom.milestones_status,mile.milestone_status) milestones_status, fpom.rep_ind_milestone_reason_id status_reason, ph.id phase_id, ph.global_unit_id crp_id, 
 concat(mile.composed_id,'_',outc.id_phase )milestone_pk ,
 li.crp_program flagship_id, ccgender.rep_ind_gender_youth_focus_level_id gender_level, ccyouth.rep_ind_gender_youth_focus_level_id youth_level, 
@@ -764,15 +764,22 @@ and ifnull(mile.extended_year,mile.year) = ph.year
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>select mile.id milestone_staus_info_id,
+    <sql>select distinct mile.id milestone_staus_info_id,
 mile.milestone_status milestones_status,	
 0 status_reason,	
-ph.id phase_id,	ph.global_unit_id crp_id,	concat(mile.id,'-',ph.id) milestone_pk,	crp_program_id flagship_id,	0 gender_level,0 youth_level,	0	capdev_level,	0	climate_level,
-null srf, 
-null cci, 
-null sdg_id
+mile.id_phase phase_id,	mile.global_unit_id crp_id,	concat(mile.id,'-',mile.id_phase ) milestone_pk,	mile.crp_program_id flagship_id,	0 gender_level,0 youth_level,	0	capdev_level,	0	climate_level,
+if(ido.is_cross_cutting=0,sido.id,"") srf,
+if(ido.is_cross_cutting=1,sido.id,"") cci,
+concat(sido.id,'_',sdgi.id) sdg_id
 from results_dashboard_ar_2017_info mile
-join phases ph on ph.global_unit_id = mile.global_unit_id and ph.`year`=2017 and ph.`name`='AR'
+join crp_program_outcomes ou on ou.id = mile.crp_program_outcome_id
+left join crp_outcome_sub_idos sub on sub.crp_program_outcome_id = ou.id
+left join srf_sub_idos sido on sido.id = sub.srf_sub_ido_id
+left join srf_idos ido on ido.id = sido.ido_id
+left join sub_ido_sdg_target sdgit on sdgit.sub_ido_id = sido.id
+left join sdg_targets sdgt on sdgt.id = sdgit.sdg_target_id 
+left join sdg_indicators sdgi on sdgi.sdg_target_id = sdgt.id
+
 </sql>
     <limit>0</limit>
     <lookup/>

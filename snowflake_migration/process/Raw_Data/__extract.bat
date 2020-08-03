@@ -7,6 +7,8 @@ mkdir "2018\6. Policies\Raw_Data\"
 mkdir "2018\7. Capacity Development\Raw_Data\"
 mkdir "2018\8. Publications\Raw_Data\"
 mkdir "2018\9. Altmetrics\Raw_Data\"
+mkdir "2018\10. MELIA\Raw_Data\"
+mkdir "2018\11. POWB Milestones\Raw_Data\"
 
 rem "1. SRF Targets"
 copy /y FACT_SRF_TARGETS.csv "2018\1. Contribution to SLOs\Raw_Data\"
@@ -142,6 +144,37 @@ copy /y DIM_PHASES.csv "2018\9. Altmetrics\Raw_Data\"
 copy /y DIM_CRPS.csv "2018\9. Altmetrics\Raw_Data\"
 copy /y DIM_ALTMETRICS_INFO.csv "2018\9. Altmetrics\Raw_Data\"
 
+rem "10. MELIA"
+copy /y FACT_MELIA.csv "2018\10. MELIA\Raw_Data\"
+copy /y DIM_PHASES.csv "2018\10. MELIA\Raw_Data\"
+copy /y DIM_CPRS.csv "2018\10. MELIA\Raw_Data\"
+copy /y DIM_LOCATIONS.csv "2018\10. MELIA\Raw_Data\"
+copy /y DIM_MELIA_INFO.csv "2018\10. MELIA\Raw_Data\"
+copy /y DIM_STUDY_TYPES.csv "2018\10. MELIA\Raw_Data\"
+copy /y DIM_GENERAL_STATUSES.csv "2018\10. MELIA\Raw_Data\"
+copy /y DIM_GEO_SCOPES.csv "2018\10. MELIA\Raw_Data\"
+
+
+rem "POWB milestones "
+copy /y FACT_POWB_MILESTONES.csv "2018\11. POWB Milestones\Raw_Data\"
+copy /y DIM_CAPDEV_LEVELS.csv "2018\11. POWB Milestones\Raw_Data\"
+copy /y DIM_CLIMATE_LEVELS.csv "2018\11. POWB Milestones\Raw_Data\"
+copy /y DIM_GENDER_LEVELS.csv "2018\11. POWB Milestones\Raw_Data\"
+copy /y DIM_MAIN_RISKS.csv "2018\11. POWB Milestones\Raw_Data\"
+copy /y DIM_MILESTONE_LEVELS_CHANGE.csv "2018\11. POWB Milestones\Raw_Data\"
+copy /y DIM_POWB_MILESTONES.csv "2018\11. POWB Milestones\Raw_Data\"
+copy /y DIM_POWB_OUTCOMES.csv "2018\11. POWB Milestones\Raw_Data\"
+copy /y DIM_RISK_LEVELS.csv "2018\11. POWB Milestones\Raw_Data\"
+copy /y DIM_YOUTH_LEVELS.csv "2018\11. POWB Milestones\Raw_Data\"
+copy /y DIM_CPRS.csv "2018\11. POWB Milestones\Raw_Data\"
+copy /y DIM_PHASES.csv "2018\11. POWB Milestones\Raw_Data\"
+copy /y DIM_FLAGSHIPS.csv "2018\11. POWB Milestones\Raw_Data\"
+copy /y DIM_CCI.csv "2018\11. POWB Milestones\Raw_Data\"
+copy /y DIM_SRF.csv "2018\11. POWB Milestones\Raw_Data\"
+copy /y DIM_SDG.csv "2018\11. POWB Milestones\Raw_Data\"
+
+
+
 cd "2018\1. Contribution to SLOs"
 del /q *.zip
 ..\zip -r -m "SLO_Raw_Data.zip" "Raw_data"
@@ -178,3 +211,10 @@ cd "..\9. Altmetrics\"
 del /q *.zip
 ..\zip -r -m "Altmetrics_Raw_Data.zip" "Raw_data"
 
+cd "..\10. MELIA\"
+del /q *.zip
+..\zip -r -m "MELIA_Raw_Data.zip" "Raw_data"
+
+cd "..\11. POWB Milestones\"
+del /q *.zip
+..\zip -r -m "POWB_Milestones_Raw_Data.zip" "Raw_data"

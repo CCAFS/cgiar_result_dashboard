@@ -633,7 +633,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
+      <xloc>288</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -674,7 +674,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
+      <xloc>192</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -693,8 +693,11 @@
     <connection>ORI_DB</connection>
     <sql>select concat(pes.id,'_',ph.id) pk,
 pes.id id_oics,pesi.title title_oics,pesi.scope_comments, pesi.outcome_impact_statement,rigender.powb_name gender_relev,riyouth.powb_name youth_relev,ricap.powb_name capdev_relev,ricc.powb_name climate_relev, 
-pes.project_id id_project, pinf.title title_project,
-ifnull(pesi.external_link,concat('https://marlo.cgiar.org/projects/',gu.acronym,'/studySummary.do?studyID=',pes.id,'&amp;cycle=',ph.description,'&amp;year=',ph.year)) pdf
+pes.project_id id_project, pinf.title title_project
+,if(gu.id in (27,28,17)
+	,pesi.external_link	
+	,if(ifnull(pesi.is_public,1) !=0,CONCAT('https://marlo.cgiar.org/projects/',gu.acronym,'/studySummary.do?studyID=',pes.id,'&amp;cycle=',ph.description,'&amp;year=',ph.year),"Private") 
+	)AS "pdf"
 from project_expected_studies pes 
 INNER JOIN project_expected_study_info pesi ON pesi.project_expected_study_id = pes.id 
 inner join phases ph on ph.id = pesi.id_phase
@@ -768,7 +771,7 @@ and pes.is_active
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
+      <xloc>400</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
