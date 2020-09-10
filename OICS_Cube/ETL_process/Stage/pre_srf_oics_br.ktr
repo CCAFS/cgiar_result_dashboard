@@ -597,19 +597,15 @@
     <fields>
       <field>
         <name>fk_id_srf</name>
-        <rename/>
       </field>
       <field>
         <name>fk_id_oics</name>
-        <rename/>
       </field>
       <field>
         <name>Contribution</name>
-        <rename/>
       </field>
       <field>
         <name>is_primary</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -680,8 +676,8 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>oics_id</name>
-        <field>id_oics</field>
+        <name>pk</name>
+        <field>pk</field>
         <condition>=</condition>
         <name2/>
       </key>
@@ -772,12 +768,6 @@
       <key>
         <name>sido_id</name>
         <field>id_sub_ido</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>slo_id</name>
-        <field>id_slo</field>
         <condition>=</condition>
         <name2/>
       </key>

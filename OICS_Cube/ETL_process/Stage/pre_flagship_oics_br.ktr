@@ -590,8 +590,8 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>oics</name>
-        <field>id_oics</field>
+        <name>pk</name>
+        <field>pk</field>
         <condition>=</condition>
         <name2/>
       </key>
@@ -629,9 +629,11 @@
     <fields>
       <field>
         <name>fk_id_oics</name>
+        <rename/>
       </field>
       <field>
         <name>fk_id_flagship</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
