@@ -1,5 +1,2 @@
-# marlo-bi
-MARLO Business Intelligence project
-
-In the result_dashboard folder are the ETLs used to generate the SMO Result Dashboard cubes
-In MARLO there are the ETLs to generate the MARLO BI module
+# cgiar_result_dashboard
+This dashboard provides an overview of results achieved by the CGIAR Research Programs and Platforms. We track a number of key metrics across CGIAR to help paint a picture of our research for development achievements. Figures and maps are clickable and link to additional levels of detail. All data contained in the dashboard has been quality assessed and aligns with Annual Performance Reports. To access CGIAR's Strategy and Results Framework 2016-30 click here.
