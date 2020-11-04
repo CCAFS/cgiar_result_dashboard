@@ -1,12 +1,4 @@
-result_dashboard/config/config_snowflake
-result_dashboard/config/cfg_prd_2_tst.csv
-result_dashboard/config/cfg_prd_2_local.csv
-result_dashboard/config/cfg_prd_2_BI.csv
-result_dashboard/config/cfg_local_2_local.csv
-result_dashboard/config/cfg_local_2_BI.csv
-result_dashboard/config/S3rootkey.csv
-result_dashboard/config/DB_config.csv
-result_dashboard/config/cfg_local_PARALEL_2_BI.csv
-result_dashboard/snowflake_migration/process/Output
-result_dashboard/snowflake_migration/process/send.sql
+config/config_files/
+snowflake_migration/process/Output
+snowflake_migration/process/send.sql
 
