@@ -19,6 +19,7 @@ copy /y DIM_CRPS.csv "2018\1. Contribution to SLOs\Raw_Data\"
 copy /y DIM_PHASES.csv "2018\1. Contribution to SLOs\Raw_Data\"
 copy /y DIM_SRF_CASES_LINKS.csv "2018\1. Contribution to SLOs\Raw_Data\"
 copy /y DIM_SRF_CASES_INFO.csv "2018\1. Contribution to SLOs\Raw_Data\"
+copy /y DIM_LOCATIONS.csv "2018\1. Contribution to SLOs\Raw_Data\"
 
 rem "2. OICR"
 copy /y FACT_OICS.csv "2018\2. OICR\Raw_Data\"

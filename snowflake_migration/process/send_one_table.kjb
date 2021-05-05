@@ -290,6 +290,7 @@
       <name>set_table_name_var</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}/set_table_name_var.ktr</filename>
@@ -313,6 +314,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -321,11 +323,13 @@
       <nr>0</nr>
       <xloc>160</xloc>
       <yloc>32</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>START</name>
       <description/>
       <type>SPECIAL</type>
+      <attributes/>
       <start>Y</start>
       <dummy>N</dummy>
       <repeat>N</repeat>
@@ -341,11 +345,13 @@
       <nr>0</nr>
       <xloc>48</xloc>
       <yloc>32</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>create_csv</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}/send_table_info.ktr</filename>
@@ -369,6 +375,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -377,11 +384,13 @@
       <nr>0</nr>
       <xloc>288</xloc>
       <yloc>32</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>execute migration Windows</name>
       <description/>
       <type>SHELL</type>
+      <attributes/>
       <filename/>
       <work_directory>${Internal.Entry.Current.Directory}</work_directory>
       <arg_from_previous>N</arg_from_previous>
@@ -393,18 +402,20 @@
       <add_date>N</add_date>
       <add_time>N</add_time>
       <insertScript>Y</insertScript>
-      <script>snowsql -f send.sql --config ../../config/config_snowflake</script>
+      <script>snowsql -f send.sql --config ../../config/config_files/config_snowflake</script>
       <loglevel>Basic</loglevel>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>704</xloc>
       <yloc>128</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>create migration script</name>
       <description/>
       <type>WRITE_TO_FILE</type>
+      <attributes/>
       <filename>${Internal.Entry.Current.Directory}\send.sql</filename>
       <createParentFolder>N</createParentFolder>
       <appendFile>N</appendFile>
@@ -424,21 +435,25 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <nr>0</nr>
       <xloc>400</xloc>
       <yloc>128</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>Success</name>
       <description/>
       <type>SUCCESS</type>
+      <attributes/>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>832</xloc>
       <yloc>32</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>Send to snowflake?</name>
       <description/>
       <type>SIMPLE_EVAL</type>
+      <attributes/>
       <valuetype>variable</valuetype>
       <fieldname/>
       <variablename>SNOWFLAKE_ACTIVE</variablename>
@@ -456,11 +471,13 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <nr>0</nr>
       <xloc>384</xloc>
       <yloc>32</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>Is windows?</name>
       <description/>
       <type>SIMPLE_EVAL</type>
+      <attributes/>
       <valuetype>variable</valuetype>
       <fieldname/>
       <variablename>SO_NAME</variablename>
@@ -478,11 +495,13 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <nr>0</nr>
       <xloc>544</xloc>
       <yloc>128</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>execute migration Linux</name>
       <description/>
       <type>SHELL</type>
+      <attributes/>
       <filename/>
       <work_directory>${Internal.Entry.Current.Directory}</work_directory>
       <arg_from_previous>N</arg_from_previous>
@@ -501,6 +520,7 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <nr>0</nr>
       <xloc>704</xloc>
       <yloc>224</yloc>
+      <attributes_kjc/>
     </entry>
   </entries>
   <hops>
