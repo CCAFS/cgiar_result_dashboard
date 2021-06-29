@@ -2,6 +2,6 @@ pk_id_geo_scopes,version,date_from,date_to,id,"name","iati_name","definition"
 0,1,,,,,,
 1,1,1900-01-01 00:00:00,2200-01-01 00:00:00,1,"Global","1","The activity scope is global"
 2,1,1900-01-01 00:00:00,2200-01-01 00:00:00,2,"Regional","2","The activity scope is a supranational region "
-3,1,1900-01-01 00:00:00,2200-01-01 00:00:00,3,"Multi-national","3","The activity scope covers multiple countries, that donâ€™t constitute a region"
+3,1,1900-01-01 00:00:00,2200-01-01 00:00:00,3,"Multi-national","3","The activity scope covers multiple countries, that don’t constitute a region"
 4,1,1900-01-01 00:00:00,2200-01-01 00:00:00,4,"National","4","The activity scope covers one country"
 5,1,1900-01-01 00:00:00,2200-01-01 00:00:00,5,"Sub-national","6 ","The activity scope covers one first-level subnational administrative area (e.g. country, province, state)"

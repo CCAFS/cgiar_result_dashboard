@@ -290,6 +290,7 @@
       <name>START</name>
       <description/>
       <type>SPECIAL</type>
+      <attributes/>
       <start>Y</start>
       <dummy>N</dummy>
       <repeat>N</repeat>
@@ -305,11 +306,13 @@
       <nr>0</nr>
       <xloc>48</xloc>
       <yloc>64</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>stg_policies_info</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Stage\stg_policies_info.ktr</filename>
@@ -333,6 +336,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -341,21 +345,25 @@
       <nr>0</nr>
       <xloc>432</xloc>
       <yloc>64</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>Success</name>
       <description/>
       <type>SUCCESS</type>
+      <attributes/>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>32</xloc>
       <yloc>352</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>init_variables</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}/../../config/var_ini.ktr</filename>
@@ -379,6 +387,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -387,11 +396,13 @@
       <nr>0</nr>
       <xloc>160</xloc>
       <yloc>48</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>stg_policies_fact</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Stage\stg_policies_fact.ktr</filename>
@@ -415,6 +426,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -423,11 +435,13 @@
       <nr>0</nr>
       <xloc>576</xloc>
       <yloc>16</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>dim_policies_info</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Dimensions\dim_policies_info.ktr</filename>
@@ -451,6 +465,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -459,11 +474,13 @@
       <nr>0</nr>
       <xloc>304</xloc>
       <yloc>224</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>fact_policies</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Fact\fact_policies.ktr</filename>
@@ -487,6 +504,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -495,11 +513,13 @@
       <nr>0</nr>
       <xloc>160</xloc>
       <yloc>352</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>pre_policies_fact</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Stage\pre_policies_fact.ktr</filename>
@@ -523,6 +543,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -531,11 +552,13 @@
       <nr>0</nr>
       <xloc>800</xloc>
       <yloc>208</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>stg_policies_owner</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Stage\stg_policies_owners.ktr</filename>
@@ -559,6 +582,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -567,11 +591,13 @@
       <nr>0</nr>
       <xloc>304</xloc>
       <yloc>16</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>dim_policies_owners</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Dimensions\dim_policies_owners.ktr</filename>
@@ -595,6 +621,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -603,11 +630,13 @@
       <nr>0</nr>
       <xloc>160</xloc>
       <yloc>256</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>stg_srf_policy_br</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Stage\stg_srf_policy_br.ktr</filename>
@@ -631,6 +660,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -639,11 +669,13 @@
       <nr>0</nr>
       <xloc>576</xloc>
       <yloc>112</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>stg_cci_policy_br</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Stage\stg_cci_policy_br.ktr</filename>
@@ -667,6 +699,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -675,11 +708,13 @@
       <nr>0</nr>
       <xloc>432</xloc>
       <yloc>160</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>stg_sdg_policy_br</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Stage\stg_sdg_policy_br.ktr</filename>
@@ -703,6 +738,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -711,11 +747,13 @@
       <nr>0</nr>
       <xloc>304</xloc>
       <yloc>128</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>stg_milestone_policy_br</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Stage\stg_milestone_policy_br.ktr</filename>
@@ -739,6 +777,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -747,11 +786,13 @@
       <nr>0</nr>
       <xloc>160</xloc>
       <yloc>160</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>pre_sdg_policies_br</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Stage\pre_sdg_policies_br.ktr</filename>
@@ -775,6 +816,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -783,11 +825,13 @@
       <nr>0</nr>
       <xloc>432</xloc>
       <yloc>256</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>pre_srf_policies_br</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Stage\pre_srf_policies_br.ktr</filename>
@@ -811,6 +855,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -819,11 +864,13 @@
       <nr>0</nr>
       <xloc>576</xloc>
       <yloc>224</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>pre_cci_policies_br</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Stage\pre_cci_policies_br.ktr</filename>
@@ -847,6 +894,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -855,11 +903,13 @@
       <nr>0</nr>
       <xloc>688</xloc>
       <yloc>256</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>br_sdg_policies</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Dimensions\br_sdg_policies.ktr</filename>
@@ -883,6 +933,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -891,11 +942,13 @@
       <nr>0</nr>
       <xloc>688</xloc>
       <yloc>336</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>br_cci_policies</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Dimensions\br_cci_policies.ktr</filename>
@@ -919,6 +972,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -927,11 +981,13 @@
       <nr>0</nr>
       <xloc>576</xloc>
       <yloc>320</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>br_srf_policies</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Dimensions\br_srf_policies.ktr</filename>
@@ -955,6 +1011,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -963,11 +1020,13 @@
       <nr>0</nr>
       <xloc>448</xloc>
       <yloc>352</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>pre_milestone_policies_br </name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Stage\pre_milestone_policies_br.ktr</filename>
@@ -991,6 +1050,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -999,11 +1059,13 @@
       <nr>0</nr>
       <xloc>800</xloc>
       <yloc>320</yloc>
+      <attributes_kjc/>
     </entry>
     <entry>
       <name>br_milestone_policies</name>
       <description/>
       <type>TRANS</type>
+      <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
       <filename>${Internal.Entry.Current.Directory}\Dimensions\br_milestone_policies.ktr</filename>
@@ -1027,6 +1089,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
@@ -1035,6 +1098,7 @@
       <nr>0</nr>
       <xloc>304</xloc>
       <yloc>320</yloc>
+      <attributes_kjc/>
     </entry>
   </entries>
   <hops>

@@ -559,11 +559,6 @@
   </connection>
   <order>
     <hop>
-      <from>peer_review_papers</from>
-      <to>Sort rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Sort rows</from>
       <to>Select values</to>
       <enabled>Y</enabled>
@@ -571,6 +566,11 @@
     <hop>
       <from>Select values</from>
       <to>stg_publications_info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>peer_review_papers</from>
+      <to>Sort rows</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -588,51 +588,67 @@
     <fields>
       <field>
         <name>id</name>
-      </field>
-      <field>
-        <name>pk</name>
-      </field>
-      <field>
-        <name>authors</name>
-      </field>
-      <field>
-        <name>year</name>
+        <rename/>
       </field>
       <field>
         <name>title</name>
-      </field>
-      <field>
-        <name>journal</name>
-      </field>
-      <field>
-        <name>volume</name>
-      </field>
-      <field>
-        <name>issue</name>
-      </field>
-      <field>
-        <name>pages</name>
-      </field>
-      <field>
-        <name>is_ISI_journal</name>
-      </field>
-      <field>
-        <name>is_open_access</name>
-      </field>
-      <field>
-        <name>DOI</name>
-      </field>
-      <field>
-        <name>Handle</name>
+        <rename/>
       </field>
       <field>
         <name>Citation</name>
+        <rename/>
+      </field>
+      <field>
+        <name>journal</name>
+        <rename/>
+      </field>
+      <field>
+        <name>year</name>
+        <rename/>
+      </field>
+      <field>
+        <name>authors</name>
+        <rename/>
+      </field>
+      <field>
+        <name>is_ISI_journal</name>
+        <rename/>
+      </field>
+      <field>
+        <name>is_open_access</name>
+        <rename/>
+      </field>
+      <field>
+        <name>pk</name>
+        <rename/>
+      </field>
+      <field>
+        <name>volume</name>
+        <rename/>
+      </field>
+      <field>
+        <name>issue</name>
+        <rename/>
+      </field>
+      <field>
+        <name>pages</name>
+        <rename/>
+      </field>
+      <field>
+        <name>DOI</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Handle</name>
+        <rename/>
       </field>
       <field>
         <name>deliverable_group</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
+    <attributes/>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -641,7 +657,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
+      <xloc>304</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -674,6 +690,7 @@
         <presorted>N</presorted>
       </field>
     </fields>
+    <attributes/>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -682,73 +699,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>peer_review_papers</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>ORI_DB</connection>
-    <sql>select dev.id id, concat(devi.deliverable_id,'_',devi.id_phase) pk,
-ifnull(dg.deliverable_group,devi.deliverable_id) deliverable_group,
-ifnull( 
-(select group_concat(concat(du.last_name,' ',du.first_name)) 
-from deliverable_users du 
-where du.deliverable_id = devi.deliverable_id and du.id_phase = devi.id_phase
-),get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'marlo.authors')) authors,
-ph.year,
-get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'dc.title') as 'title',
-pm.journal,
-pm.volume,
-pm.issue,
-pm.pages,
-pm.isi_publication is_ISI_journal,
-dd.is_open_access,
-get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'marlo.doi') as 'DOI',
-get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'marlo.handle') as 'Handle',
-get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'dc.identifier.citation') as 'Citation'
-from deliverables dev
-join deliverables_info devi on dev.id = devi.deliverable_id
-left join deliverable_dissemination dd on dd.deliverable_id=devi.deliverable_id and dd.id_phase=devi.id_phase
-left join deliverable_publications_metada pm on pm.deliverable_id=devi.deliverable_id and pm.id_phase = devi.id_phase
-left join deliverables_groups dg on dg.deliverable_id = devi.deliverable_id and dg.id_phase=devi.id_phase
-join phases ph on ph.id = devi.id_phase
-join global_units gu on gu.id = ph.global_unit_id
-where ifnull(if(devi.new_expected_year=-1,null,devi.new_expected_year), devi.`year`) = ph.year
--- AND ph. YEAR between 2018 and 2019
-AND ph.year between ${START_YEAR} and ${END_YEAR}  
-and ph.name = 'AR'
-and dev.is_active
-and devi.is_active
-and devi.`status` not in (5)
-and devi.type_id = 63 -- Journal Article (peer reviewed)
-and is_deliverable_excluded(devi.deliverable_id,devi.id_phase) = 0
--- and gu.acronym = 'PIM'
--- and devi.deliverable_id = 260</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>96</xloc>
+      <xloc>208</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -783,6 +734,7 @@ and is_deliverable_excluded(devi.deliverable_id,devi.id_phase) = 0
     <return_field/>
     <fields>
     </fields>
+    <attributes/>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -791,7 +743,507 @@ and is_deliverable_excluded(devi.deliverable_id,devi.id_phase) = 0
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
+      <xloc>416</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>peer_review_papers</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>ORI_DB</connection>
+    <sql>select -- gu.acronym,and 
+dev.id id, concat(devi.deliverable_id,'_',devi.id_phase) pk,
+ifnull(dg.deliverable_group,devi.deliverable_id) deliverable_group,
+ifnull( 
+(select group_concat(concat(du.last_name,' ',du.first_name)) 
+from deliverable_users du 
+where du.deliverable_id = devi.deliverable_id and du.id_phase = devi.id_phase
+),get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'marlo.authors')) authors,
+ph.year,
+get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'dc.title') as 'title',
+pm.journal,
+pm.volume,
+pm.issue,
+pm.pages,
+  CASE
+  WHEN (pm.isi_publication = 0) THEN
+    0
+  WHEN (pm.isi_publication = 1) THEN
+    1
+  ELSE
+    null
+  END is_ISI_journal,
+-- pm.isi_publication is_ISI_journal,
+  CASE
+  WHEN (dd.is_open_access = 0) THEN
+    0
+  WHEN (dd.is_open_access = 1) THEN
+    1
+  ELSE
+    null
+  END is_open_access,
+-- dd.is_open_access is_open_access,
+get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'marlo.doi') as 'DOI',
+get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'marlo.handle') as 'Handle',
+get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'dc.identifier.citation') as 'Citation'
+from deliverables dev
+join deliverables_info devi on dev.id = devi.deliverable_id
+left join deliverable_dissemination dd on dd.deliverable_id=devi.deliverable_id and dd.id_phase=devi.id_phase
+left join deliverable_publications_metada pm on pm.deliverable_id=devi.deliverable_id and pm.id_phase = devi.id_phase
+left join deliverables_groups dg on dg.deliverable_id = devi.deliverable_id and dg.id_phase=devi.id_phase
+join phases ph on ph.id = devi.id_phase
+join global_units gu on gu.id = ph.global_unit_id
+where ifnull(if(devi.new_expected_year=-1,null,devi.new_expected_year), devi.`year`) = ph.year
+-- AND ph. YEAR =2020 -- between 2018 and 2020
+AND ph.year between ${START_YEAR} and ${END_YEAR}  
+and ph.name = 'AR'
+and dev.is_active
+and devi.is_active
+and devi.`status` not in (5)
+and devi.type_id = 63 -- Journal Article (peer reviewed)
+and is_deliverable_excluded(devi.deliverable_id,devi.id_phase) = 0
+and IS_WOS_VALIDATED(`devi`.`deliverable_id`,`ph`.`id`)=0
+UNION ALL
+SELECT dev.id id, concat(devi.deliverable_id,'_',devi.id_phase) pk,
+ifnull(dg.deliverable_group,devi.deliverable_id) deliverable_group,
+ (
+  SELECT
+    group_concat(
+      DISTINCT concat(esa.full_name) SEPARATOR ','
+    )
+  FROM
+    external_source_author esa
+  WHERE
+    (
+      esa.deliverable_metadata_external_sources_id = mes.id
+    )
+) AS authors,  
+ifnull(IF (devi.new_expected_year = - (1), NULL,devi.new_expected_year),devi.year) year,
+mes.title AS title,
+mes.journal_name AS journal,
+mes.volume AS volume,
+pm.issue AS issue,
+mes.pages AS pages,
+(
+  CASE
+  WHEN (`mes`.`is_isi` = 'false') THEN
+    0
+  WHEN (`mes`.`is_isi` = 'true') THEN
+    1
+  ELSE
+    null
+  END
+) AS `is_ISI_journal`,
+(
+  CASE
+  WHEN (
+    `mes`.`is_open_access` = 'false'
+  ) THEN
+    0
+  WHEN (
+    `mes`.`is_open_access` = 'true'
+  ) THEN
+    1
+  ELSE
+    -1
+  END
+) AS is_open_access,
+ mes.doi AS doi,
+get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'marlo.handle') as 'Handle',
+get_deliverable_metadata (devi.deliverable_id,devi.id_phase,'dc.identifier.citation') as 'Citation'
+FROM  deliverables dev
+JOIN deliverables_info devi ON dev.id = devi.deliverable_id
+LEFT JOIN deliverable_dissemination dd ON dd.deliverable_id = devi.deliverable_id AND dd.id_phase = devi.id_phase
+LEFT JOIN deliverable_publications_metada pm ON pm.deliverable_id = devi.deliverable_id AND pm.id_phase = devi.id_phase
+left join deliverables_groups dg on dg.deliverable_id = devi.deliverable_id and dg.id_phase=devi.id_phase
+JOIN phases ph ON ph.id = devi.id_phase
+JOIN global_units gu ON gu.id = ph.global_unit_id
+JOIN deliverable_metadata_external_sources mes ON mes.deliverable_id = devi.deliverable_id AND mes.phase_id = devi.id_phase -- and gu.acronym = 'PIM'
+where ifnull(if(devi.new_expected_year=-1,null,devi.new_expected_year), devi.year) = ph.year
+-- AND ph. YEAR =2020 -- between 2018 and 2020
+AND ph.year  between ${START_YEAR} and ${END_YEAR}  
+and ph.name = 'AR'
+and dev.is_active
+and devi.is_active
+and devi.status not in (5)
+and devi.type_id = 63 -- Journal Article (peer reviewed)
+and is_deliverable_excluded(devi.deliverable_id,devi.id_phase) = 0
+and IS_WOS_VALIDATED(devi.deliverable_id,ph.id)=1
+;
+
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>id</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>peer_review_papers</origin>
+        <comments>id</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Bogota</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>pk</name>
+        <length>41</length>
+        <precision>-1</precision>
+        <origin>peer_review_papers</origin>
+        <comments>pk</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Bogota</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>deliverable_group</name>
+        <length>65535</length>
+        <precision>-1</precision>
+        <origin>peer_review_papers</origin>
+        <comments>deliverable_group</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Bogota</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>authors</name>
+        <length>21845</length>
+        <precision>-1</precision>
+        <origin>peer_review_papers</origin>
+        <comments>authors</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Bogota</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>year</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>peer_review_papers</origin>
+        <comments>year</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Bogota</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>title</name>
+        <length>65535</length>
+        <precision>-1</precision>
+        <origin>peer_review_papers</origin>
+        <comments>title</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Bogota</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>journal</name>
+        <length>65535</length>
+        <precision>-1</precision>
+        <origin>peer_review_papers</origin>
+        <comments>journal</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Bogota</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>volume</name>
+        <length>65535</length>
+        <precision>-1</precision>
+        <origin>peer_review_papers</origin>
+        <comments>volume</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Bogota</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>issue</name>
+        <length>65535</length>
+        <precision>-1</precision>
+        <origin>peer_review_papers</origin>
+        <comments>issue</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Bogota</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>pages</name>
+        <length>65535</length>
+        <precision>-1</precision>
+        <origin>peer_review_papers</origin>
+        <comments>pages</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Bogota</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>is_ISI_journal</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>peer_review_papers</origin>
+        <comments>is_ISI_journal</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Bogota</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>is_open_access</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>peer_review_papers</origin>
+        <comments>is_open_access</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Bogota</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>DOI</name>
+        <length>65535</length>
+        <precision>-1</precision>
+        <origin>peer_review_papers</origin>
+        <comments>DOI</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Bogota</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>Handle</name>
+        <length>21845</length>
+        <precision>-1</precision>
+        <origin>peer_review_papers</origin>
+        <comments>Handle</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Bogota</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>Citation</name>
+        <length>21845</length>
+        <precision>-1</precision>
+        <origin>peer_review_papers</origin>
+        <comments>Citation</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Bogota</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -801,4 +1253,5 @@ and is_deliverable_excluded(devi.deliverable_id,devi.id_phase) = 0
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
+  <attributes/>
 </transformation>

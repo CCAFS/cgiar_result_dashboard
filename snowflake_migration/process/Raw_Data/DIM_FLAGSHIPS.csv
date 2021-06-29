@@ -51,11 +51,11 @@ pk_id_flagship,version,date_from,date_to,id,"acronym","name",crp_id
 49,1,1900-01-01 00:00:00,2200-01-01 00:00:00,127,"M1","Organize",24
 50,1,1900-01-01 00:00:00,2200-01-01 00:00:00,128,"M2","Convene",24
 51,1,1900-01-01 00:00:00,2200-01-01 00:00:00,129,"M3","Inspire",24
-52,1,1900-01-01 00:00:00,2200-01-01 00:00:00,155,"1","Breeding Program Excellence",25
-53,1,1900-01-01 00:00:00,2200-01-01 00:00:00,156,"2","Breeding Scheme Optimization",25
+52,1,1900-01-01 00:00:00,2200-01-01 00:00:00,155,"1","Product Design and Management",25
+53,1,1900-01-01 00:00:00,2200-01-01 00:00:00,156,"2","Trait Discovery and Breeding Tools and Services and Toolbox",25
 54,1,1900-01-01 00:00:00,2200-01-01 00:00:00,157,"3","Genotyping/sequencing tools and services ",25
-55,1,1900-01-01 00:00:00,2200-01-01 00:00:00,158,"4","Phenotyping tools and services",25
-56,1,1900-01-01 00:00:00,2200-01-01 00:00:00,159,"5","Bioinformatics and data management tools and services",25
+55,1,1900-01-01 00:00:00,2200-01-01 00:00:00,158,"4","Operations and Phenotyping ",25
+56,1,1900-01-01 00:00:00,2200-01-01 00:00:00,159,"5","Breeding Bioinformatics and Data Management",25
 57,1,1900-01-01 00:00:00,2200-01-01 00:00:00,160,"TB","Toolbox",25
 58,1,1900-01-01 00:00:00,2200-01-01 00:00:00,130,"SFS","Sustainable Food Systems",29
 59,1,1900-01-01 00:00:00,2200-01-01 00:00:00,131,"CC","Climate Change",29
@@ -89,3 +89,5 @@ pk_id_flagship,version,date_from,date_to,id,"acronym","name",crp_id
 87,1,1900-01-01 00:00:00,2200-01-01 00:00:00,183,"Lever 5","Digital inclusion",45
 88,1,1900-01-01 00:00:00,2200-01-01 00:00:00,184,"Lever 6","Crops for nutrition and health",45
 89,1,1900-01-01 00:00:00,2200-01-01 00:00:00,189,"MGT","Management and support unit",45
+90,1,1900-01-01 00:00:00,2200-01-01 00:00:00,190,"6","NARS",25
+91,1,1900-01-01 00:00:00,2200-01-01 00:00:00,191,"7","Adoption and Outreach",25

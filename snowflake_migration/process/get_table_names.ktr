@@ -521,14 +521,15 @@
       <schema_name/>
     </partitioning>
     <connection>DES_DB</connection>
-    <sql>SELECT table_name table_name,upper(table_name) sf_table_name, 'Fact' type  FROM information_schema.tables 
-where table_schema ='dashboard_bi' and table_name like 'fact_%' 
-Union all 
-SELECT table_name table_name,upper(table_name) sf_table_name, 'Bridge' type  FROM information_schema.tables 
-where table_schema ='dashboard_bi' and table_name like 'br_%'
-Union all 
+    <sql>-- SELECT table_name table_name,upper(table_name) sf_table_name, 'Fact' type  FROM information_schema.tables 
+-- where table_schema ='dashboard_bi' and table_name like 'fact_%' 
+-- Union all 
+-- SELECT table_name table_name,upper(table_name) sf_table_name, 'Bridge' type  FROM information_schema.tables 
+-- where table_schema ='dashboard_bi' and table_name like 'br_%'
+-- Union all 
 SELECT table_name table_name,upper(table_name) sf_table_name, 'Dimension'  type FROM information_schema.tables 
 where table_schema ='dashboard_bi' and  table_name like 'dim_%'
+and table_name = 'DIM_SRF_CASES_INFO'
 -- Union all 
 -- SELECT table_name table_name,upper(table_name) sf_table_name, 'View' type FROM information_schema.tables 
 -- where table_schema ='dashboard_bi' and table_name like 'vw_%'
@@ -539,6 +540,79 @@ order by table_name
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>table_name</name>
+        <length>64</length>
+        <precision>-1</precision>
+        <origin>Cubes tables</origin>
+        <comments>table_name</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Bogota</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>sf_table_name</name>
+        <length>64</length>
+        <precision>-1</precision>
+        <origin>Cubes tables</origin>
+        <comments>sf_table_name</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Bogota</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>type</name>
+        <length>9</length>
+        <precision>-1</precision>
+        <origin>Cubes tables</origin>
+        <comments>type</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Bogota</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -563,6 +637,7 @@ order by table_name
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <attributes/>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -581,4 +656,5 @@ order by table_name
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
+  <attributes/>
 </transformation>

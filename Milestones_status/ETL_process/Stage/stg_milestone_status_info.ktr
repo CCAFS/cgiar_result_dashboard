@@ -706,7 +706,9 @@ left join report_synthesis_flagship_progress_cross ccclimate on ccclimate.report
 -- where ph.year = 2018
 where ph.year between ${START_YEAR} and ${END_YEAR} 
 and ph.name = 'AR'
-and ifnull(if(mile.extended_year=-1,null,mile.year),mile.year) = ph.year
+-- and ifnull(if(mile.extended_year=-1,null,mile.extended_year),mile.year) = ph.year
+and (mile.extended_year=ph.year
+or  mile.year= ph.year)
 
 ;</sql>
     <limit>0</limit>

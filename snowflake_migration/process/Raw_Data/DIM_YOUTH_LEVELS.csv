@@ -1,6 +1,6 @@
 pk_id_youth_level,version,date_from,date_to,id,"powb_name","definition"
 0,1,,,,,
-1,1,1900-01-01 00:00:00,2200-01-01 00:00:00,1,"0 - Not Targeted","The score “not targeted” means that the activity was examined but found not to target the policy objective."
+1,1,1900-01-01 00:00:00,2200-01-01 00:00:00,1,"0 - Not Targeted","The score ""not targeted"" means that the activity was examined but found not to target the policy objective."
 2,1,1900-01-01 00:00:00,2200-01-01 00:00:00,2,"1 - Significant","Significant (secondary) policy objectives are those which, although important, were not the prime motivation for undertaking the activity."
 3,1,1900-01-01 00:00:00,2200-01-01 00:00:00,3,"2 - Principal","Principal (primary) policy objectives are those which can be identified as being fundamental in the design and impact of the activity and which are an explicit objective of the activity. They may be selected by answering the question “Would the activity have been undertaken without this objective?”"
 4,1,1900-01-01 00:00:00,2200-01-01 00:00:00,4,"N/A - Not applicable","The innovation has not reached a stage where gender/youth focus is clear."
