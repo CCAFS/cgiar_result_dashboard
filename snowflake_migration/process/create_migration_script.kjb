@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>migration_process</name>
+  <name>create_migration_script</name>
   <description/>
   <extended_description/>
   <job_version/>
+  <job_status>0</job_status>
   <directory>/</directory>
   <created_user>-</created_user>
-  <created_date>2018/09/14 11:19:22.664</created_date>
+  <created_date>2018/09/14 11:24:52.021</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2018/09/14 11:19:22.664</modified_date>
+  <modified_date>2018/09/14 11:24:52.021</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -287,74 +288,13 @@
   <shared_objects_file/>
   <entries>
     <entry>
-      <name>START</name>
-      <description/>
-      <type>SPECIAL</type>
-      <attributes/>
-      <start>Y</start>
-      <dummy>N</dummy>
-      <repeat>N</repeat>
-      <schedulerType>0</schedulerType>
-      <intervalSeconds>0</intervalSeconds>
-      <intervalMinutes>60</intervalMinutes>
-      <hour>12</hour>
-      <minutes>0</minutes>
-      <weekDay>1</weekDay>
-      <DayOfMonth>1</DayOfMonth>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>48</xloc>
-      <yloc>32</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>get_table_names</name>
+      <name>set_table_name_var</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}\get_table_names.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <run_configuration>Pentaho local</run_configuration>
-      <suppress_result_data>N</suppress_result_data>
-      <parameters>
-        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>272</xloc>
-      <yloc>32</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>var ini</name>
-      <description/>
-      <type>TRANS</type>
-      <attributes/>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/../../config/var_ini.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}/set_table_name_var.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -387,90 +327,64 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>create_migration_script</name>
+      <name>START</name>
       <description/>
-      <type>JOB</type>
+      <type>SPECIAL</type>
       <attributes/>
-      <specification_method>filename</specification_method>
-      <job_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/create_migration_script.kjb</filename>
-      <jobname/>
-      <directory/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>Y</params_from_previous>
-      <exec_per_row>Y</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name/>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <run_configuration>Pentaho local</run_configuration>
-      <parameters>
-        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>
-      <set_append_logfile>N</set_append_logfile>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>544</xloc>
+      <xloc>48</xloc>
       <yloc>32</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>execute migration Windows</name>
+      <name>create_csv</name>
       <description/>
-      <type>SHELL</type>
+      <type>TRANS</type>
       <attributes/>
-      <filename/>
-      <work_directory>${Internal.Entry.Current.Directory}</work_directory>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${Internal.Entry.Current.Directory}/send_table_info.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
       <logfile/>
-      <set_append_logfile>N</set_append_logfile>
       <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <insertScript>Y</insertScript>
-      <script>snowsql -f send.sql --config ../../config/config_files/config_snowflake</script>
       <loglevel>Basic</loglevel>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>544</xloc>
-      <yloc>368</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>extract_raw_data</name>
-      <description/>
-      <type>SHELL</type>
-      <attributes/>
-      <filename/>
-      <work_directory>${Internal.Entry.Current.Directory}/Raw_Data</work_directory>
-      <arg_from_previous>N</arg_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
+      <cluster>N</cluster>
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <insertScript>Y</insertScript>
-      <script>__extract.bat</script>
-      <loglevel>Basic</loglevel>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>816</xloc>
-      <yloc>368</yloc>
+      <xloc>288</xloc>
+      <yloc>32</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -480,88 +394,22 @@
       <attributes/>
       <filename>${Internal.Entry.Current.Directory}\send.sql</filename>
       <createParentFolder>N</createParentFolder>
-      <appendFile>N</appendFile>
-      <content>REMOVE @LOCAL_LOAD;
+      <appendFile>Y</appendFile>
+      <content>
+put file://Output/${V_SF_TABLE_NAME}.csv @LOCAL_LOAD;
+
+delete from ${V_SF_TABLE_NAME};
+
+copy into "DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."${V_SF_TABLE_NAME}" 
+from '@"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."LOCAL_LOAD"/${V_SF_TABLE_NAME}.csv' 
+file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
 </content>
       <encoding>UTF-8</encoding>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>400</xloc>
+      <xloc>432</xloc>
       <yloc>32</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>Send to snowflake?</name>
-      <description/>
-      <type>SIMPLE_EVAL</type>
-      <attributes/>
-      <valuetype>variable</valuetype>
-      <fieldname/>
-      <variablename>SNOWFLAKE_ACTIVE</variablename>
-      <fieldtype>string</fieldtype>
-      <mask/>
-      <comparevalue>Y</comparevalue>
-      <minvalue/>
-      <maxvalue/>
-      <successcondition>equal</successcondition>
-      <successnumbercondition>equal</successnumbercondition>
-      <successbooleancondition>false</successbooleancondition>
-      <successwhenvarset>N</successwhenvarset>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>544</xloc>
-      <yloc>128</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>Is windows?</name>
-      <description/>
-      <type>SIMPLE_EVAL</type>
-      <attributes/>
-      <valuetype>variable</valuetype>
-      <fieldname/>
-      <variablename>SO_NAME</variablename>
-      <fieldtype>string</fieldtype>
-      <mask/>
-      <comparevalue>Windows</comparevalue>
-      <minvalue/>
-      <maxvalue/>
-      <successcondition>equal</successcondition>
-      <successnumbercondition>equal</successnumbercondition>
-      <successbooleancondition>false</successbooleancondition>
-      <successwhenvarset>N</successwhenvarset>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>544</xloc>
-      <yloc>240</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>execute migration Linux</name>
-      <description/>
-      <type>SHELL</type>
-      <attributes/>
-      <filename/>
-      <work_directory>${Internal.Entry.Current.Directory}</work_directory>
-      <arg_from_previous>N</arg_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <set_append_logfile>N</set_append_logfile>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <insertScript>Y</insertScript>
-      <script>./snowsql -f send.sql --config ../../config/config_snowflake</script>
-      <loglevel>Basic</loglevel>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>816</xloc>
-      <yloc>240</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -572,15 +420,15 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1040</xloc>
-      <yloc>128</yloc>
+      <xloc>608</xloc>
+      <yloc>32</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
   <hops>
     <hop>
       <from>START</from>
-      <to>var ini</to>
+      <to>set_table_name_var</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -588,26 +436,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>var ini</from>
-      <to>get_table_names</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>get_table_names</from>
-      <to>create migration script</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>execute migration Windows</from>
-      <to>extract_raw_data</to>
+      <from>set_table_name_var</from>
+      <to>create_csv</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -616,60 +446,6 @@
     </hop>
     <hop>
       <from>create migration script</from>
-      <to>create_migration_script</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>create_migration_script</from>
-      <to>Send to snowflake?</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Send to snowflake?</from>
-      <to>Is windows?</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Is windows?</from>
-      <to>execute migration Windows</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Is windows?</from>
-      <to>execute migration Linux</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>execute migration Linux</from>
-      <to>extract_raw_data</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>extract_raw_data</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -678,12 +454,12 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Send to snowflake?</from>
-      <to>Success</to>
+      <from>create_csv</from>
+      <to>create migration script</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>N</evaluation>
+      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>
@@ -699,6 +475,10 @@
     </group>
     <group>
       <name>{"_":"Embedded MetaStore Elements","namespace":"pentaho","type":"Default Run Configuration"}</name>
+      <attribute>
+        <key>Pentaho local</key>
+        <value>{"children":[{"children":[],"id":"server","value":null},{"children":[],"id":"clustered","value":"N"},{"children":[],"id":"name","value":"Pentaho local"},{"children":[],"id":"description","value":null},{"children":[],"id":"pentaho","value":"N"},{"children":[],"id":"readOnly","value":"Y"},{"children":[],"id":"sendResources","value":"N"},{"children":[],"id":"logRemoteExecutionLocally","value":"N"},{"children":[],"id":"remote","value":"N"},{"children":[],"id":"local","value":"Y"},{"children":[],"id":"showTransformations","value":"N"}],"id":"Pentaho local","value":null,"name":"Pentaho local","owner":null,"ownerPermissionsList":[]}</value>
+      </attribute>
     </group>
   </attributes>
 </job>

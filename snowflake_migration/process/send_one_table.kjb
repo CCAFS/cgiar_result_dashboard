@@ -407,7 +407,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>704</xloc>
+      <xloc>640</xloc>
       <yloc>128</yloc>
       <attributes_kjc/>
     </entry>
@@ -433,7 +433,7 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>400</xloc>
+      <xloc>384</xloc>
       <yloc>128</yloc>
       <attributes_kjc/>
     </entry>
@@ -493,8 +493,8 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>544</xloc>
-      <yloc>128</yloc>
+      <xloc>384</xloc>
+      <yloc>240</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -518,8 +518,8 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>704</xloc>
-      <yloc>224</yloc>
+      <xloc>832</xloc>
+      <yloc>240</yloc>
       <attributes_kjc/>
     </entry>
   </entries>

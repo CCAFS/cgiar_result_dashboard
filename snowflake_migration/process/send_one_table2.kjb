@@ -395,8 +395,7 @@
       <filename>${Internal.Entry.Current.Directory}\send.sql</filename>
       <createParentFolder>N</createParentFolder>
       <appendFile>Y</appendFile>
-      <content>REMOVE @LOCAL_LOAD;
-
+      <content>
 put file://Output/${V_SF_TABLE_NAME}.csv @LOCAL_LOAD;
 
 delete from ${V_SF_TABLE_NAME};
@@ -409,8 +408,8 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>384</xloc>
-      <yloc>128</yloc>
+      <xloc>432</xloc>
+      <yloc>32</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -421,31 +420,7 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>832</xloc>
-      <yloc>32</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>Send to snowflake?</name>
-      <description/>
-      <type>SIMPLE_EVAL</type>
-      <attributes/>
-      <valuetype>variable</valuetype>
-      <fieldname/>
-      <variablename>SNOWFLAKE_ACTIVE</variablename>
-      <fieldtype>string</fieldtype>
-      <mask/>
-      <comparevalue>Y</comparevalue>
-      <minvalue/>
-      <maxvalue/>
-      <successcondition>equal</successcondition>
-      <successnumbercondition>equal</successnumbercondition>
-      <successbooleancondition>false</successbooleancondition>
-      <successwhenvarset>N</successwhenvarset>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>384</xloc>
+      <xloc>608</xloc>
       <yloc>32</yloc>
       <attributes_kjc/>
     </entry>
@@ -470,35 +445,17 @@ file_format = '"DB_PENTAHO_IMPORT"."DB_PENTAHO_IMPORT_SCHEMA"."MARLOBI"';
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>create_csv</from>
-      <to>Send to snowflake?</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Send to snowflake?</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Send to snowflake?</from>
-      <to>create migration script</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>create migration script</from>
       <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>create_csv</from>
+      <to>create migration script</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
