@@ -597,6 +597,7 @@
     <start_date_alternative>none</start_date_alternative>
     <start_date_field_name/>
     <useBatch>N</useBatch>
+    <attributes/>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -628,6 +629,9 @@
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta/>
+    <attributes/>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -660,6 +664,9 @@ from stg_policies_info_2017 pi</sql>
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta/>
+    <attributes/>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -678,4 +685,5 @@ from stg_policies_info_2017 pi</sql>
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
+  <attributes/>
 </transformation>

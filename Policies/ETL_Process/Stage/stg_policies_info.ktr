@@ -686,7 +686,10 @@
     <sql>select pol.id id_policy
 , GROUP_CONCAT(distinct poli.title) policy_title
 , GROUP_CONCAT(distinct poli.description) description
-, if(gu.id in(16,28,27),poli.external_link ,null) pdf
+, if(gu.id in(16,28,27),
+	 poli.external_link,
+	 concat('https://marlo.cgiar.org/summaries/',gu.acronym,'/projectPolicySummary.do?policyID=',pol.id,'&amp;phaseID=',ph.id)
+    ) pdf
 ,max(if (ccm.`name` = 'Gender',ccs.powb_name,'')) Gender
 ,max(if (ccm.`name` = 'Youth',ccs.powb_name,'')) Youth
 ,max(if (ccm.`name` = 'CapDev',ccs.powb_name,'')) CapDev
