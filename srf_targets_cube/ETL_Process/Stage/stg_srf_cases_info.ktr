@@ -457,6 +457,10 @@
         <attribute>utf8</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.useSSL</code>
+        <attribute>false</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.useUnicode</code>
         <attribute>true</attribute>
       </attribute>
@@ -677,6 +681,8 @@ and rspt.is_active
 and ph.name = 'AR'
 -- and ph.`year` between 2018 and 2019
 and ph.`year` between 2017 and ${END_YEAR}
+and `rspt`.`is_qa_included` = 0
+and is_QA_ready (ph.id)
 -- and ph.`year` =2020
 </sql>
     <limit>0</limit>

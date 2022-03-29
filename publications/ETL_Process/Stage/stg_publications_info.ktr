@@ -457,6 +457,10 @@
         <attribute>utf8</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.useSSL</code>
+        <attribute>false</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.useUnicode</code>
         <attribute>true</attribute>
       </attribute>
@@ -588,63 +592,48 @@
     <fields>
       <field>
         <name>id</name>
-        <rename/>
       </field>
       <field>
         <name>title</name>
-        <rename/>
       </field>
       <field>
         <name>Citation</name>
-        <rename/>
       </field>
       <field>
         <name>journal</name>
-        <rename/>
       </field>
       <field>
         <name>year</name>
-        <rename/>
       </field>
       <field>
         <name>authors</name>
-        <rename/>
       </field>
       <field>
         <name>is_ISI_journal</name>
-        <rename/>
       </field>
       <field>
         <name>is_open_access</name>
-        <rename/>
       </field>
       <field>
         <name>pk</name>
-        <rename/>
       </field>
       <field>
         <name>volume</name>
-        <rename/>
       </field>
       <field>
         <name>issue</name>
-        <rename/>
       </field>
       <field>
         <name>pages</name>
-        <rename/>
       </field>
       <field>
         <name>DOI</name>
-        <rename/>
       </field>
       <field>
         <name>Handle</name>
-        <rename/>
       </field>
       <field>
         <name>deliverable_group</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -700,50 +689,6 @@
     </remotesteps>
     <GUI>
       <xloc>208</xloc>
-      <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>stg_publications_info</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DES_DB</connection>
-    <schema/>
-    <table>stg_publications_info</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>416</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -809,9 +754,11 @@ and ph.name = 'AR'
 and dev.is_active
 and devi.is_active
 and devi.`status` not in (5)
+and if(ph.year&lt;2021,3,devi.`status`) =3
 and devi.type_id = 63 -- Journal Article (peer reviewed)
 and is_deliverable_excluded(devi.deliverable_id,devi.id_phase) = 0
 and IS_WOS_VALIDATED(`devi`.`deliverable_id`,`ph`.`id`)=0
+and is_QA_ready (ph.id)
 UNION ALL
 SELECT dev.id id, concat(devi.deliverable_id,'_',devi.id_phase) pk,
 ifnull(dg.deliverable_group,devi.deliverable_id) deliverable_group,
@@ -875,9 +822,11 @@ and ph.name = 'AR'
 and dev.is_active
 and devi.is_active
 and devi.status not in (5)
+and if(ph.year&lt;2021,3,devi.`status`) =3
 and devi.type_id = 63 -- Journal Article (peer reviewed)
 and is_deliverable_excluded(devi.deliverable_id,devi.id_phase) = 0
 and IS_WOS_VALIDATED(devi.deliverable_id,ph.id)=1
+and is_QA_ready (ph.id)
 ;
 
 </sql>
@@ -1244,6 +1193,50 @@ and IS_WOS_VALIDATED(devi.deliverable_id,ph.id)=1
     </remotesteps>
     <GUI>
       <xloc>48</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>stg_publications_info</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DES_DB</connection>
+    <schema/>
+    <table>stg_publications_info</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>

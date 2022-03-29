@@ -457,6 +457,10 @@
         <attribute>utf8</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.useSSL</code>
+        <attribute>false</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.useUnicode</code>
         <attribute>true</attribute>
       </attribute>
@@ -611,7 +615,7 @@ AND ph. NAME = 'AR'
 and pes.is_active
 and pesi.study_type_id = 1
 and pesi.title is not null
-</sql>
+and is_QA_ready (ph.id)</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

@@ -457,6 +457,10 @@
         <attribute>utf8</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.useSSL</code>
+        <attribute>false</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.useUnicode</code>
         <attribute>true</attribute>
       </attribute>
@@ -710,6 +714,7 @@ and ph.name = 'AR'
 and pol.is_active
 group by pol.id,ph.id
 -- and ph.global_unit_id=1
+and is_QA_ready (ph.id)
 ;
 </sql>
     <limit>0</limit>

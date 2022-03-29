@@ -458,6 +458,10 @@
         <attribute>utf8</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.useSSL</code>
+        <attribute>false</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.useUnicode</code>
         <attribute>true</attribute>
       </attribute>
@@ -717,7 +721,7 @@ AND ph.year between ${START_YEAR} and ${END_YEAR}
 AND ph. NAME = 'AR'
 and pesi.title is not null
 and pes.is_active
-
+and is_QA_ready (ph.id)
 </sql>
     <limit>0</limit>
     <lookup/>

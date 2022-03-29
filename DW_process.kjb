@@ -4,6 +4,7 @@
   <description/>
   <extended_description/>
   <job_version/>
+  <job_status>0</job_status>
   <directory>/</directory>
   <created_user>-</created_user>
   <created_date>2018/09/04 14:57:23.691</created_date>
@@ -127,10 +128,10 @@
     </field>
   </job-log-table>
   <jobentry-log-table>
-    <connection/>
-    <schema/>
-    <table/>
-    <timeout_days/>
+    <connection>DES_DB</connection>
+    <schema>${DES_DBNAME}</schema>
+    <table>log_pentaho_job</table>
+    <timeout_days>10</timeout_days>
     <field>
       <id>ID_BATCH</id>
       <enabled>Y</enabled>
@@ -1111,7 +1112,7 @@
       <to>migration_process</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>

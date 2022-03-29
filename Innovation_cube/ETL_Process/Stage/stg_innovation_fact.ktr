@@ -457,6 +457,10 @@
         <attribute>utf8</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.useSSL</code>
+        <attribute>false</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.useUnicode</code>
         <attribute>true</attribute>
       </attribute>
@@ -725,6 +729,7 @@ and ph.year = pini.year
 -- AND ph. YEAR between 2018 and 2019
 AND ph.year between ${START_YEAR} and ${END_YEAR}  
 -- and ph.global_unit_id=1
+and is_QA_ready (ph.id)
 </sql>
     <limit>0</limit>
     <lookup/>

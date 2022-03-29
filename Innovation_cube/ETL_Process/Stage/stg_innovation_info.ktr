@@ -457,6 +457,10 @@
         <attribute>utf8</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.useSSL</code>
+        <attribute>false</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.useUnicode</code>
         <attribute>true</attribute>
       </attribute>
@@ -588,43 +592,33 @@
     <fields>
       <field>
         <name>project_innovation_id</name>
-        <rename/>
       </field>
       <field>
         <name>title</name>
-        <rename/>
       </field>
       <field>
         <name>narrative</name>
-        <rename/>
       </field>
       <field>
         <name>evidence_link</name>
-        <rename/>
       </field>
       <field>
         <name>gender</name>
-        <rename/>
       </field>
       <field>
         <name>youth</name>
-        <rename/>
       </field>
       <field>
         <name>pk</name>
-        <rename/>
       </field>
       <field>
         <name>pdf</name>
-        <rename/>
       </field>
       <field>
         <name>number_of_innovations</name>
-        <rename/>
       </field>
       <field>
         <name>number_of_varieties</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -712,7 +706,8 @@ and is_innovation_excluded(pii.project_innovation_id,pii.id_phase) = 0
 and ph.name = 'AR'
 and ph.year = pii.year
 -- AND ph. YEAR between 2018 and 2019
-AND ph.year between ${START_YEAR} and ${END_YEAR}  </sql>
+AND ph.year between ${START_YEAR} and ${END_YEAR}  
+and is_QA_ready (ph.id)</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
