@@ -712,9 +712,8 @@ and ph.`year` between ${START_YEAR} and ${END_YEAR}
 -- and ph.`year` BETWEEN 2018 AND 2019
 and ph.name = 'AR'
 and pol.is_active
-group by pol.id,ph.id
--- and ph.global_unit_id=1
 and is_QA_ready (ph.id)
+group by pol.id,ph.id
 ;
 </sql>
     <limit>0</limit>
