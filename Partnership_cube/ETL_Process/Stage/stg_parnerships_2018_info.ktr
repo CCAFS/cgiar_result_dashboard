@@ -458,6 +458,10 @@
         <attribute>utf8</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.useSSL</code>
+        <attribute>false</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.useUnicode</code>
         <attribute>true</attribute>
       </attribute>
@@ -587,7 +591,7 @@
       <schema_name/>
     </partitioning>
     <connection>ORI_DB</connection>
-    <sql>select kep.id, kep.description, kep.other_partnership_main_area 
+    <sql>select kep.id, trim(replace(replace(replace(clean_html_tags(kep.description),'\r',''),'\n',' '),'''','\\''')) description, kep.other_partnership_main_area 
 from report_synthesis_key_partnership_external kep
 join report_synthesis_key_partnerships kp on kp.id = kep.report_synthesis_key_partnership_id
 join report_synthesis rs on rs.id =  kp.id
@@ -601,6 +605,9 @@ and ph.name='AR'</sql>
     <execute_each_row>N</execute_each_row>
     <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta/>
+    <attributes/>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -637,6 +644,7 @@ and ph.name='AR'</sql>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
+    <attributes/>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -678,6 +686,7 @@ and ph.name='AR'</sql>
         <presorted>N</presorted>
       </field>
     </fields>
+    <attributes/>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -721,6 +730,7 @@ and ph.name='AR'</sql>
     <return_field/>
     <fields>
     </fields>
+    <attributes/>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -739,4 +749,5 @@ and ph.name='AR'</sql>
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
+  <attributes/>
 </transformation>

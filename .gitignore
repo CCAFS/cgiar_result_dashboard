@@ -1,4 +1,7 @@
 config/config_files/
 snowflake_migration/process/Output
 snowflake_migration/process/send.sql
+snowflake_migration/process/Raw_Data
+snowflake_migration/process/Output2
+snowflake_migration/process/Output
 

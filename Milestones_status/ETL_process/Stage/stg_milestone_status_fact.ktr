@@ -709,7 +709,9 @@
     </partitioning>
     <connection>ORI_DB</connection>
     <sql>select distinct
-fpom.id  milestone_staus_info_id, ifnull(fpom.milestones_status,mile.milestone_status) milestones_status, fpom.rep_ind_milestone_reason_id status_reason, ph.id phase_id, ph.global_unit_id crp_id, 
+fpom.id  milestone_staus_info_id, 
+if(ifnull(fpom.milestones_status,mile.milestone_status) in (3,4,5,6,7),ifnull(fpom.milestones_status,mile.milestone_status),null),
+fpom.rep_ind_milestone_reason_id status_reason, ph.id phase_id, ph.global_unit_id crp_id, 
 concat(mile.composed_id,'_',outc.id_phase )milestone_pk ,
 li.crp_program flagship_id, ccgender.rep_ind_gender_youth_focus_level_id gender_level, ccyouth.rep_ind_gender_youth_focus_level_id youth_level, 
 cccapdev.rep_ind_gender_youth_focus_level_id capdev_level, ccclimate.rep_ind_gender_youth_focus_level_id climate_level,
